@@ -6,7 +6,6 @@ import DataTable from './components/DataTable/DataTable.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <App /> */}
-    <DataTable />
+    <App />
   </React.StrictMode>,
 )

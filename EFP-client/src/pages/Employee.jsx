@@ -1,9 +1,8 @@
 import React from 'react'
-
+import ShowTable from '../components/DataTable/DataTable'
 function Employee() {
   return (
-    <div>
-hi    </div>
+    <ShowTable/>
   )
 }
 
