@@ -1,7 +1,11 @@
 import React from 'react';
 import './DataTable.css';
 import { Button, Space, Table, Modal, Form, Input } from 'antd';
+import { Link } from 'react-router-dom';
 
+const handleEdit = () => {
+  
+}
 
 const columns = [
   {
@@ -46,10 +50,12 @@ const columns = [
     width: 180,
     render: (_, record) => (
       <Space size="middle">
-        <Button type="primary" onClick={() => handleEdit(record)}>
-          Edit
+        <Button type="primary" onClick={() => handleEdit()}>
+          <Link to={'/employees/edit'}>
+            Edit
+          </Link>
         </Button>
-        <Button type="danger" onClick={() => handleDelete(record)}>
+        <Button type="danger" onClick={() => handleDelete()}>
           Delete
         </Button>
       </Space>
@@ -115,5 +121,5 @@ const data = [
 
 
 
-const App = () => <Table columns={columns} dataSource={data} />;
-export default App;
+const ShowTable = () => <Table columns={columns} dataSource={data} />;
+export default ShowTable;

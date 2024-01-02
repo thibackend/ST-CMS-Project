@@ -5,7 +5,7 @@ import "../AddProject/AddProject.css";
 const { TextArea } = Input;
 const { Option } = Select;
 
-const App = () => {
+const EditProject = () => {
   return (
     <div className="container">
       <h2 className="tile"> Edit Project</h2>
@@ -48,4 +48,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default EditProject;
