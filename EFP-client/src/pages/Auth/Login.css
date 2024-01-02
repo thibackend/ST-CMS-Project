@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.flex {
+    display: flex;
+}
+.jc-center{
+    justify-content: center;
+}
+
+.login-form-container {
+    height: 100vh;
+}
+.ant-form-item-control-input-content {
+    display: flex;
+}
+.login-form-title {
+    text-align: center;
+}
