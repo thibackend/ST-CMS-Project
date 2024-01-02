@@ -1,5 +1,14 @@
 #root {
   text-align: initial;
+  padding: 2rem;
+  display: flex;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  place-items: center;
 }
 
 .tile {
