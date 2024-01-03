@@ -28,9 +28,6 @@ export class Project extends AbstractEntity {
   @Column()
   description: string;
 
-  @Column({ nullable: true })
-  specification: string;
-
   @Column('json', { nullable: false })
   langFrame: string[];
 

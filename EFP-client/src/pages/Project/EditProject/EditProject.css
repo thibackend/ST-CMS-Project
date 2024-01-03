@@ -1,22 +1,10 @@
 .container {
-  margin: 0 auto;
-  display: flex;
-  place-items: center;
+  width: 100%;
+  padding-top: 20px;
+  padding: 40px;
 }
-
 
 .tile {
-  margin-bottom: 20px;
-}
-
-.groupform {
-  max-width: 890px;
-  display: grid;
-  gap: 20px;
-  width: 100%;
-  grid-template-columns: repeat(2, 1fr);
-}
-.groupform input {
   margin-bottom: 20px;
 }
 
