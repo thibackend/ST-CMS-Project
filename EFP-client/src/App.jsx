@@ -5,12 +5,19 @@ import { routes } from './route'
 import { Layout } from 'antd'
 import Navbar from './components/Navbar/Navbar';
 import AvatarComponent from './components/Avatar/Avatar';
+import { useState } from 'react';
+import Login from './pages/Auth/Login';
 const { Header, Content } = Layout;
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  const handleLogin = () => {
 
+  }
   return (
     <Router>
+      {isLoggedIn? (
       <Layout style={{ minHeight: '100vh', maxWidth: '100%' }}>
         <Navbar />
         <Layout>
@@ -30,6 +37,9 @@ function App() {
           </Content>
         </Layout>
       </Layout>
+      ) : (
+        <Login />
+      )}
     </Router>
   )
 }
