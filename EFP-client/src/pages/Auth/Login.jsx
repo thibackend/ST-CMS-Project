@@ -1,9 +1,7 @@
 import React from "react";
 import './Login.css';
-import { Form, Input, Button} from "antd";
-import { inputPasswordRules, inputUserNameRules } from './auth_helper';
-
-
+import { Form, Input, Button } from "antd";
+import { inputPasswordRules, inputUserNameRules, styles } from './auth_helper';
 
 function Login() {
     const onFinish = (values) => {
@@ -12,16 +10,11 @@ function Login() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+
     return (
         <div className="login-form-container flex jc-center">
             <Form
-                style={{
-                    backgroundColor: '#006df0',
-                    borderRadius: 20,
-                    padding: 20,
-                    minWidth: 500,
-                    margin: 'auto auto'
-                }}
+                style={styles.loginForm}
                 size="large"
                 name="basic"
                 labelCol={{
@@ -38,67 +31,57 @@ function Login() {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
-                <h1 className="login-form-title">LOGIN</h1>
+                <div
+                    className="login-title"
+                    style={styles.loginTitle}>
+                    <h1 className="login-form-title color-006df0">LOG ~ IN </h1>
+                </div>
+
                 <Form.Item
                     hasFeedback
-                    label="User Name"
+                    label="USER NAME"
                     name="username"
                     rules={inputUserNameRules}
                 >
                     <Input
                         style={{
-                            color: 'red',
-                            borderRadius: 15,
-                            paddingInline: 30,
-                            borderRadius: 10,
-                            height: 50
+                            ...styles.formInput
                         }}
                         placeholder="Enter user name"
                     />
                 </Form.Item>
 
                 <Form.Item
-                    label="Password"
-                    labelAlign="right"
-                    style={{ color: 'red', fontWeight: 'bold' }}
+                    hasFeedback
+                    name="password"
+                    label="PASSWORD"
                     rules={inputPasswordRules}
                 >
                     <Input.Password
-                        style={{
-                            borderRadius: 15,
-                            paddingInline: 30,
-                            borderRadius: 10,
-                            height: 50
-                        }}
+                        style={styles.formInput}
                         hidden={true}
                         placeholder="Enter password"
-
                     />
                 </Form.Item>
 
                 <Form.Item>
                     <Button
-                        style={{
-                            color: 'white',
-                            backgroundColor: 'black',
-                            minWidth: '100%',
-                            margin: '0 auto',
-                            borderRadius: 10,
-                            height: 50,
-                            marginTop: 40
-                        }}
+                        style={styles.btnSubmit}
+                        bordered={false}
                         htmlType="submit"
                     >
                         LOGIN
                     </Button>
                 </Form.Item>
                 <Form.Item>
-                    <a href="#">Reset password</a>
+                    <a href="#" className="resetPassText">Reset password <span className="red">?</span></a>
                 </Form.Item>
 
             </Form>
         </div >
     );
+
+
 }
 
 export default Login

@@ -10,33 +10,34 @@ import Login from './pages/Auth/Login';
 const { Header, Content } = Layout;
 
 function App() {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  
+
   const handleLogin = () => {
 
   }
   return (
     <Router>
-      {isLoggedIn? (
-      <Layout style={{ minHeight: '100vh', maxWidth: '100%' }}>
-        <Navbar />
-        <Layout>
-          <Header style={{ background: '#006df0', textAlign:'end'}}>
-            <AvatarComponent />
-          </Header>
-          <Content>
-            <Routes>
-              {routes.Routes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              />
-            ))}
-            </Routes>
-          </Content>
+      {isLoggedIn ? (
+        <Layout style={{ minHeight: '100vh', maxWidth: '100%' }}>
+          <Navbar />
+          <Layout>
+            <Header style={{ background: '#006df0', textAlign: 'end' }}>
+              <AvatarComponent />
+            </Header>
+            <Content>
+              <Routes>
+                {routes.Routes.map((route) => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.element}
+                  />
+                ))}
+              </Routes>
+            </Content>
+          </Layout>
         </Layout>
-      </Layout>
       ) : (
         <Login />
       )}
