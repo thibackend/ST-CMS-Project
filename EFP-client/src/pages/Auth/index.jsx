@@ -4,7 +4,6 @@ import { Form, Input, Button} from "antd";
 import { inputPasswordRules, inputUserNameRules } from './auth_helper';
 
 
-
 function Login() {
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -50,7 +49,6 @@ function Login() {
                             color: 'red',
                             borderRadius: 15,
                             paddingInline: 30,
-                            borderRadius: 10,
                             height: 50
                         }}
                         placeholder="Enter user name"

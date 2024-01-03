@@ -1,5 +1,5 @@
 import React from 'react'
-import ShowTable from '../components/DataTable/DataTable'
+import ShowTable from './ShowEmployee'
 function Employee() {
   return (
     <ShowTable/>
