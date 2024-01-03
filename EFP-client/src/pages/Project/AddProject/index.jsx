@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form, Input, Select, DatePicker } from "antd";
-import "../AddProject/AddProject.css";
+import "./AddProject.css";
 
 const { TextArea } = Input;
 const { Option } = Select;

@@ -1,19 +1,18 @@
 import React from 'react'
 import { Avatar } from 'antd'
 
-const AvatarComponent = () => {
+const AvatarComponent = ({imageUrl}) => {
     return (
         <Avatar
+            src={imageUrl}
             style={{
-            backgroundColor: 'red',
             verticalAlign: 'middle',
             }}
             size="large"
             gap={10}
-        >
-            User
-        </Avatar>
+        />
+        
     )
 }
 
-export default AvatarComponent
+export default AvatarComponent;

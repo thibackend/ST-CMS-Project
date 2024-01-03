@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Setting() {
+const ProjectCard = () => {
   return (
     <div>
-      setting
+      
     </div>
   )
 }
 
-export default Setting
+export default ProjectCard
