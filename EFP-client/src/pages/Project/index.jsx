@@ -1,10 +1,10 @@
 import React from 'react'
-
+import ShowProject from './ShowProject'
 function Project() {
   return (
-    <div>
-      project
-    </div>
+    <>
+    <ShowProject />
+    </>
   )
 }
 

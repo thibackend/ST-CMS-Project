@@ -1,16 +1,4 @@
-/* .ant-table-cell {
-    text-align: center;
+.custom-table {
+    border: 1px solid #ecf0f4;
+    border-radius: 7px;
 }
-  
-.ant-table-thead th {
-    text-align: center;
-}
-
-.ant-table-tbody td {
-    text-align: center;
-}
-
-.ant-table-thead tr {
-    text-align: center;
-    color: red;
-} */

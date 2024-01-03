@@ -5,13 +5,15 @@ import Login from "../pages/Auth"
 import Project from "../pages/Project"
 import Employee from "../pages/Employee"
 import EditProject from "../pages/Project/EditProject"
-
+import AddEmployee from "../pages/Employee/AddEmployee"
 const Routers = [
     { path: "/dashboard", element: <Dashboard/>, isPrivate: true},
     { path: "/login", element: <Login />, isPrivate: false},
     { path: "/employees", element: <Employee />, isPrivate: true},
     { path: "/projects", element: <Project />, isPrivate: true},
-    { path: "/employees/edit", element: <EditProject />, isPrivate: true}
+    { path: "/employees/edit", element: <EditProject />, isPrivate: true},
+    { path: "/employees/add", element: <AddEmployee />, isPrivate: true}
+
 ]
 
 const AppRoutes = () => {
