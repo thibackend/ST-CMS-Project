@@ -26,10 +26,13 @@ const App = () => {
                   <DatePicker placeholder="Project End Date" />
                 </div>
 
-                <Select placeholder="Technology">
-                  <Option value="react">React</Option>
-                  <Option value="angular">Angular</Option>
-                  <Option value="vue">Vue</Option>
+                <Input placeholder="Technology" />
+                <Select placeholder="Manager">
+                  <option value="Hồ Văn Đi">Hồ Văn Đi</option>
+                  <option value="Thu Hương">Thu Hương</option>
+                  <option value="A Thi">A Thi</option>
+                  <option value="Lê Xuân">Lê Xuân</option>
+                  <option value="Hữu Thắng">Hữu Thắng</option>
                 </Select>
               </Form.Item>
             </div>

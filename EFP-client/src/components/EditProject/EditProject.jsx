@@ -24,11 +24,7 @@ const App = () => {
                 <DatePicker placeholder="Project Start Date" />
                 <DatePicker placeholder="Project End Date" />
               </div>
-              <Select placeholder="Technology">
-                <Option value="react">React</Option>
-                <Option value="angular">Angular</Option>
-                <Option value="vue">Vue</Option>
-              </Select>
+              <Input placeholder="Technology" />
             </Form.Item>
           </div>
 
