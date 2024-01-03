@@ -5,7 +5,7 @@ import "../AddProject/AddProject.css";
 const { TextArea } = Input;
 const { Option } = Select;
 
-const App = () => {
+const AddProject = () => {
   return (
     <div className="container">
       <div className="container-form">
@@ -54,4 +54,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AddProject;
