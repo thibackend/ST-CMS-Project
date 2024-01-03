@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Space, Table, Modal, Form, Input, DatePicker, Select, Spin } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
-import './project.css';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
@@ -16,7 +15,7 @@ const ShowDataProject = () => {
 
     setTimeout(() => {
       hideLoader();
-    }, 1000); // Simulating a 2-second search operation
+    }, 1000); 
   };
   const showLoader = () => {
     setSpinning(true);
