@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Input, Select, DatePicker, Space } from "antd";
+import { Button, Form, Input, Select, DatePicker, Col, Row, Space } from "antd";
 import "../AddProject/AddProject.css";
 
 const handleChange = (value) => {
@@ -43,25 +43,30 @@ const { Option } = Select;
 const AddProject = () => {
   return (
     <div className="container">
-      <div className="container-form">
-        <h2 className="tile"> Add Project</h2>
-        <Form
-          name="basic"
-          initialValues={{
-            remember: true,
-          }}
-          autoComplete="off"
-        >
-          <div className="groupform">
+      <h2 className="tile"> Add Project</h2>
+      <Form
+        name="basic"
+        initialValues={{
+          remember: true,
+        }}
+        autoComplete="off"
+      >
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+          <Col className="gutter-row" xs={24} md={12}>
             <div className="form">
               <Form.Item>
-                <Input placeholder="Project Name" />
+                <Input
+                  placeholder="Project Name"
+                  style={{ marginBottom: "20px" }}
+                />
                 <div className="date">
                   <DatePicker placeholder="Project Start Date" />
                   <DatePicker placeholder="Project End Date" />
                 </div>
-
-                <Input placeholder="Technology" />
+                <Input
+                  placeholder="Technology"
+                  style={{ marginBottom: "20px" }}
+                />
                 <Select placeholder="Manager">
                   <Option value="Hồ Văn Đi">Hồ Văn Đi</Option>
                   <Option value="Thu Hương">Thu Hương</Option>
@@ -71,7 +76,8 @@ const AddProject = () => {
                 </Select>
               </Form.Item>
             </div>
-
+          </Col>
+          <Col className="gutter-row" xs={24} md={12}>
             <div className="form">
               <Form.Item>
                 <Select
@@ -100,13 +106,13 @@ const AddProject = () => {
                 <TextArea rows={5} placeholder="Description" maxLength={100} />
               </Form.Item>
             </div>
-          </div>
+          </Col>
+        </Row>
 
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 };
