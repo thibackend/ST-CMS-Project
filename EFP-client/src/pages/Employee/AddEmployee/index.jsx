@@ -51,149 +51,160 @@ const AddEmployee = () => {
             className='form'
             name="complex-form"
             onFinish={onFinish}
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
+            // labelCol={{ span: 8 }}
+            // wrapperCol={{ span: 16 }}
+            size='large'
         >
-            <Row gutter={24} className='contentuser' style={{
-
+            <Row gutter={15} style={{
+                paddingLeft:20
             }}>
-                <Col>
-                    <Row gutter={24} justify="center" align="middle">
-                        <Col span={24}>
-                            <div className='container'>
-                                <Col gutter={16}>
-                                    <Col span={8} className='left-container' justify="center" align="middle" style={{
-                                        marginLeft:130,
-                                        marginTop:60,
-                                    }}>
-                                        <h4 className='title'>Xuan Le</h4>
-                                        <img className='image' src="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71drVy8MKoL._AC_UF1000,1000_QL80_.jpg" width={100} height={100} alt="" />
-                                        <div className='upload-button'>
-                                            <Upload {...props}>
-                                                <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                                            </Upload>
-                                        </div>
-                                    </Col>
-                                    <Row gutter={16} style={{ }}>
-                                        <Col className="gutter-row" span={8}>
-                                            {renderFormItem("Address:", "address", [{ required: true, message: 'Address is required' }],
-                                                <Input style={{ width: '240px' }} placeholder="Please input address" />
-                                            )}
-                                        </Col>
-                                        <Col className="gutter-row" span={8} style={{
-                                            marginLeft:50,
-                                        }}>
-                                            {renderFormItem("Birthdate:", "birthdate", [{ required: true, message: 'Birthdate is required' }],
-                                                <DatePicker style={{ width: '240px' }} />
-                                            )}
-                                        </Col>
-                                    </Row>
-                                    <Row gutter={16} style={{  }}>
-                                        <Col className="gutter-row" span={6}>
-                                            {renderFormItem("Programming:", "programmingLanguage", [{ required: true, message: 'Programming Language is required' }],
-                                                <Input style={{ width: '240px' }} placeholder="Please input Programming Language" />
-                                            )}
-                                        </Col>
-                                        <Col className="gutter-row" span={6} style={{
-                                            marginLeft:100,
-                                        }}>
-                                            {renderFormItem("Technology:", "technology", [{ required: true, message: 'Technology is required' }],
-                                                <Input style={{ width: '240px' }} placeholder="Please input Technology" />
-                                            )}
-                                        </Col>
-                                    </Row>
-
-                                </Col>
-                            </div>
+                <Col span={8} style={{
+                    marginTop:55
+                }}>
+                    <Col span={24} style={{ flexDirection: 'row', justifyContent: 'center', paddingLeft:70 }}>
+                        <h2 className='' style={{
+                            justifyContent:'center', alignItems:'center', marginLeft:30, marginTop:-30,paddingBottom:30,
+                        }}>Xuan Le</h2>
+                        <img className='image' style={{
+                            marginLeft:30,paddingBottom:15,
+                        }} src="https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71drVy8MKoL._AC_UF1000,1000_QL80_.jpg" width={100} height={130} alt="" />
+                        <div className='upload-button' style={{marginTop:40}}>
+                            <Upload {...props}>
+                                <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                            </Upload>
+                        </div>
+                    </Col>
+                    <Row gutter={10} style={{marginTop:10, marginTop:54}}>
+                        <Col span={12} >
+                            <Form.Item
+                                rules={[{ required: true, message: 'Address is required' }]}
+                                label="Address"
+                                labelCol={{ span: 24 }}
+                            >
+                                <Input placeholder="Please input Address" />
+                            </Form.Item>
                         </Col>
+                        <Col span={12} >
+                            <Form.Item
+                                rules={[{ required: true, message: 'Birthdate is required' }]}
+                                label="Birthdate"
+                                labelCol={{ span: 24 }}
+                            >
+                                <Input placeholder="Please input Birthdate" />
+                            </Form.Item>
+                        </Col>
+
+
+
+                    </Row>
+                    <Row gutter={8} >
+                       <Col span={12}>
+                       <Form.Item
+                            rules={[{ required: true, message: 'Programming is required' }]}
+                            label="Programming"
+                            labelCol={{ span: 24 }}
+                        >
+                            <Input placeholder="Please input Programming" />
+                        </Form.Item>
+                       </Col>
+                       <Col span={12}>
+                       <Form.Item
+                            rules={[{ required: true, message: 'Technology is required' }]}
+                            label="Technology"
+                            labelCol={{ span: 24 }}
+                        >
+                            <Input placeholder="Please input Technology" />
+                        </Form.Item>
+                       </Col>
                     </Row>
                 </Col>
-                <Col>
-                    <Row gutter={24} justify="center" align="middle">
-                        <Col span={24}>
-                            <div className='container'>
-                                <Col gutter={16}>
-                                    <Col span={24}>
-                                        {renderFormItem("Position:", "Position", [{ required: true, message: 'Position is required' }],
-                                            <Input style={{ width: '240px' }} placeholder="Please input Position" />
-                                        )}
-                                    </Col>
-
-                                    <Col span={24}>
-                                        {renderFormItem("Email:", "email", [{ required: true, message: 'Email is required' }],
-                                            <Input style={{ width: '240px' }} placeholder="Please input email" />
-                                        )}
-                                    </Col>
-
-                                    <Col span={24}>
-                                        {renderFormItem("Username:", "username", [{ required: true, message: 'Username is required' }],
-                                            <Input style={{ width: '240px' }} placeholder="Please input username" />
-                                        )}
-                                    </Col>
-
-                                    <Col span={24}>
-                                        {renderFormItem("Gender:", "gender", [{ required: true, message: 'Gender is required' }],
-                                            <Select style={{ width: '240px' }} placeholder="Select your Gender">
-                                                <Option value="male">Male</Option>
-                                                <Option value="female">Female</Option>
-                                                <Option value="other">Other</Option>
-                                            </Select>
-                                        )}
-                                    </Col>
-
-                                    <Col span={24}>
-                                        {renderFormItem("Skills:", "Skills", [{ required: true, message: 'Skill is required' }],
-                                            <Input style={{ width: '240px' }} placeholder="Please input skill" />
-                                        )}
-                                    </Col>
-                                </Col>
-                            </div>
-                        </Col>
-                    </Row>
+                <Col span={8} style={{marginTop:20}}>
+                    <Form.Item
+                        rules={[{ required: true, message: 'Position is required' }]}
+                        name={'position'}
+                        label={"Position"}
+                        labelCol={{ span: 24 }}
+                    >
+                        <Input placeholder="Please input Position" />
+                    </Form.Item>
+                    <Form.Item
+                        rules={[{ required: true, message: 'Email is required' }]}
+                        name={'Email'}
+                        label={"Email"}
+                        labelCol={{ span: 24 }}
+                    >
+                        <Input placeholder="Please input Email" />
+                    </Form.Item>
+                    <Form.Item
+                        rules={[{ required: true, message: 'Username is required' }]}
+                        name={'Username'}
+                        label={"Username"}
+                        labelCol={{ span: 24 }}
+                    >
+                        <Input placeholder="Please input Username" />
+                    </Form.Item>
+                    <Form.Item 
+                        rules={ [{ required: true, message: 'Gender is required' }]}
+                        label={'Gender'}
+                        labelCol={{ span: 24 }} 
+                    >
+                        <Select placeholder="Select your Gender">
+                            <Option value="male">Male</Option>
+                            <Option value="female">Female</Option>
+                            <Option value="other">Other</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item 
+                        rules={ [{ required: true, message: 'Skill is required' }]}
+                        label={'Skills'}
+                        labelCol={{span:24}}    
+                    >
+                        <Input placeholder="Please input skill" />
+                    </Form.Item>
                 </Col>
-                <Col>
-                    <Row gutter={24} justify="center" align="middle">
-                        <Col span={24}>
-                            <div className='container'>
-                                <Col span={24} >
-                                    <div className='checkbox'>
-                                        {renderFormItem("Is Manager?", "IsManager", null,
-                                            <Checkbox checked={checkNick} onChange={onCheckboxChange}>No</Checkbox>
-                                        )}
-                                    </div>
-                                </Col>
-                                <Col span={24}>
-                                    {renderFormItem("Identity card:", "identityPassport", [{ required: true, message: 'Identity card/ Passport is required' }],
-                                        <Input style={{ width: '240px' }} placeholder="Please input Identity card/ Passport" />
-                                    )}
-                                </Col>
-                                <Col span={24}>
-                                    {renderFormItem("Phone:", "phone", [{ required: true, message: 'Phone is required' }],
-                                        <Input style={{ width: '240px' }} placeholder="Please input phone" />
-                                    )}
-                                </Col>
-                                <Col className="gutter-row" span={24}>
-                                    {renderFormItem("Description:", "description", null,
-                                        <TextArea style={{ width: '250px', fontSize: '16px' }} rows={1} />
-                                    )}
-                                </Col>
-                                <Col className="gutter-row" span={24}>
-                                    {renderFormItem("Join Date:", "joinDate", [{ required: true, message: 'Join Date is required' }],
-                                        <Input style={{ width: '240px' }} placeholder="Please input Join Date" />
-                                    )}
-                                </Col>
-                            </div>
-                        </Col>
-                    </Row>
+                <Col span={8} style={{marginTop:20}}>
+                    <Form.Item 
+                      label={'Is Manager'}
+                      labelCol={{span:24}}    
+                    >
+                        <Checkbox checked={checkNick} onChange={onCheckboxChange}>No</Checkbox>
+                    </Form.Item>
+                    <Form.Item 
+                        rules= {[{ required: true, message: 'Identity card/ Passport is required' }]}
+                        label={'dentity card/ Passport is required'} 
+                        labelCol={{span:24}}  
+                    >
+                        <Input placeholder="Please input Identity card/ Passport" />
+                    </Form.Item>
+                     <Form.Item 
+                        rules={ [{ required: true, message: 'Phone is required' }]}
+                        label={'Phone'}
+                        labelCol={{span:24}}    
+                    >
+                        <Input placeholder="Please input Phone" />
+                    </Form.Item>
+                    <Form.Item 
+                      rules={ [{ required: true, message: 'Descriptions is required' }]}
+                      label={'Descriptions'}
+                      labelCol={{span:24}} 
+                    >
+                        <TextArea style={{ width: '250px', fontSize: '16px' }} rows={1} />
+                    </Form.Item>
+                    <Form.Item rules={[{ required: true, message: 'Join Date is required' }]}
+                        label = {'joinDate'}
+                        labelCol={{span:24}}
+
+                    >
+                        <Input style={{ width: '440px' }} placeholder="Please input Join Date" />
+                    </Form.Item>
                 </Col>
             </Row>
-
-
             <Row span={24} >
                 <div className='button-container'
-                style={{ display: 'flex',
-            marginLeft:1050 }}
-                
+                    style={{
+                        display: 'flex',
+                        marginLeft: 1010
+                    }}
                 >
                     <Form.Item label=" " colon={false}>
                         <Button type="primary" htmlType="submit">Cancel</Button>

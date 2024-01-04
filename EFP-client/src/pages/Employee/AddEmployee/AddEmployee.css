@@ -1,32 +1,12 @@
 
-
-.container {
-    max-width: 800px; /* Adjust the max-width as needed */
-    margin: 0 auto; /* Center the container */
-  }
-  
-  /* You can also add specific styles to individual form elements if needed */
-  
-  .container .ant-form-item {
-    margin-bottom: 16px; /* Adjust the margin between form items */
-  }
-/* Add this CSS to your stylesheet or style block in your component */
-
-.container {
-    max-width: 800px; /* Adjust the max-width as needed */
-    margin: 0 auto; /* Center the container */
-  }
   
   /* Adjust the gap between form items */
-  .gutter-row {
-    margin-bottom: 20px;
-  }
 
+/* 
   .form{
-    margin-left:50px;
-    padding:30px;
-    width:fit-content;
-    
     box-shadow:0px 5px 7px rgb(27,27,27);
   }
-  
+   */
+.form{
+  font-weight: bold;;
+}
