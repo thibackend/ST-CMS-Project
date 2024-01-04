@@ -33,3 +33,6 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
+#package
+./EFP-server/package-lock.json
+./EFP-client/package-lock.json

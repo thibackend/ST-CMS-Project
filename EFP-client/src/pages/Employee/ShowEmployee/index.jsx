@@ -1,8 +1,8 @@
 import React from 'react';
-import './DataTable.css';
 import { Button, Space, Table, Modal, Form, Input } from 'antd';
+import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-
+import './ShowEmployee.css'
 const handleEdit = () => {
   
 }
@@ -52,11 +52,11 @@ const columns = [
       <Space size="middle">
         <Button type="primary" onClick={() => handleEdit()}>
           <Link to={'/employees/edit'}>
-            Edit
+            <EditOutlined />
           </Link>
         </Button>
         <Button type="danger" onClick={() => handleDelete()}>
-          Delete
+          <DeleteOutlined />
         </Button>
       </Space>
     ),
@@ -121,5 +121,5 @@ const data = [
 
 
 
-const ShowTable = () => <Table columns={columns} dataSource={data} />;
+const ShowTable = () => <Table className="custom-table" columns={columns} dataSource={data} bordered={true} pagination={{ position: ['bottomRight'] }} />;
 export default ShowTable;
