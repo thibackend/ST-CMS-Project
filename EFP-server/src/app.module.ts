@@ -7,6 +7,7 @@ import { EmployeeModule } from './modules/employee/employee.module';
 import { ProjectModule } from './modules/project/project.module';
 import { AssignModule } from './modules/assign/assign.module';
 import { MailModule } from './modules/mail/mail.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { MailModule } from './modules/mail/mail.module';
     ProjectModule,
     AssignModule,
     MailModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

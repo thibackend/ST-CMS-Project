@@ -8,6 +8,7 @@ export declare class Project extends AbstractEntity {
     managerId: string;
     managerProject: Employee;
     description: string;
+    specification: string;
     langFrame: string[];
     technology: string[];
     status: StatusProjectEnum;
