@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Input } from 'antd';
+import { Row, Col, Input, Spin } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ const SearchAddTab = ({ onSearch, toAddLink }) => {
     <Row align="middle" gutter={[16, 0]} style={{background:'#dae1f3',padding: 12, borderRadius: '7px', margin: '0 0 15px'}}>
       <Col span={7}>
         <Input.Search
-        size='large'
+          size='large'
           placeholder="Search"
           onSearch={onSearch}
           enterButton
