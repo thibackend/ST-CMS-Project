@@ -13,7 +13,6 @@ const Routes = [
     { path: "/setting", element: <Setting/>, isPrivate: true},
     { path: "/employees/edit", element: <EditProject/>, isPrivate: true}
 ]
-
 export const routes = {
     Routes
 }

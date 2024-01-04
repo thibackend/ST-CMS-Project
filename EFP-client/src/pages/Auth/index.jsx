@@ -2,19 +2,23 @@ import React from "react";
 import './Login.css';
 import { Form, Input, Button } from "antd";
 import { inputPasswordRules, inputUserNameRules, styles } from './login-utils';
-import ApiRequest from "../../services/API_REQ";
+import api from "../../services/API_REQ";
 import CookieService from '../../services/cookieStore';
+import { useNavigate } from "react-router-dom";
 function Login({ handleLogin }) {
-    const api = new ApiRequest('http://localhost:3000/');
+    const navigate = useNavigate();
     const onFinish = (values) => {
         api.post('signin', values).then(
             res => {
                 console.log("output: ", res);
                 CookieService.setAuthCookie(res.data);
             });
-
         handleLogin(true);
+        navigate('/');
     };
+
+
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };

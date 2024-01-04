@@ -60,6 +60,6 @@ class ApiRequest {
         }
     }
 }
-
-export default ApiRequest;
+const api = new ApiRequest('http://localhost:3000/');
+export default api;
 
