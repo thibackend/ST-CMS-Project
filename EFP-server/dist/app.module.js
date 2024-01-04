@@ -16,6 +16,7 @@ const employee_module_1 = require("./modules/employee/employee.module");
 const project_module_1 = require("./modules/project/project.module");
 const assign_module_1 = require("./modules/assign/assign.module");
 const mail_module_1 = require("./modules/mail/mail.module");
+const auth_module_1 = require("./modules/auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,6 +29,7 @@ exports.AppModule = AppModule = __decorate([
             project_module_1.ProjectModule,
             assign_module_1.AssignModule,
             mail_module_1.MailModule,
+            auth_module_1.AuthModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

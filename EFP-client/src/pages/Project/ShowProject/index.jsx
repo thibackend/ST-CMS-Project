@@ -208,7 +208,7 @@ const columns = [
   return (
       <div className='row'>
         <div className='col-12'>
-          <Table columns={columns} dataSource={data} />
+          <Table columns={columns} dataSource={data} bordered={true}/>
         </div>
       </div>
   );

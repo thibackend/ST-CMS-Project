@@ -9,7 +9,7 @@ import AddEmployee from "../pages/Employee/AddEmployee"
 import AddProject from "../pages/Project/AddProject"
 
 const Routers = [
-    { path: "/dashboard", element: <Dashboard/>, isPrivate: true},
+    { path: "/", element: <Dashboard/>, isPrivate: true},
     { path: "/login", element: <Login />, isPrivate: false},
     { path: "/employees", element: <Employee />, isPrivate: true},
     { path: "/projects", element: <Project />, isPrivate: true},
