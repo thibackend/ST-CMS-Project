@@ -17,8 +17,6 @@ function Login({ handleLogin }) {
         navigate('/');
     };
 
-
-
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
@@ -92,7 +90,6 @@ function Login({ handleLogin }) {
             </Form>
         </div >
     );
-
 
 }
 
