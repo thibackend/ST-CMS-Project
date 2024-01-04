@@ -12,10 +12,10 @@ const { Header, Content } = Layout;
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const handleLogin = () => {
-
+  const handleLogin = (value) => {
+    setIsLoggedIn(value)
   }
+  
   return (
     <Router>
       {isLoggedIn ? (
@@ -39,7 +39,7 @@ function App() {
           </Layout>
         </Layout>
       ) : (
-        <Login />
+        <Login handleLogin = {handleLogin} />
       )}
     </Router>
   )

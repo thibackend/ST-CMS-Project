@@ -6,8 +6,8 @@ import EditProject from "./components/EditProject/EditProject"
 import Login from "./pages/Auth/Login"
 
 const Routes = [
-    { path: "/dashboard", element: <Dashboard/>, isPrivate: true},
-    { path: "/", element: <Login/>, isPrivate: false},
+    { path: "/", element: <Dashboard/>, isPrivate: true},
+    { path: "/login", element: <Login/>, isPrivate: false},
     { path: "/employees", element: <Employee/>, isPrivate: true},
     { path: "/projects", element: <Project/>, isPrivate: true},
     { path: "/setting", element: <Setting/>, isPrivate: true},

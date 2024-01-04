@@ -1,11 +1,19 @@
 import React from "react";
 import './Login.css';
 import { Form, Input, Button } from "antd";
-import { inputPasswordRules, inputUserNameRules, styles } from './auth_helper';
-
-function Login() {
+import { inputPasswordRules, inputUserNameRules, styles } from './login-utils';
+import ApiRequest from "../../services/API_REQ";
+import CookieService from '../../services/cookieStore';
+function Login({ handleLogin }) {
+    const api = new ApiRequest('http://localhost:3000/');
     const onFinish = (values) => {
-        console.log('Success:', values);
+        api.post('signin', values).then(
+            res => {
+                console.log("output: ", res);
+                CookieService.setAuthCookie(res.data);
+            });
+
+        handleLogin(true);
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
