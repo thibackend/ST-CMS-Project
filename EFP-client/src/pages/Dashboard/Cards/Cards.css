@@ -1,0 +1,31 @@
+
+.custom-card {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #2C3E50;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.custom-card svg {
+    margin: 0 10px;
+}
+ 
+.employee-card {
+    background: linear-gradient(45deg, #74ebd5, #ACB6E5);
+  }
+  
+.manager-card {
+background: linear-gradient(45deg, #efc99e, #c47e98);
+}
+
+.running-project-card {
+background: linear-gradient(45deg, #dbeb84, #ebe83c);
+}
+
+.done-project-card {
+background: linear-gradient(45deg, #a4fda1, #68e768);
+}
