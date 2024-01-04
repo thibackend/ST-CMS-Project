@@ -42,7 +42,7 @@ const { Option } = Select;
 
 const AddProject = () => {
   return (
-    <div className="container">
+    <div className="container-projec">
       <h2 className="tile"> Add Project</h2>
       <Form
         name="basic"
@@ -52,8 +52,8 @@ const AddProject = () => {
         autoComplete="off"
       >
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col className="gutter-row" xs={24} md={12}>
-            <div className="form">
+          <Col className="gutter-row" xs={24} lg={12}>
+            <div className="form-project">
               <Form.Item>
                 <Input
                   placeholder="Project Name"
@@ -77,8 +77,8 @@ const AddProject = () => {
               </Form.Item>
             </div>
           </Col>
-          <Col className="gutter-row" xs={24} md={12}>
-            <div className="form">
+          <Col className="gutter-row" xs={24} lg={12}>
+            <div className="form-project">
               <Form.Item>
                 <Select
                   style={{ marginBottom: "20px" }}
