@@ -1,7 +1,10 @@
-.container {
+.container-project {
   width: 100%;
-  padding-top: 20px;
   padding: 40px;
+}
+
+.ant-form-item-control-input-content {
+  display: block;
 }
 
 .tile {
