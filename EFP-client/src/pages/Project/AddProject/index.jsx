@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form, Input, Select, DatePicker, Col, Row, Space } from "antd";
-import "../AddProject/AddProject.css";
+import "./AddProject.css";
 
 const handleChange = (value) => {
   console.log(`selected ${value}`);

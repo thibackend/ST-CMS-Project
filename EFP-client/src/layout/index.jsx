@@ -13,9 +13,13 @@ import { Layout, Menu, Button, theme, Col, Row, Select } from 'antd';
 import BreadcrumbCom from './Breadcrumb';
 import AppRoutes from '../Routers/Routers';
 import AvatarComponent from '../components/Avatar'
+import { useLocation } from 'react-router-dom';
+
 const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -32,14 +36,14 @@ const MainLayout = () => {
             <img src={CMSLogoSmall} alt="" width={70} />
           )}
         </div>
-        <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1" icon={<DashboardOutlined />}>
+        <Menu theme="light" mode="inline" selectedKeys={[currentPath]}>
+          <Menu.Item key="/dashboard" icon={<DashboardOutlined />}>
             <Link to="/dashboard">Dashboard</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<UserOutlined />}>
+          <Menu.Item key="/employees" icon={<UserOutlined />}>
             <Link to="/employees">Employees</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<ProjectOutlined />}>
+          <Menu.Item key="/projects" icon={<ProjectOutlined />}>
             <Link to="/projects">Projects</Link>
           </Menu.Item>
         </Menu>
@@ -88,7 +92,7 @@ const MainLayout = () => {
           style={{
             margin: '24px 16px',
             padding: 24,
-            minHeight: 280,
+            minHeight: '100vh',
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
