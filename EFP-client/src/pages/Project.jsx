@@ -64,29 +64,6 @@ const columns = [
     ellipsis: true,
   },
   {
-    title: 'LangFrame',
-    dataIndex: 'LangFrame',
-    key: 'langFrame',
-    ellipsis: true,
-    render: (_, record) => (
-      <Select
-        placeholder="Choose your language"
-        style={{
-          width: 120,
-        }}
-        onChange={handleChange}
-        options={[
-          {
-            value: 'English',
-          },
-          {
-            value: 'Vietnam',
-          },
-        ]} 
-      />
-    )
-  },
-  {
     title: 'Technology',
     dataIndex: 'Technology',
     key: 'technology',
@@ -152,7 +129,6 @@ const columns = [
       ManagerProject: 'Ho Van Di',
       Description: 'Project OutSource',
       Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
       Technology: ['React JS', 'Ant Design', 'JavaScript'],
       Status: 'In progress',
       StartDate: '02/01/2003', 
@@ -164,7 +140,6 @@ const columns = [
       ManagerProject: 'Ho Van Di',
       Description: 'Project OutSource',
       Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
       Technology: ['React JS', 'Ant Design', 'JavaScript'],
       Status: 'In progress',
       StartDate: '02/01/2003', 
@@ -176,7 +151,6 @@ const columns = [
       ManagerProject: 'Ho Van Di',
       Description: 'Project OutSource',
       Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
       Technology: ['React JS', 'Ant Design', 'JavaScript'],
       Status: 'In progress',
       StartDate: '04/01/2003', 
@@ -188,7 +162,6 @@ const columns = [
       ManagerProject: 'Ho Van Di',
       Description: 'Project OutSource',
       Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
       Technology: ['React JS', 'Ant Design', 'JavaScript'],
       Status: 'In progress',
       StartDate: '05/01/2003', 
@@ -200,7 +173,6 @@ const columns = [
       ManagerProject: 'Ho Van Di',
       Description: 'Project OutSource',
       Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
       Technology: ['React JS', 'Ant Design', 'JavaScript'],
       Status: 'In progress',
       StartDate: '04/01/2003', 
@@ -212,7 +184,6 @@ const columns = [
       ManagerProject: 'Ho Van Di',
       Description: 'Project OutSource',
       Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
       Technology: ['React JS', 'Ant Design', 'JavaScript'],
       Status: 'In progress',
       StartDate: '05/01/2003', 
