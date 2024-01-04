@@ -13,14 +13,14 @@ import { Layout, Menu, Button, theme, Col, Row, Select } from 'antd';
 import BreadcrumbCom from './Breadcrumb';
 import AppRoutes from '../Routers/Routers';
 import AvatarComponent from '../components/Avatar'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
-const MainLayout = () => {
+const MainLayout = ({ handleLogin }) => {
   const location = useLocation();
   const currentPath = location.pathname;
-
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -82,7 +82,9 @@ const MainLayout = () => {
                   }
                 ]}
               />
-              <AvatarComponent imageUrl={'https://media.licdn.com/dms/image/D560BAQE96KctT7x-iw/company-logo_200_200/0/1666170056423?e=2147483647&v=beta&t=VWwOyGELKPqLpkj7dbxaCDtWbhWKvp3akvhvMdHivy4'} />
+              <Link to={'login'} onClick={()=>handleLogin(false)}>
+                <AvatarComponent imageUrl={'https://media.licdn.com/dms/image/D560BAQE96KctT7x-iw/company-logo_200_200/0/1666170056423?e=2147483647&v=beta&t=VWwOyGELKPqLpkj7dbxaCDtWbhWKvp3akvhvMdHivy4'} />
+              </Link>
             </Col>
           </Row>
 
