@@ -44,6 +44,10 @@ __decorate([
     __metadata("design:type", String)
 ], Project.prototype, "description", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Project.prototype, "specification", void 0);
+__decorate([
     (0, typeorm_1.Column)('json', { nullable: false }),
     __metadata("design:type", Array)
 ], Project.prototype, "langFrame", void 0);
