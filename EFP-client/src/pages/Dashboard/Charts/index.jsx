@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
-export const EmChartComponent = () => {
+export const EmChartComponent = ({ activeEmployees, inActiveEmployees }) => {
+
+
   const option = {
     title: {
       text: 'Employees chart',
@@ -14,7 +16,7 @@ export const EmChartComponent = () => {
       type: 'value',
     },
     series: [{
-      data: [40, 50],
+      data: [activeEmployees ? activeEmployees : 0, inActiveEmployees ? inActiveEmployees : 0],
       type: 'bar',
       label: {
         show: true,
@@ -56,7 +58,7 @@ export const ProChartComponent = () => {
           { value: 310, name: 'Pending' },
           { value: 234, name: 'Done' },
           { value: 135, name: 'Failed' },
-            ],
+        ],
         emphasis: {
           itemStyle: {
             shadowBlur: 10,
