@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import CookieService from './cookieStore';
 
-const Auth = () => {
-    const [dataAdmin, setDataAdmin] = useState([CookieService.getAuthCookie()]);
-    const [status, setStatus] = useState({});
+export default function Auth() {
+    const [dataAdmin, setDataAdmin] = useState([]);
 
-    useEffect(() => {
-        if (dataAdmin && dataAdmin.length > 0) {
-            setStatus({ st: true, setDataAdmin })
-        } else {
-            setStatus({ st: false, setDataAdmin })
+    const handleCookieDataAdmin = async (dataCookie = '', method = 'set') => {
+        if (method == 'remove') {
+            await CookieService.removeAuthCookies();
         }
+        else {
+            CookieService.setAuthCookie(dataCookie);
+        }
+        setDataAdmin(dataCookie);
     }
-        , [dataAdmin])
 
-    return status
+    const fetchAdminData = async () => {
+        const dataCookie = await CookieService.getAuthCookie();
+        setDataAdmin(dataCookie);
+    }
+    useEffect(() => {
+        fetchAdminData();
+    }, [])
 
+    if (dataAdmin && dataAdmin.length > 0) {
+        return { st: true, handleCookieDataAdmin }
+    }
+    else {
+        return { st: false, handleCookieDataAdmin }
+    }
 }
-export default Auth;

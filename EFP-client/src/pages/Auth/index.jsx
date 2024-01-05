@@ -5,16 +5,16 @@ import { inputPasswordRules, inputEmailRules, styles } from './login-utils';
 import api from "../../services/API_REQ";
 import CookieService from '../../services/cookieStore';
 import { useNavigate } from "react-router-dom";
-function Login({ setDataAdmin }) {
+function Login({ handleCookieDataAdmin }) {
     const navigate = useNavigate();
     const onFinish = async (values) => {
         await api.post('signin', values).then(
-            async res => {
+            res => {
                 console.log(res);
                 if (res && res.data && res.isPass) {
-                    await setDataAdmin([res.data]);
-                    CookieService.setAuthCookie(res.data);
-                    navigate('/');
+                    handleCookieDataAdmin([res.data]);
+                    console.log(res.data)
+                    return navigate('/dashboard');
                 } else {
                     alert("Wrong Admin's credentials")
                 }
@@ -79,7 +79,6 @@ function Login({ setDataAdmin }) {
                 <Form.Item>
                     <Button
                         style={styles.btnSubmit}
-                        bordered={false}
                         htmlType="submit"
                     >
                         LOGIN

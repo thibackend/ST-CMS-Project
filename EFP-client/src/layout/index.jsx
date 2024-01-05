@@ -14,11 +14,10 @@ import BreadcrumbCom from './Breadcrumb';
 import AppRoutes from '../Routers/Routers';
 import AvatarComponent from '../components/Avatar'
 import { useLocation, useNavigate } from 'react-router-dom';
-import CookieService from '../services/cookieStore';
 
 const { Header, Sider, Content } = Layout;
 
-const MainLayout = ({ setDataAdmin }) => {
+const MainLayout = ({ handleCookieDataAdmin }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const navigate = useNavigate();
@@ -83,7 +82,7 @@ const MainLayout = ({ setDataAdmin }) => {
                   }
                 ]}
               />
-              <Link onClick={()=>setDataAdmin(CookieService.removeAuthCookies())}>
+              <Link to={'/login'} onClick={() => handleCookieDataAdmin('', 'remove')}>
                 <AvatarComponent imageUrl={'https://media.licdn.com/dms/image/D560BAQE96KctT7x-iw/company-logo_200_200/0/1666170056423?e=2147483647&v=beta&t=VWwOyGELKPqLpkj7dbxaCDtWbhWKvp3akvhvMdHivy4'} />
               </Link>
             </Col>
