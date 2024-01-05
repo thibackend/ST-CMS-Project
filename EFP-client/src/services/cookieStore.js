@@ -21,11 +21,11 @@ const CookieService = {
     },
 
     getAuthCookie: () => {
-        const cookieData = CookieService.getCookie(COOKIE_KEY)
+        const cookieData = CookieService.getCookie(COOKIE_KEY.toString())
         return cookieData ? JSON.parse(cookieData) : null;
     },
 
-    removeAuthCookies: () => {
+    removeAuthCookies: async () => {
         // Xóa các giá trị cookie liên quan đến authentication
         CookieService.removeCookie(COOKIE_KEY);
       },

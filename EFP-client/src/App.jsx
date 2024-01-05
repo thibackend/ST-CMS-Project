@@ -1,20 +1,18 @@
 
 
 import { useEffect, useState } from 'react';
-import Login from './pages/Auth';
 import MainLayout from './layout';
 import Auth from './services/auth';
+import AuthRoute from './Routers/AuthRoute';
 
 function App() {
   const auth = Auth(); // Directly call Auth as a component to use hooks
   return (
-    auth && auth.st ? (
-      <MainLayout setDataAdmin={auth && auth.setDataAdmin} />
-    ) : (
-      <Login setDataAdmin={auth && auth.setDataAdmin} />
-    )
+    auth && auth.st ?
+      <MainLayout handleCookieDataAdmin={auth && auth.handleCookieDataAdmin} />
+      :
+      <AuthRoute handleCookieDataAdmin={auth && auth.handleCookieDataAdmin} />
   )
-  return <h1>Hello</h1>
 }
 
 export default App
