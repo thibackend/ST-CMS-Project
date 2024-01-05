@@ -38,8 +38,8 @@ const MainLayout = ({ setDataAdmin }) => {
           )}
         </div>
         <Menu theme="light" mode="inline" selectedKeys={[currentPath]}>
-          <Menu.Item key="/dashboard" icon={<DashboardOutlined />}>
-            <Link to="/dashboard">Dashboard</Link>
+          <Menu.Item key="/" icon={<DashboardOutlined />}>
+            <Link to="/">Dashboard</Link>
           </Menu.Item>
           <Menu.Item key="/employees" icon={<UserOutlined />}>
             <Link to="/employees">Employees</Link>

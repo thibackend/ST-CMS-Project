@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, Input, Select, DatePicker, Col, Row, Space, Radio } from "antd";
+import { Button, Form, Input, Select, DatePicker, Col, Row, Space, Radio, message } from "antd";
 import "./AddProject.css";
-import { frameOptions, technologyOptions, statusOptions } from "../data";
+import { frameOptions, technologyOptions, statusOptions } from "../../data";
 import api from '../../../services/API_REQ'
 
 const { TextArea } = Input;
@@ -10,6 +10,7 @@ const { Option } = Select;
 const AddProject = () => {
   const [managers, setManagers] = useState([]);
   const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
 
   useEffect(() => {
     api.get('/employee/managers').then(data => setManagers(data));
@@ -19,8 +20,9 @@ const AddProject = () => {
     try {
       console.log(values);
       await api.post('/project', values); 
-      alert("Done")
       form.resetFields();
+      message.success("Project added successfully");
+      navigation('/projects')
       
     } catch (error) {
       console.error('Error adding project:', error);
@@ -29,6 +31,7 @@ const AddProject = () => {
 
   return (
     <>
+      {contextHolder}
       <h2>Add project</h2>
       <Form form={form} onFinish={onFinish} className="form-add-project">
         
@@ -37,7 +40,7 @@ const AddProject = () => {
             <Form.Item label="Project name" name="name" rules={[{ required: true, message: "Project name is required!" }]}  labelCol={{ span: 24 }}>
               <Input placeholder="Enter project name" />
             </Form.Item>
-
+            
             <Form.Item label="Manager" name="managerId" rules={[{ required: true, message: "Please select a manager!" }]}   labelCol={{ span: 24 }}>
               <Select placeholder="Select a manager" style={{ height: '8vh' }}>
                 {managers.map((manager) => (

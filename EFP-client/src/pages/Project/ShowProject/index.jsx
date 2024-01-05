@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, Popconfirm } from 'antd';
+import { Button, Table, Popconfirm, message } from 'antd';
 import { Link } from 'react-router-dom'; 
 import './ShowProject.css';
 import api from '../../../services/API_REQ';
 
 const ShowProject = () => {
   const [projects, setProjects] = useState([]);
-
   useEffect(() => {
     api.get('/project').then(res => setProjects(res.data));
   }, []);
@@ -15,7 +14,7 @@ const ShowProject = () => {
   const handleDelete = async (projectId) => {
     try {
       await api.delete(`/project/${projectId}`);
-      alert("Delete success")
+      message.success("Deleted successfully");
     } catch (error) {
       console.error('Error deleting project:', error);
     }
@@ -30,8 +29,8 @@ const ShowProject = () => {
     },
     {
       title: 'Manager',
-      dataIndex: 'managerProject.name',
-      key: 'managerProject.name',
+      dataIndex: 'managerProject',
+      key: 'managerProject',
       ellipsis: true,
     },
     {
@@ -96,6 +95,7 @@ const ShowProject = () => {
 
 
   return (
+        
     <Table columns={columns} dataSource={projects} />
     
   );
