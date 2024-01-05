@@ -23,8 +23,8 @@ export class AuthController {
         return this.AuthService.signin(signInDto)
     }
 
-    @Patch('reset-password')
-    resetPassword(@Body() UpdateAdminDto: UpdateAdminDto) {
-        return this.AuthService.resetPassword(UpdateAdminDto)
+    @Patch('forgot-password')
+    forgotPassword() {
+        return this.AuthService.forgotPassword()
     }
 }

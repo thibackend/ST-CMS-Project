@@ -21,7 +21,7 @@ import { MailService } from './mail.service';
           },
         },
         defaults: {
-          from: `"Exactly" <${config.get<string>('MAIL_FROM')}>`,
+          from: `"_ADMIN_" <${config.get<string>('MAIL_FROM')}>`,
         },
         template: {
           dir: join(__dirname, '/templates'),
