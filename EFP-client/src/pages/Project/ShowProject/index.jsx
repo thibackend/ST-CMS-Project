@@ -1,230 +1,103 @@
-import React, { useState } from 'react';
-import { Button, Space, Table, Modal, Form, Input, DatePicker, Select, Spin } from 'antd';
-import { PlusCircleFilled } from '@ant-design/icons';
+import React, { useState, useEffect } from "react";
+import { Button, Table, Popconfirm } from 'antd';
+import { Link } from 'react-router-dom'; 
 import './ShowProject.css';
-import { Link } from 'react-router-dom';
+import api from '../../../services/API_REQ';
 
 const ShowProject = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [spinning, setSpinning] = useState(false);
+  const [projects, setProjects] = useState([]);
 
-  const handleSearch = () => {
-    showLoader();
+  useEffect(() => {
+    api.get('/project').then(res => setProjects(res.data));
+  }, []);
 
-    console.log('Searching for:', searchValue);
 
-    setTimeout(() => {
-      hideLoader();
-    }, 1000); // Simulating a 2-second search operation
-  };
-  const showLoader = () => {
-    setSpinning(true);
-  };
-
-  const hideLoader = () => {
-    setSpinning(false);
+  const handleDelete = async (projectId) => {
+    try {
+      await api.delete(`/project/${projectId}`);
+      alert("Delete success")
+    } catch (error) {
+      console.error('Error deleting project:', error);
+    }
   };
 
-  const handleChange = (value) => {
-    console.log(value);
-  };
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      width: 180,
+    },
+    {
+      title: 'Manager',
+      dataIndex: 'managerProject.name',
+      key: 'managerProject.name',
+      ellipsis: true,
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+    },
 
-  const handleEdit = () => {
-    //
-  };
-
-  const handleDelete = () => {
-    //
-  };
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    // render: (text) => <a>{text}</a>,
-    width: 180,
-  },
-  {
-    title: 'ManagerProject',
-    dataIndex: 'ManagerProject',
-    key: 'managerProject',
-    ellipsis: true,
-  },
-  {
-    title: 'Description',
-    dataIndex: 'Description',
-    key: 'description',
-  },
-  {
-    title: 'Specification',
-    dataIndex: 'Specification',
-    key: 'specification',
-    ellipsis: true,
-  },
-  {
-    title: 'LangFrame',
-    dataIndex: 'LangFrame',
-    key: 'langFrame',
-    ellipsis: true,
-    render: (_, record) => (
-      <Select
-        placeholder="Choose your language"
-        style={{
-          width: 120,
-        }}
-        onChange={handleChange}
-        options={[
-          {
-            value: 'English',
-          },
-          {
-            value: 'Vietnam',
-          },
-        ]} 
-      />
-    )
-  },
-  {
-    title: 'Technology',
-    dataIndex: 'Technology',
-    key: 'technology',
-    ellipsis: true,
-  },
-  {
-    title: 'Status',
-    dataIndex: 'Status',
-    key: 'status',
-    ellipsis: true,
-    render: (_, record) => (
-      <Select 
-      placeholder = 'Choose status'
-        style={{
-          width: 120,
-        }}
-        options={[
-          {
-            value: 'In Progress',
-          },
-          {
-            value: 'Completed',
-          }
-        ]}
-      />
-    )
-  },
-  {
-    title: 'StartDate',
-    dataIndex: 'StartDate',
-    key: 'startDate',
-    ellipsis: true,
-  },
-  {
-    title: 'EndDate',
-    dataIndex: 'EndDate',
-    key: 'endDate',
-    ellipsis: true,
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    width: 180,
-    render: (_, record) => (
-      <Space size="middle">
-        <Button type="primary" onClick={() => handleEdit()}>
-          <Link to={'/projects/edit'}>
+    {
+      title: 'Framework',
+      dataIndex: 'langFrame',
+      key: 'langFrame',
+      ellipsis: true
+    },
+    {
+      title: 'Technology',
+      dataIndex: 'technology',
+      key: 'technology',
+      ellipsis: true,
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      ellipsis: true},
+    {
+      title: 'Start Date',
+      dataIndex: 'startDate',
+      key: 'startDate',
+      ellipsis: true,
+    },
+    {
+      title: 'End Date',
+      dataIndex: 'endDate',
+      key: 'endDate',
+      ellipsis: true,
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      width: 180,
+      render: (text, record) => (
+        <span>
+          <Link to={`/projects/edit/${record.id}`}> 
+          <Button type="primary" style={{ marginRight: 8 }}>
             Edit
-          </Link>
-        </Button>
-        <Button type="danger" onClick={() => handleDelete()}>
-          Delete
-        </Button>
-      </Space>
-    ),
-  },
-];
+          </Button>
+        </Link>
 
-  const data = [
-    {
-      key: '1',
-      name: 'Ho Van Di',
-      ManagerProject: 'Ho Van Di',
-      Description: 'Project OutSource',
-      Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
-      Technology: ['React JS', 'Ant Design', 'JavaScript'],
-      Status: 'In progress',
-      StartDate: '02/01/2003', 
-      EndDate: '06/01/2003', 
-    },
-    {
-      key: '2',
-      name: 'A Thi',
-      ManagerProject: 'Ho Van Di',
-      Description: 'Project OutSource',
-      Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
-      Technology: ['React JS', 'Ant Design', 'JavaScript'],
-      Status: 'In progress',
-      StartDate: '02/01/2003', 
-      EndDate: '08/01/2003', 
-    },
-    {
-      key: '3',
-      name: 'Nguyen Huu Thang',
-      ManagerProject: 'Ho Van Di',
-      Description: 'Project OutSource',
-      Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
-      Technology: ['React JS', 'Ant Design', 'JavaScript'],
-      Status: 'In progress',
-      StartDate: '04/01/2003', 
-      EndDate: '09/01/2003', 
-    },
-    {
-      key: '4',
-      name: 'Le Xuan',
-      ManagerProject: 'Ho Van Di',
-      Description: 'Project OutSource',
-      Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
-      Technology: ['React JS', 'Ant Design', 'JavaScript'],
-      Status: 'In progress',
-      StartDate: '05/01/2003', 
-      EndDate: '09/01/2003', 
-    },
-    {
-      key: '5',
-      name: 'Phan Thi Thu Huong',
-      ManagerProject: 'Ho Van Di',
-      Description: 'Project OutSource',
-      Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
-      Technology: ['React JS', 'Ant Design', 'JavaScript'],
-      Status: 'In progress',
-      StartDate: '04/01/2003', 
-      EndDate: '08/01/2003', 
-    },
-    {
-      key: '6',
-      name: 'Cao Tuyen',
-      ManagerProject: 'Ho Van Di',
-      Description: 'Project OutSource',
-      Specification: 'this project must complete in 2 months',
-      LangFrame: ['English ', 'Vietnam'],
-      Technology: ['React JS', 'Ant Design', 'JavaScript'],
-      Status: 'In progress',
-      StartDate: '05/01/2003', 
-      EndDate: '10/01/2003', 
+          <Popconfirm
+            title="Are you sure delete this project?"
+            onConfirm={() => handleDelete(record.id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type="danger">Delete</Button>
+          </Popconfirm>
+        </span>
+      ),
     },
   ];
 
+
   return (
-      <div className='row'>
-        <div className='col-12'>
-          <Table columns={columns} dataSource={data} />
-        </div>
-      </div>
+    <Table columns={columns} dataSource={projects} />
+    
   );
 };
 

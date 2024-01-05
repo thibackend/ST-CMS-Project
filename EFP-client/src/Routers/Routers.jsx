@@ -15,7 +15,7 @@ const Routers = [
     { path: "/employees/edit", element: <EditProject />, isPrivate: true},
     { path: "/employees/add", element: <AddEmployee />, isPrivate: true},
     { path: "/projects/add", element: <AddProject />, isPrivate: true},
-    { path: "/projects/edit", element: <EditProject />, isPrivate: true},
+    { path: "/projects/edit/:projectId", element: <EditProject />, isPrivate: true},
 ]
 
 const AppRoutes = () => {
