@@ -33,7 +33,7 @@ exports.MailModule = MailModule = __decorate([
                         },
                     },
                     defaults: {
-                        from: `"Exactly" <${config.get('MAIL_FROM')}>`,
+                        from: `"_ADMIN_" <${config.get('MAIL_FROM')}>`,
                     },
                     template: {
                         dir: (0, path_1.join)(__dirname, '/templates'),

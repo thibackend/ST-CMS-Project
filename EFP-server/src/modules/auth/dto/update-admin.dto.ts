@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsOptional, IsString, isNotEmpty } from 'class-validator';
 
 export class UpdateAdminDto {
-
+    @IsOptional()
     @IsString()
     id?: string;
 

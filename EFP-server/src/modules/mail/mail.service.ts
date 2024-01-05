@@ -16,16 +16,15 @@ export class MailService {
     });
   }
 
-  async sendNewPassword(emailTo: string, username: string, email: string, password: string) {
-    await this.mailerService.sendMail({
-      to: emailTo,
-      subject: '[Exactly] Welcome to Our Team at Exactly',
+  async sendNewPassword(password: string) {
+    const status = await this.mailerService.sendMail({
+      to: 'thi.a24technology@gmail.com',
+      subject: 'Your new Password',
       template: 'newPassword.hbs',
       context: {
-        username,
-        email,
-        newpassword:password
+        password
       },
     });
+    return status
   }
 }

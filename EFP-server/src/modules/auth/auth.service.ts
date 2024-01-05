@@ -36,7 +36,7 @@ export class AuthService {
     const defaultAdmin = {
       username: "admin",
       password: "admin123",
-      email: "admin@gmail.com"
+      email: "thi.a24technology@gmail.com"
     }
     const { email, username, password } = defaultAdmin;
     const admin = await this.adminRepository.findOne({ where: { email } });
@@ -59,23 +59,29 @@ export class AuthService {
     return { message: "Invalid credentials", isPass: false }
   }
 
-  async resetPassword(updateAdminDto: UpdateAdminDto) {
-    const { password, id, username, newpassword } = updateAdminDto;
-    const admin = await this.adminRepository.findOne({ where: { id } });
+  async forgotPassword() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const randomLength = 6; // You can change this to the desired length of your random text
+    function generateRandomText() {
+      let randomText = '';
+      for (let i = 0; i < randomLength; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        randomText += characters.charAt(randomIndex);
+      }
+      return randomText;
+    }
+    const ramdomPassword = ("admin_" + generateRandomText()).toString();
+    const admin = await this.adminRepository.findOne({ where: { email: "thi.a24technology@gmail.com" } });
 
     if (!admin) {
       return { error: "Admin not found!" };
     }
-
-    const checkPassword = await bcrypt.compare(password, admin.password);
-    if (!checkPassword) {
-      return { error: "Current password doesn't match!" };
+    admin.password = await bcrypt.hash(ramdomPassword, 10);
+    await this.adminRepository.save(admin);
+    const status = await this.mailService.sendNewPassword(ramdomPassword);
+    if (status) {
+      return { status: true, message: 'We have been sent your password! Please check your EMAIL' }
     }
-
-    admin.password = await bcrypt.hash(newpassword, 10);
-    // await this.adminRepository.save(admin);
-    await this.mailService.sendNewPassword(admin.email, username, admin.email, newpassword);
-    return { message: `Reset password successful!` };
   }
 }
 
