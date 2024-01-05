@@ -12,4 +12,4 @@ import { Admin } from "src/entities/admin.entity";
         providers: [AuthService]
     }
 )
-export class AuthModule { }
+export class AuthModule {}

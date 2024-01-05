@@ -10,7 +10,6 @@ import AddProject from "../pages/Project/AddProject"
 
 const Routers = [
     { path: "/", element: <Dashboard/>, isPrivate: true},
-    { path: "/login", element: <Login />, isPrivate: false},
     { path: "/employees", element: <Employee />, isPrivate: true},
     { path: "/projects", element: <Project />, isPrivate: true},
     { path: "/employees/edit", element: <EditProject />, isPrivate: true},

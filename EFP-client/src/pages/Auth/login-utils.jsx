@@ -17,22 +17,26 @@ export const inputPasswordRules = [
     },
 ]
 
-export const inputUserNameRules = [
+export const inputEmailRules = [
+    {
+        type: 'email',
+        message: 'Please enter a valid email address',
+    },
     {
         required: true,
-        message: 'Please input your Username!',
+        message: 'Email is required',
     },
     {
-        min: 3,
-        message: 'Username must be at least 3 characters long!',
+        min: 6,
+        message: 'Email must be at least 6 characters',
     },
     {
-        max: 25,
-        message: 'Username cannot exceed 25 characters!',
+        max: 50,
+        message: 'Email cannot exceed 50 characters',
     },
     {
-        pattern: /^[a-zA-ZA0-9_ ]*$/,
-        message: 'Username can only contain letters, numbers, underscores, and spaces!',
+        pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        message: 'Invalid email format',
     },
 ]
 

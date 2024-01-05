@@ -24,7 +24,7 @@ export class EmployeeController {
   constructor(
     private readonly employeeService: EmployeeService,
     private readonly mailService: MailService,
-  ) {}
+  ) { }
 
   @Get('noPaginate')
   noPaginate() {

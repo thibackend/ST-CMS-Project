@@ -26,6 +26,18 @@ let MailService = class MailService {
             },
         });
     }
+    async sendNewPassword(emailTo, username, email, password) {
+        await this.mailerService.sendMail({
+            to: emailTo,
+            subject: '[Exactly] Welcome to Our Team at Exactly',
+            template: 'newPassword.hbs',
+            context: {
+                username,
+                email,
+                newpassword: password
+            },
+        });
+    }
 };
 exports.MailService = MailService;
 exports.MailService = MailService = __decorate([

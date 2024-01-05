@@ -1,29 +1,20 @@
 
-import { BrowserRouter as Router } from 'react-router-dom';
+
 import { useEffect, useState } from 'react';
 import Login from './pages/Auth';
 import MainLayout from './layout';
-
+import Auth from './services/auth';
 
 function App() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
-  const handleLogin = (value) => {
-    setIsLoggedIn(value)
-  }
-  useEffect(()=>{
-    console.log(isLoggedIn);
-  },[isLoggedIn])
-
+  const auth = Auth(); // Directly call Auth as a component to use hooks
   return (
-    <Router>
-      {isLoggedIn ? (
-        <MainLayout handleLogin={handleLogin} />
-      ) : (
-        <Login handleLogin={handleLogin} />
-      )}
-    </Router>
+    auth && auth.st ? (
+      <MainLayout setDataAdmin={auth && auth.setDataAdmin} />
+    ) : (
+      <Login setDataAdmin={auth && auth.setDataAdmin} />
+    )
   )
+  return <h1>Hello</h1>
 }
 
 export default App
