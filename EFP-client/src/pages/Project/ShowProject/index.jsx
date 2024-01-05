@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table, Popconfirm } from 'antd';
+import { Link } from 'react-router-dom'; 
 import './ShowProject.css';
 import api from '../../../services/API_REQ';
 
@@ -74,13 +75,11 @@ const ShowProject = () => {
       width: 180,
       render: (text, record) => (
         <span>
-             <Button
-              type="primary"
-              style={{ marginRight: 8 }}
-              onClick={() => setSelectedProjectId(record.id)}
-            >
-              Edit
-            </Button>
+          <Link to={`/projects/edit/${record.id}`}> 
+          <Button type="primary" style={{ marginRight: 8 }}>
+            Edit
+          </Button>
+        </Link>
 
           <Popconfirm
             title="Are you sure delete this project?"
