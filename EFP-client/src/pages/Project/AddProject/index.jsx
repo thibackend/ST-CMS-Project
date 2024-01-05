@@ -3,6 +3,7 @@ import { Button, Form, Input, Select, DatePicker, Col, Row, Space, Radio, messag
 import "./AddProject.css";
 import { frameOptions, technologyOptions, statusOptions } from "../../data";
 import api from '../../../services/API_REQ'
+import { useNavigate } from "react-router-dom";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -11,6 +12,7 @@ const AddProject = () => {
   const [managers, setManagers] = useState([]);
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
+  const navigation = useNavigate();
 
   useEffect(() => {
     api.get('/employee/managers').then(data => setManagers(data));

@@ -47,7 +47,7 @@ const columns = [
       <span>
           <Link to={`/employees/edit/${record.id}`}> 
           <Button type="primary" style={{ marginRight: 8 }}>
-            Edit
+           <EditOutlined/>
           </Button>
         </Link>
 
@@ -57,7 +57,9 @@ const columns = [
             okText="Yes"
             cancelText="No"
           >
-            <Button type="danger" >Delete</Button>
+            <Button type="danger" >
+              <DeleteOutlined/>
+            </Button>
           </Popconfirm>
         </span>
     ),

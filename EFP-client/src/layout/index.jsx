@@ -75,6 +75,7 @@ const MainLayout = ({ setDataAdmin }) => {
                 defaultValue="English"
                 style={{
                   width: 120,
+                  marginRight:10
                 }}
                 options={[
                   {
