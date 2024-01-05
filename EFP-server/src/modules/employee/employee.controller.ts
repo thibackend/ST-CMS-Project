@@ -45,6 +45,7 @@ export class EmployeeController {
     return { result, message: 'Successfully create new employee' };
   }
 
+
   @Post('cv')
   async generateCv(@Body('id') id: string, @Res() res: Response) {
     try {
