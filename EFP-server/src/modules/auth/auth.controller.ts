@@ -2,6 +2,7 @@ import { Controller, Post, Get, Patch, Put, Delete, Body } from "@nestjs/common"
 import { AuthService } from "./auth.service";
 import { CreateAdminDto } from "./dto/create-admin.dto";
 import { SignInDto } from "./dto/admin-signin.dto";
+import { UpdateAdminDto } from "./dto/update-admin.dto";
 
 @Controller()
 export class AuthController {
@@ -12,8 +13,18 @@ export class AuthController {
         return this.AuthService.signup(signUpNewAdminDto);
     }
 
+    @Get('generate-default-admin')
+    generateDefaultAdmin() {
+        return this.AuthService.generateDefaultAdmin();
+    }
+
     @Post('signin')
     signin(@Body() signInDto: SignInDto) {
         return this.AuthService.signin(signInDto)
+    }
+
+    @Patch('reset-password')
+    resetPassword(@Body() UpdateAdminDto: UpdateAdminDto) {
+        return this.AuthService.resetPassword(UpdateAdminDto)
     }
 }

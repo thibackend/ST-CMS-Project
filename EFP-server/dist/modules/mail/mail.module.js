@@ -26,7 +26,7 @@ exports.MailModule = MailModule = __decorate([
                 useFactory: async (config) => ({
                     transport: {
                         host: config.get('MAIL_HOST'),
-                        secure: false,
+                        secure: true,
                         auth: {
                             user: config.get('MAIL_USER'),
                             pass: config.get('MAIL_PASSWORD'),
@@ -36,7 +36,7 @@ exports.MailModule = MailModule = __decorate([
                         from: `"Exactly" <${config.get('MAIL_FROM')}>`,
                     },
                     template: {
-                        dir: (0, path_1.join)(__dirname, 'templates'),
+                        dir: (0, path_1.join)(__dirname, '/templates'),
                         adapter: new handlebars_adapter_1.HandlebarsAdapter(),
                         options: {
                             strict: true,

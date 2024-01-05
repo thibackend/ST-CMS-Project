@@ -1,26 +1,28 @@
 import React from "react";
 import './Login.css';
 import { Form, Input, Button } from "antd";
-import { inputPasswordRules, inputUserNameRules, styles } from './login-utils';
+import { inputPasswordRules, inputEmailRules, styles } from './login-utils';
 import api from "../../services/API_REQ";
 import CookieService from '../../services/cookieStore';
 import { useNavigate } from "react-router-dom";
-function Login({ handleLogin }) {
+function Login({ setDataAdmin }) {
     const navigate = useNavigate();
-    const onFinish = (values) => {
-        api.post('signin', values).then(
-            res => {
-                console.log("output: ", res);
-                CookieService.setAuthCookie(res.data);
+    const onFinish = async (values) => {
+        await api.post('signin', values).then(
+            async res => {
+                console.log(res);
+                if (res && res.data && res.isPass) {
+                    await setDataAdmin([res.data]);
+                    CookieService.setAuthCookie(res.data);
+                    navigate('/');
+                } else {
+                    alert("Wrong Admin's credentials")
+                }
             });
-        handleLogin(true);
-        navigate('/');
     };
-
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
     return (
         <div className="login-form-container flex jc-center">
             <Form
@@ -50,14 +52,14 @@ function Login({ handleLogin }) {
                 <Form.Item
                     hasFeedback
                     label="USER NAME"
-                    name="username"
-                    rules={inputUserNameRules}
+                    name="email"
+                    rules={inputEmailRules}
                 >
                     <Input
                         style={{
                             ...styles.formInput
                         }}
-                        placeholder="Enter user name"
+                        placeholder="Enter user your email!"
                     />
                 </Form.Item>
 
@@ -90,7 +92,5 @@ function Login({ handleLogin }) {
             </Form>
         </div >
     );
-
 }
-
 export default Login
