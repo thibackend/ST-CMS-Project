@@ -14,7 +14,7 @@ function Login({ handleCookieDataAdmin }) {
                 if (res && res.data && res.isPass) {
                     handleCookieDataAdmin([res.data]);
                     console.log(res.data)
-                    return navigate('/dashboard');
+                    return navigate('/');
                 } else {
                     alert("Wrong Admin's credentials")
                 }

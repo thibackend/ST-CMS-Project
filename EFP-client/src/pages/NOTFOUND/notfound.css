@@ -1,0 +1,43 @@
+.not-found-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    margin: auto;
+}
+
+h1.code-404 {
+    font-size: 5rem;
+    margin-bottom: 0.5rem;
+}
+
+p.not-found-mes {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+img.not-found-image {
+    max-width: 90%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+button.gotohome-text {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+}
+
+button:hover {
+    background-color: #0056b3;
+}

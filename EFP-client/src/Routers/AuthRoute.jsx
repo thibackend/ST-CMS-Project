@@ -1,13 +1,14 @@
 import { Route, Routes } from 'react-router-dom'
 import Login from '../pages/Auth';
 import NotFound from '../pages/NOTFOUND';
-const AuthRoute = ({handleCookieDataAdmin}) => {
+const AuthRoute = ({ handleCookieDataAdmin }) => {
     return (
         <Routes>
             <Route
-                path={'/login'}
+                path={'/'}
                 element={<Login handleCookieDataAdmin={handleCookieDataAdmin} />}
             />
+           
             <Route
                 path={'*'}
                 element={<NotFound />}
