@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, Popconfirm } from 'antd';
+import { Button, Table, Popconfirm, message } from 'antd';
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from 'react-router-dom'; 
 import './ShowProject.css';
 import api from '../../../services/API_REQ';
 
 const ShowProject = () => {
   const [projects, setProjects] = useState([]);
-
   useEffect(() => {
     api.get('/project').then(res => setProjects(res.data));
   }, []);
@@ -15,7 +15,7 @@ const ShowProject = () => {
   const handleDelete = async (projectId) => {
     try {
       await api.delete(`/project/${projectId}`);
-      alert("Delete success")
+      message.success("Deleted successfully");
     } catch (error) {
       console.error('Error deleting project:', error);
     }
@@ -30,8 +30,8 @@ const ShowProject = () => {
     },
     {
       title: 'Manager',
-      dataIndex: 'managerProject.name',
-      key: 'managerProject.name',
+      dataIndex: 'managerProject',
+      key: 'managerProject',
       ellipsis: true,
     },
     {
@@ -77,7 +77,7 @@ const ShowProject = () => {
         <span>
           <Link to={`/projects/edit/${record.id}`}> 
           <Button type="primary" style={{ marginRight: 8 }}>
-            Edit
+            <EditOutlined />
           </Button>
         </Link>
 
@@ -87,7 +87,9 @@ const ShowProject = () => {
             okText="Yes"
             cancelText="No"
           >
-            <Button type="danger">Delete</Button>
+            <Button type="danger">
+              <DeleteOutlined />
+            </Button>
           </Popconfirm>
         </span>
       ),
@@ -96,6 +98,7 @@ const ShowProject = () => {
 
 
   return (
+        
     <Table columns={columns} dataSource={projects} />
     
   );

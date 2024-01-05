@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Input, Select, DatePicker, Col, Row, Space, Radio } from "antd";
 import "./EditProject.css"; 
-import { frameOptions, technologyOptions, statusOptions } from "../data";
+import { frameOptions, technologyOptions, statusOptions } from "../../data";
 import api from '../../../services/API_REQ';
 import { useParams } from 'react-router-dom';
 

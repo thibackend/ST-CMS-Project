@@ -1,7 +1,6 @@
 import React from "react"
 import { Route, Routes } from 'react-router-dom'
 import Dashboard from "../pages/Dashboard"
-import Login from "../pages/Auth"
 import Project from "../pages/Project"
 import Employee from "../pages/Employee"
 import EditProject from "../pages/Project/EditProject"
