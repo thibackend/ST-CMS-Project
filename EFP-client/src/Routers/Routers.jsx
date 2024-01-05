@@ -9,7 +9,7 @@ import AddProject from "../pages/Project/AddProject"
 import NotFound from "../pages/NOTFOUND"
 
 const Routers = [
-    { path: "/dashboard", element: <Dashboard />, isPrivate: true },
+    { path: "/", element: <Dashboard />, isPrivate: true },
     { path: "/employees", element: <Employee />, isPrivate: true },
     { path: "/projects", element: <Project />, isPrivate: true },
     { path: "/employees/edit", element: <EditProject />, isPrivate: true },

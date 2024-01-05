@@ -37,8 +37,8 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
           )}
         </div>
         <Menu theme="light" mode="inline" selectedKeys={[currentPath]}>
-          <Menu.Item key="/dashboard" icon={<DashboardOutlined />}>
-            <Link to="/dashboard">Dashboard</Link>
+          <Menu.Item key="/" icon={<DashboardOutlined />}>
+            <Link to="/">Dashboard</Link>
           </Menu.Item>
           <Menu.Item key="/employees" icon={<UserOutlined />}>
             <Link to="/employees">Employees</Link>
@@ -83,7 +83,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
                   }
                 ]}
               />
-              <Link to={'/login'} onClick={() => handleCookieDataAdmin('', 'remove')}>
+              <Link to={'/'} onClick={() => handleCookieDataAdmin('', 'remove')}>
                 <AvatarComponent imageUrl={'https://media.licdn.com/dms/image/D560BAQE96KctT7x-iw/company-logo_200_200/0/1666170056423?e=2147483647&v=beta&t=VWwOyGELKPqLpkj7dbxaCDtWbhWKvp3akvhvMdHivy4'} />
               </Link>
             </Col>
