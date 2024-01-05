@@ -1,0 +1,23 @@
+
+.form-add-employee .ant-input {
+  height: 8vh;
+}
+
+.form-add-employee .ant-picker {
+  height: 8vh;
+  width: 100%;
+}
+
+.form-add-employee .ant-form-item-required {
+  font-size: 14px!important;
+  color: #000!important;
+  font-weight: 500;
+}
+
+.form-add-employee .ant-form-item-label {
+  font-weight: 500; 
+}
+.form-add-employee.ant-form {
+  padding-top: 20px;
+}
+

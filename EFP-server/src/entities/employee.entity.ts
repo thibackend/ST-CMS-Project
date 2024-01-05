@@ -90,7 +90,7 @@ export class Employee extends AbstractEntity {
     { cascade: true, onUpdate: 'CASCADE' },
   )
   employee_project: EmployeeProject[];
-
+    
   @OneToMany(() => Project, (project) => project.managerProject, {
     cascade: true,
     onUpdate: 'CASCADE',

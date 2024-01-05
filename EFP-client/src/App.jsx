@@ -1,36 +1,17 @@
 
-import './App.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { routes } from './route'
-import { Layout } from 'antd'
-import Navbar from './components/Navbar/Navbar';
-import AvatarComponent from './components/Avatar/Avatar';
-const { Header, Content } = Layout;
+
+import { useEffect, useState } from 'react';
+import MainLayout from './layout';
+import Auth from './services/auth';
+import AuthRoute from './Routers/AuthRoute';
 
 function App() {
-
+  const auth = Auth(); // Directly call Auth as a component to use hooks
   return (
-    <Router>
-      <Layout style={{ minHeight: '100vh', maxWidth: '100%' }}>
-        <Navbar />
-        <Layout>
-          <Header style={{ background: '#006df0', textAlign:'end'}}>
-            <AvatarComponent />
-          </Header>
-          <Content>
-            <Routes>
-              {routes.Routes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              />
-            ))}
-            </Routes>
-          </Content>
-        </Layout>
-      </Layout>
-    </Router>
+    auth && auth.st ?
+      <MainLayout handleCookieDataAdmin={auth && auth.handleCookieDataAdmin} />
+      :
+      <AuthRoute handleCookieDataAdmin={auth && auth.handleCookieDataAdmin} />
   )
 }
 
