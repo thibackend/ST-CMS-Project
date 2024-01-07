@@ -10,7 +10,12 @@ const Dashboard = () => {
     const [activeEmployees, setActiveEmployees] = useState(null);
     const [inActiveEmployees, setInActiveEmployees] = useState(null);
     const [project, setProject] = useState(null);
-    const [managers, setManagers] = useState(null);
+    const [projectRuning, setProjectRunning] = useState(null);
+    const [projectDone, setProjectDone] = useState(null);
+    const [managers, setManagers] = useState(0);
+
+    const handleSetProjectRunning = (num) => setProjectRunning(num);
+    const handleSetProjectDone = (num) => setProjectDone(num);
 
     const fetchEmployee = async () => {
         await api.get('employee').then(res => {
@@ -28,9 +33,10 @@ const Dashboard = () => {
         })
     }
     const fetchManagers = async () => {
-        await api.get('managers').then(res => {
-            if (res.data.length) {
-                setManagers(res.data.length);
+        await api.get('employee/managers').then(res => {
+            if (res) {
+                setManagers(res);
+
             }
         })
     }
@@ -42,7 +48,7 @@ const Dashboard = () => {
                 console.log("ActiveEmployeesData: ", activeEmployeesData);
                 setActiveEmployees(activeEmployeesData);
             }
-            
+
             if (inActiveEmployeesData) {
                 console.log("inActiveEmployeesData: ", inActiveEmployeesData);
                 setInActiveEmployees(inActiveEmployeesData);
@@ -50,11 +56,11 @@ const Dashboard = () => {
         }
     }, [employee])
 
-
+    console.log('manager', managers)
     useEffect(() => {
         fetchEmployee();
-        // fetchProject();
-        // fetchManagers();
+        fetchProject();
+        fetchManagers();
     }, []);
     return (
         <>
@@ -63,13 +69,13 @@ const Dashboard = () => {
                     <CardComponent title="All employees" count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title="All managers" count={managers ? managers : 0} icon={<UserOutlined />} className="manager-card" />
+                    <CardComponent title="All managers" count={managers ? managers.length : 0} icon={<UserOutlined />} className="manager-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title="All running projects" count={project ? project : 0} icon={<ProjectOutlined />} className="running-project-card" />
+                    <CardComponent title="All running projects" count={projectRuning ? projectRuning : 0} icon={<ProjectOutlined />} className="running-project-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title="All done projects" count={project ? project : 0} icon={<FileDoneOutlined />} className="done-project-card" />
+                    <CardComponent title="All done projects" count={projectDone ? projectDone : 0} icon={<FileDoneOutlined />} className="done-project-card" />
                 </Col>
             </Row>
             {console.log("render: ", activeEmployees && activeEmployees.length)}
@@ -79,7 +85,7 @@ const Dashboard = () => {
                 </Col>
                 <Col xs={0} sm={0} md={1}></Col>
                 <Col xs={24} sm={24} md={10} style={{ background: '#ecf0f4', padding: '10px' }}>
-                    <ProChartComponent />
+                    <ProChartComponent handleSetProjectRunning={handleSetProjectRunning} handleSetProjectDone={handleSetProjectDone} />
                 </Col>
             </Row>
         </>
