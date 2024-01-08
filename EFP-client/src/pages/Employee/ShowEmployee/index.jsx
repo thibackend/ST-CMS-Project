@@ -2,33 +2,33 @@ import React from 'react';
 import { Button, Space, Table, Modal, Form, Input } from 'antd';
 import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { Translation } from 'react-i18next';
 import './ShowEmployee.css'
 const handleEdit = () => {
-  
 }
 
 const columns = [
   {
-    title: 'Name',
+    title: <Translation>{(t) => t('employees.employees')}</Translation>,
     dataIndex: 'name',
     key: 'name',
     // render: (text) => <a>{text}</a>,
     width: 260,
   },
   {
-    title: 'Age',
+    title: <Translation>{(t) => t('employees.age')}</Translation>,
     dataIndex: 'age',
     key: 'age',
     width: 80,
   },
   {
-    title: 'Address',
+    title: <Translation>{(t) => t('employees.address')}</Translation>,
     dataIndex: 'address',
     key: 'address 1',
     ellipsis: true,
   },
   {
-    title: 'Gender',
+    title: <Translation>{(t) => t('employees.gender')}</Translation>,
     dataIndex: 'gender',
     key: 'gender',
   },
@@ -39,13 +39,13 @@ const columns = [
     ellipsis: true,
   },
   {
-    title: 'Position',
+    title: <Translation>{(t) => t('employees.position')}</Translation>,
     dataIndex: 'position',
     key: 'position',
     ellipsis: true,
   },
   {
-    title: 'Action',
+    title:<Translation>{(t) => t('employees.action')}</Translation>,
     key: 'action',
     width: 180,
     render: (_, record) => (

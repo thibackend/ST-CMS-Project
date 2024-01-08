@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, Checkbox, message, Upload, Select, DatePicker, Space, Col, Row } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import './AddEmployee.css'
+import './AddEmployee.css';
+// import i18n from "@/app/i18n";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -74,7 +75,7 @@ const AddEmployee = () => {
                             </Upload>
                         </div>
                     </Col>
-                    <Row gutter={10} style={{marginTop:10, marginTop:54}}>
+                    <Row gutter={10} style={{ marginTop:54}}>
                         <Col span={12} >
                             <Form.Item
                                 rules={[{ required: true, message: 'Address is required' }]}

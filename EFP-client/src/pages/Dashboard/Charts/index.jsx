@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
+import { useTranslation } from 'react-i18next';
 
 export const EmChartComponent = () => {
+  const { t } = useTranslation();
+
   const option = {
     title: {
-      text: 'Employees chart',
+      text: t('dashboard.all_employees'),
     },
     xAxis: {
       type: 'category',
@@ -35,9 +38,11 @@ export const EmChartComponent = () => {
 };
 
 export const ProChartComponent = () => {
+  const { t } = useTranslation();
+
   const option = {
     title: {
-      text: 'Projects',
+      text: t('projects.project'),
       subtext: '%',
       left: 'left',
     },
@@ -52,11 +57,11 @@ export const ProChartComponent = () => {
         radius: '50%',
         center: ['50%', '50%'],
         data: [
-          { value: 335, name: 'Running' },
-          { value: 310, name: 'Pending' },
-          { value: 234, name: 'Done' },
-          { value: 135, name: 'Failed' },
-            ],
+          { value: 335, name: t('projects.running') },
+          { value: 310, name: t('projects.pending') },
+          { value: 234, name: t('projects.done') },
+          { value: 135, name: t('projects.failed') },
+        ],
         emphasis: {
           itemStyle: {
             shadowBlur: 10,

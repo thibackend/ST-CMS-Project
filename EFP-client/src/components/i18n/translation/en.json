@@ -1,0 +1,40 @@
+{
+  "login": {
+    "login": "Login",
+    "user_name": "Username",
+    "password": "Password"
+  },
+  "titel": {
+    "all_employees": "All Employees",
+    "all_project": "All Project"
+  },
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "all_employees": "All Employees",
+    "all_managers": "All Managers",
+    "all_running_projects": "All Running Projects",
+    "all_done_projects": "All Done Project",
+    "employees_chart": "Employees Chart",
+    "project": "Project"
+  },
+  "employees": {
+    "employees": "Employees",
+    "name": "Name",
+    "age": "Age",
+    "address": "Address",
+    "gender": "Gender",
+    "position": "Positon",
+    "action": "Action"
+  },
+  "projects": {
+    "manager_project": "Project Manager",
+    "description": "Description",
+    "specification": "Specification",
+    "lang_frame": "Language",
+    "technology": "Technology",
+    "status": "Status",
+    "start_date": "Status Date",
+    "end_date": "End Date",
+    "project": "Projects"
+  }
+}

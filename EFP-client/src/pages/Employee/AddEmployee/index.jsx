@@ -51,8 +51,6 @@ const AddEmployee = () => {
             className='form'
             name="complex-form"
             onFinish={onFinish}
-            // labelCol={{ span: 8 }}
-            // wrapperCol={{ span: 16 }}
             size='large'
         >
             <Row gutter={15} style={{
@@ -74,7 +72,7 @@ const AddEmployee = () => {
                             </Upload>
                         </div>
                     </Col>
-                    <Row gutter={10} style={{marginTop:10, marginTop:54}}>
+                    <Row gutter={10} style={{marginTop:54}}>
                         <Col span={12} >
                             <Form.Item
                                 rules={[{ required: true, message: 'Address is required' }]}
