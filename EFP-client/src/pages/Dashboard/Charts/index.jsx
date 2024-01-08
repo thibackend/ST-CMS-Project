@@ -2,9 +2,9 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { useTranslation } from 'react-i18next';
 
-export const EmChartComponent = () => {
-  const { t } = useTranslation();
 
+export const EmChartComponent = ({ activeEmployees, inActiveEmployees }) => {
+  const { t } = useTranslation();
   const option = {
     title: {
       text: t('dashboard.all_employees'),
@@ -17,7 +17,7 @@ export const EmChartComponent = () => {
       type: 'value',
     },
     series: [{
-      data: [40, 50],
+      data: [activeEmployees ? activeEmployees : 0, inActiveEmployees ? inActiveEmployees : 0],
       type: 'bar',
       label: {
         show: true,

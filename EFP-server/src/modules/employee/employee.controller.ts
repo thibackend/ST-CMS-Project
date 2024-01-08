@@ -24,7 +24,7 @@ export class EmployeeController {
   constructor(
     private readonly employeeService: EmployeeService,
     private readonly mailService: MailService,
-  ) {}
+  ) { }
 
   @Get('noPaginate')
   noPaginate() {
@@ -37,13 +37,14 @@ export class EmployeeController {
   ) {
     const result = await this.employeeService.create(createEmployeeDto);
 
-    await this.mailService.sendFaildCv(
-      createEmployeeDto.email,
-      createEmployeeDto.name,
-    );
+    // await this.mailService.sendFaildCv(
+    //   createEmployeeDto.email,
+    //   createEmployeeDto.name,
+    // );
 
     return { result, message: 'Successfully create new employee' };
   }
+
 
   @Post('cv')
   async generateCv(@Body('id') id: string, @Res() res: Response) {

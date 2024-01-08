@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
   
   /* Adjust the gap between form items */
 
@@ -10,3 +11,27 @@
 .form{
   font-weight: bold;;
 }
+=======
+.form-add-employee .ant-input {
+  height: 8vh;
+}
+
+.form-add-employee .ant-picker {
+  height: 8vh;
+  width: 100%;
+}
+
+.form-add-employee .ant-form-item-required {
+  font-size: 14px!important;
+  color: #000!important;
+  font-weight: 500;
+}
+
+.form-add-employee .ant-form-item-label {
+  font-weight: 500; 
+}
+.form-add-employee.ant-form {
+  padding-top: 20px;
+}
+
+>>>>>>> c043d248a36602c5e0aca95ce853810a37e19e3d

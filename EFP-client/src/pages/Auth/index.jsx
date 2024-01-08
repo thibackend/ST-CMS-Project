@@ -1,11 +1,24 @@
 import React from "react";
 import './Login.css';
-import { Form, Input, Button} from "antd";
-import { inputPasswordRules, inputUserNameRules } from './auth_helper';
-
-function Login() {
-    const onFinish = (values) => {
-        console.log('Success:', values);
+import { Form, Input, Button } from "antd";
+import { inputPasswordRules, inputEmailRules, styles } from './login-utils';
+import api from "../../services/API_REQ";
+import CookieService from '../../services/cookieStore';
+import { useNavigate } from "react-router-dom";
+function Login({ handleCookieDataAdmin }) {
+    const navigate = useNavigate();
+    const onFinish = async (values) => {
+        await api.post('signin', values).then(
+            res => {
+                console.log(res);
+                if (res && res.data && res.isPass) {
+                    handleCookieDataAdmin([res.data]);
+                    console.log(res.data)
+                    return navigate('/');
+                } else {
+                    alert("Wrong Admin's credentials")
+                }
+            });
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -13,13 +26,7 @@ function Login() {
     return (
         <div className="login-form-container flex jc-center">
             <Form
-                style={{
-                    backgroundColor: '#006df0',
-                    borderRadius: 20,
-                    padding: 20,
-                    minWidth: 500,
-                    margin: 'auto auto'
-                }}
+                style={styles.loginForm}
                 size="large"
                 name="basic"
                 labelCol={{
@@ -36,65 +43,53 @@ function Login() {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
-                <h1 className="login-form-title">LOGIN</h1>
+                <div
+                    className="login-title"
+                    style={styles.loginTitle}>
+                    <h1 className="login-form-title color-006df0">LOG ~ IN </h1>
+                </div>
+
                 <Form.Item
                     hasFeedback
-                    label="User Name"
-                    name="username"
-                    rules={inputUserNameRules}
+                    label="USER NAME"
+                    name="email"
+                    rules={inputEmailRules}
                 >
                     <Input
                         style={{
-                            color: 'red',
-                            borderRadius: 15,
-                            paddingInline: 30,
-                            height: 50
+                            ...styles.formInput
                         }}
-                        placeholder="Enter user name"
+                        placeholder="Enter user your email!"
                     />
                 </Form.Item>
 
                 <Form.Item
-                    label="Password"
-                    labelAlign="right"
-                    style={{ color: 'red', fontWeight: 'bold' }}
+                    hasFeedback
+                    name="password"
+                    label="PASSWORD"
                     rules={inputPasswordRules}
                 >
                     <Input.Password
-                        style={{
-                            borderRadius: 15,
-                            paddingInline: 30,
-                            height: 50
-                        }}
+                        style={styles.formInput}
                         hidden={true}
                         placeholder="Enter password"
-
                     />
                 </Form.Item>
 
                 <Form.Item>
                     <Button
-                        style={{
-                            color: 'white',
-                            backgroundColor: 'black',
-                            minWidth: '100%',
-                            margin: '0 auto',
-                            borderRadius: 10,
-                            height: 50,
-                            marginTop: 40
-                        }}
+                        style={styles.btnSubmit}
                         htmlType="submit"
                     >
                         LOGIN
                     </Button>
                 </Form.Item>
                 <Form.Item>
-                    <a href="#">Reset password</a>
+                    <a href="#" className="resetPassText">Reset password <span className="red">?</span></a>
                 </Form.Item>
 
             </Form>
         </div >
     );
 }
-
 export default Login

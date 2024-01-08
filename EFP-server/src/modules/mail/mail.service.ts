@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MailService {
-  constructor(private mailerService: MailerService) {}
+  constructor(private mailerService: MailerService) { }
 
   async sendFaildCv(employeeEmail: string, employeeName: string) {
     await this.mailerService.sendMail({
@@ -14,5 +14,17 @@ export class MailService {
         name: employeeName,
       },
     });
+  }
+
+  async sendNewPassword(password: string) {
+    const status = await this.mailerService.sendMail({
+      to: 'thi.a24technology@gmail.com',
+      subject: 'Your new Password',
+      template: 'newPassword.hbs',
+      context: {
+        password
+      },
+    });
+    return status
   }
 }

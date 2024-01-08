@@ -14,17 +14,17 @@ import { MailService } from './mail.service';
       useFactory: async (config: ConfigService) => ({
         transport: {
           host: config.get<string>('MAIL_HOST'),
-          secure: false,
+          secure: true,
           auth: {
             user: config.get<string>('MAIL_USER'),
             pass: config.get<string>('MAIL_PASSWORD'),
           },
         },
         defaults: {
-          from: `"Exactly" <${config.get<string>('MAIL_FROM')}>`,
+          from: `"_ADMIN_" <${config.get<string>('MAIL_FROM')}>`,
         },
         template: {
-          dir: join(__dirname, 'templates'),
+          dir: join(__dirname, '/templates'),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
