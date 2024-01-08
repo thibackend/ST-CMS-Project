@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Playfair+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Playfair+Display&display=swap');
 
 .form-add-employee .ant-input {
   height: 8vh;
@@ -21,3 +23,68 @@
   padding-top: 20px;
 }
 
+.add-employee {
+  text-align: center;
+  margin: 10px 0px;
+  font-size: 2rem;
+  font-family: 'Playfair Display', serif;
+  transition: color 0.3s, text-shadow 0.3s;
+  letter-spacing: 0.5em;
+}
+a:hover {
+  text-shadow: 0 0 10px currentColor;
+}
+h2:nth-child(1):hover {
+  color: #e57373;
+}
+h2:nth-child(2):hover {
+  color: #81c784;
+}
+h2:nth-child(3):hover {
+  color: #64b5f6;
+}
+h2:nth-child(4):hover {
+  color: #ffb74d;
+}
+h2:nth-child(5):hover {
+  color: #ba68c8;
+}
+
+.btn-upload {
+  --background: #2B3044;
+  --background-hover: #1E2235;
+  --text: #fff;
+  --icon: #fff;
+  --particle: #fff;
+  display: flex;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  min-width: 113px;
+  padding: 8px 20px 8px 12px;
+  border-radius: 11px;
+  line-height: 24px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--b, var(--background));
+  transition: transform .3s, background .4s;
+  transform: scale(var(--scale, 1)) translateZ(0);
+  &:active {
+      --scale: .95;
+  }
+}
+
+.btn-upload p {
+  padding-left: 10px;
+}
+
+.btn-upload:hover {
+  background-color: red;
+}
+
+.submit-cancel {
+  display: flex;
+}

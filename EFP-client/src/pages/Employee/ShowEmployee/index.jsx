@@ -70,7 +70,7 @@ const columns = [
 
   useEffect(() => {
     api.get('/employee').then(res => setEmployee(res.data));
-  }, [employee]);
+  }, []);
 
 
   const handleDelete = async (employeeId) => {
