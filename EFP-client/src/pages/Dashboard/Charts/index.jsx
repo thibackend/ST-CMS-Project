@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReactEcharts from 'echarts-for-react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../services/API_REQ';
 
+
 export const EmChartComponent = ({ activeEmployees, inActiveEmployees }) => {
+  const { t } = useTranslation();
+
   const option = {
     title: {
-      text: 'Employees chart',
+      text: t('dashboard.all_employees'),
     },
     xAxis: {
       type: 'category',
@@ -36,6 +40,8 @@ export const EmChartComponent = ({ activeEmployees, inActiveEmployees }) => {
 };
 
 export const ProChartComponent = ({ handleSetProjectRunning, handleSetProjectDone }) => {
+  const { t } = useTranslation();
+
   const [project, setProject] = useState(null);
   const [CountDoneProject, setCountDoneProject] = useState(0);
   const [CountPendingProject, setCountPendingProject] = useState(0);
@@ -83,9 +89,10 @@ export const ProChartComponent = ({ handleSetProjectRunning, handleSetProjectDon
     handleSetProjectDone(project_done)
   }, [project]);
 
+
   const option = {
     title: {
-      text: 'Projects',
+      text: t('projects.project'),
       subtext: '%',
       left: 'left',
     },
@@ -100,10 +107,10 @@ export const ProChartComponent = ({ handleSetProjectRunning, handleSetProjectDon
         radius: '50%',
         center: ['50%', '50%'],
         data: [
-          { value: CountOnprogressProject, name: 'On progress' },
-          { value: CountPendingProject, name: 'Pending' },
-          { value: CountDoneProject, name: 'Done' },
-          { value: CountClosedProject, name: 'Closed' },
+          { value: CountOnprogressProject, name: t('projects.running') },
+          { value: CountPendingProject, name: t('projects.pending') },
+          { value: CountDoneProject, name: t('projects.done') },
+          { value: CountClosedProject, name: t('projects.failed') },
         ],
         emphasis: {
           itemStyle: {
