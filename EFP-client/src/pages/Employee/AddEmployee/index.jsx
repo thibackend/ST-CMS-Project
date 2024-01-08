@@ -53,9 +53,6 @@ const AddEmployee = () => {
     gender: "male",
     position: "be",
     isManager: false,
-
-    
-    
   }
 
   const onFinish = async (values) => {
