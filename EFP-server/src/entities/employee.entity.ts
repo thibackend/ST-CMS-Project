@@ -28,7 +28,7 @@ export class Employee extends AbstractEntity {
   @Column()
   phone: string;
 
-  @Column()
+  @Column({ nullable: true })
   identityCard: string;
 
   @Column({ nullable: true })
@@ -37,7 +37,7 @@ export class Employee extends AbstractEntity {
   @Column({ nullable: true })
   avatar: string;
 
-  @Column({ type: 'enum', enum: GenderEnum, nullable: false })
+  @Column({ type: 'enum', enum: GenderEnum, nullable: true })
   gender: GenderEnum;
 
   @Column({
@@ -52,7 +52,7 @@ export class Employee extends AbstractEntity {
     type: 'enum',
     enum: PositionEnum,
     default: PositionEnum.FULLSTACK,
-    nullable: false,
+    nullable: true,
   })
   position: PositionEnum;
 
@@ -74,7 +74,7 @@ export class Employee extends AbstractEntity {
   @Column('json', { nullable: true })
   tech: { name: string; exp: number }[];
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   joinDate: Date;
 
   @ManyToOne(() => Employee, { nullable: true })

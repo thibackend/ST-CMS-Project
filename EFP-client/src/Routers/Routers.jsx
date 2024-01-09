@@ -20,8 +20,6 @@ const Routers = [
     { path: "*", element: <NotFound />, isPrivate: true },
 ]
 
-
-
 const AppRoutes = () => {
     return (
         <Routes>
