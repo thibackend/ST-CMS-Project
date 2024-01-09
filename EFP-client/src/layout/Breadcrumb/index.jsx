@@ -8,7 +8,7 @@ const BreadcrumbCom = () => {
   const [pageTitle, setPageTitle] = useState('');
   const [breadcrumbData, setBreadcrumbData] = useState([
     { path: '/dashboard', title: '' },
-    { path: '/employees', title: 'All employees' },
+    { path: '/employees', title: 'Al employees' },
     { path: '/projects', title: 'All projects' },
   ]);
 

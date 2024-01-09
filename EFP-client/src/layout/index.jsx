@@ -9,24 +9,42 @@ import {
 import CMSLogo from '../assets/images/CMSLogo.png'
 import CMSLogoSmall from '../assets/images/CMSLogoSmall.png'
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Button, theme, Col, Row, Select } from 'antd';
+import { Layout, Menu, Button, theme, Col, Row, Select, Radio } from 'antd';
 import BreadcrumbCom from './Breadcrumb';
 import AppRoutes from '../Routers/Routers';
 import AvatarComponent from '../components/Avatar'
 import { useLocation, useNavigate } from 'react-router-dom';
+import '../components/i18n'
+import i18next from 'i18next';
+import { useTranslation, withTranslation } from 'react-i18next';
+import i18n from '../components/i18n';
+// import { use } from 'i18next';
+// import i18n  from '../components/i18n/Translation/en.json';
+// import i18n  from '../components/i18n/Translation/vn.json';
 
 const { Header, Sider, Content } = Layout;
 
-const MainLayout = ({ handleCookieDataAdmin }) => {
+const MainLayout = (handleCookieDataAdmin) => {
+  const { t } = useTranslation();
   const location = useLocation();
-  const currentPath = location.pathname;
   const navigate = useNavigate();
+  const currentPath = location.pathname;
+
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const handleClick = (lang) => {
+    i18next.changeLanguage(lang);
+  };
+
+  // const changeLanguage = (lng) => {
+  //   i18n.changeLanguage(lng);
+  // };
   return (
+
+
     <Layout style={{ background: '#ecf0f4' }}>
       <Sider trigger={null} collapsible collapsed={collapsed} theme='light'>
         <div style={{ textAlign: 'center' }} className="demo-logo-vertical">
@@ -38,14 +56,16 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
         </div>
         <Menu theme="light" mode="inline" selectedKeys={[currentPath]}>
           <Menu.Item key="/" icon={<DashboardOutlined />}>
-            <Link to="/">Dashboard</Link>
+            <Link to="/">{t('dashboard.dashboard')}</Link>
           </Menu.Item>
           <Menu.Item key="/employees" icon={<UserOutlined />}>
-            <Link to="/employees">Employees</Link>
+            <Link to="/employees">{t('employees.employees')}</Link>
           </Menu.Item>
           <Menu.Item key="/projects" icon={<ProjectOutlined />}>
-            <Link to="/projects">Projects</Link>
+            <Link to="projects">{t('projects.manager_project')}</Link>
           </Menu.Item>
+
+
         </Menu>
       </Sider>
       <Layout>
@@ -68,24 +88,37 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
                 }}
               />
             </Col>
-            <Col span={18}></Col>
-            <Col span={4} >
+            <Col span={18}>
+           
+            </Col>
+       
+             
+            <Col span={4}>
               <Select
                 defaultValue="English"
                 style={{
                   width: 120,
-                  marginRight:10
                 }}
                 options={[
                   {
+                    value: 'English',
+                    label: (
+                      <p onClick={() => handleClick('en')}>
+                      English
+                      </p>
+                    ),
+                  },
+                  {
                     value: 'Vietnamese',
-                    label: 'Vietnamese',
-                  }
+                    label: (
+                      <p onClick={() => handleClick('vn')}>
+                     VietNamese
+                      </p>
+                    ),
+                  },
                 ]}
               />
-              <Link to={'/'} onClick={() => handleCookieDataAdmin('', 'remove')}>
-                <AvatarComponent imageUrl={'https://media.licdn.com/dms/image/D560BAQE96KctT7x-iw/company-logo_200_200/0/1666170056423?e=2147483647&v=beta&t=VWwOyGELKPqLpkj7dbxaCDtWbhWKvp3akvhvMdHivy4'} />
-              </Link>
+              <AvatarComponent imageUrl={'https://media.licdn.com/dms/image/D560BAQE96KctT7x-iw/company-logo_200_200/0/1666170056423?e=2147483647&v=beta&t=VWwOyGELKPqLpkj7dbxaCDtWbhWKvp3akvhvMdHivy4'} />
             </Col>
           </Row>
 
@@ -104,6 +137,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
         </Content>
       </Layout>
     </Layout>
+
   );
 };
-export default MainLayout;
+export default withTranslation()(MainLayout);
