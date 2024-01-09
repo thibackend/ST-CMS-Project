@@ -10,14 +10,20 @@ const { Option } = Select;
 
 const AddProject = () => {
   const [managers, setManagers] = useState([]);
+  const [employee, setEmployee] = useState([]);
+
   const [form] = Form.useForm();
-  const [messageApi, contextHolder] = message.useMessage();
+  const [formSmall] = Form.useForm();
+
   const navigation = useNavigate();
 
   useEffect(() => {
     api.get('/employee/managers').then(data => setManagers(data));
+    api.get('/employee').then(res => setEmployee(res.data));
+
   }, []);
 
+  
   const onFinish = async (values) => {
     try {
       console.log(values);
@@ -31,9 +37,19 @@ const AddProject = () => {
     }
   };
 
+  const onSubmit = async (values) => {
+    try {
+      console.log(values);
+      await api.post('/assign', values); 
+      
+      
+    } catch (error) {
+      console.error('Error adding project:', error);
+    }
+  };
+  
   return (
     <>
-      {contextHolder}
       <h2>Add project</h2>
       <Form form={form} onFinish={onFinish} className="form-add-project">
         
@@ -52,6 +68,29 @@ const AddProject = () => {
                 ))}
               </Select>
             </Form.Item>
+            <Form form={formSmall} onFinish={onSubmit}>
+            <Form.Item
+                label="Employee"
+                name="employee_project"
+                rules={[{ required: true, message: "Please select an employee!" }]}
+                labelCol={{ span: 24 }}
+              >
+                <Select
+                  placeholder="Select employees"
+                  style={{ height: '8vh' }}
+                  mode="multiple"
+                  value={formSmall.getFieldValue('employee_project')}
+                  onChange={(value) => formSmall.setFieldsValue({ employee_project: value })}
+                >
+                  {employee.map((emp) => (
+                    <Option key={emp.id} value={emp.id}>
+                      {emp.name}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Form>
+           
 
             <Form.Item label="Start Date" name="startDate"   labelCol={{ span: 24 }} rules={[{ required: true, message: "Please select start date" }]}>
               <DatePicker />
@@ -104,7 +143,7 @@ const AddProject = () => {
           </Radio.Group>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" danger>
+          <Button type="primary" htmlType="submit" danger >
             Add Project
           </Button>
         </Form.Item>
