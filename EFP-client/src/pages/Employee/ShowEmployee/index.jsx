@@ -15,7 +15,6 @@ import {
   DeleteOutlined,
   SearchOutlined,
   PlusOutlined,
-  PlusCircleOutlined,
 } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
@@ -280,8 +279,6 @@ const ShowTable = () => {
 
   return (
     <>
-     
-
       <Table
         style={{
           marginTop: "15px",
