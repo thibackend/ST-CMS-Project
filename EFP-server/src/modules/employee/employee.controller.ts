@@ -100,6 +100,6 @@ export class EmployeeController {
       return { message: result.message };
     } else {
       return { data: result.data, message: 'Success' };
-    }
+    }9
   }
 }
