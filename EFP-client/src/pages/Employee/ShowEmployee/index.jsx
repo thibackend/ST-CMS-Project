@@ -8,6 +8,7 @@ import {
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
 import "./ShowEmployee.css";
+import { Translation } from 'react-i18next';
 import { useState, useEffect, useRef } from "react";
 import { Input } from "antd";
 import api from "../../../services/API_REQ";
