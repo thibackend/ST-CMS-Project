@@ -23,7 +23,6 @@ export class CreateEmployeeDto {
 
   identityCard: string;
 
-  @IsNotEmpty()
   position: PositionEnum;
 
   @IsNotEmpty()
