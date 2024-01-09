@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Playfair+Display&display=swap');
 
 .form-add-employee .ant-input {
-  height: 8vh;
+  height: 3rem;
 }
 
 .form-add-employee .ant-picker {
-  height: 8vh;
+  height: 3rem;
   width: 100%;
 }
 
@@ -18,6 +18,7 @@
 
 .form-add-employee .ant-form-item-label {
   font-weight: 500; 
+  color: red !important;
 }
 .form-add-employee.ant-form {
   padding-top: 20px;
@@ -25,8 +26,8 @@
 
 .add-employee {
   text-align: center;
-  margin: 10px 0px;
   font-size: 2rem;
+  margin-left: 3rem;
   font-family: 'Playfair Display', serif;
   transition: color 0.3s, text-shadow 0.3s;
   letter-spacing: 0.5em;
@@ -88,3 +89,22 @@ h2:nth-child(5):hover {
 .submit-cancel {
   display: flex;
 }
+
+.ant-form-item-label .ant-form-item-required {
+  font-weight: bold;
+}
+
+.ant-form-item-row .ant-form-item-label {
+  font-weight: bold;
+}
+
+.cloudary {
+  width: 150px;
+  height: 150px;
+  background-color: #ff0080;
+  border-radius: 50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius: 50%;
+}
+
+
