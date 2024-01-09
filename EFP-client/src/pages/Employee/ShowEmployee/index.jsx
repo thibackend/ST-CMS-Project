@@ -7,13 +7,15 @@ import {
 } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import "./ShowEmployee.css";
-import { Translation } from 'react-i18next';
+import AvatarComponent from "../../../components/Avatar";
 import { useState, useEffect, useRef } from "react";
 import { Input } from "antd";
 import api from "../../../services/API_REQ";
 
 const ShowTable = () => {
+  const {t} = useTranslation();
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -143,22 +145,22 @@ const ShowTable = () => {
 
   const columns = [
     {
-      title: "Avatar",
+      title: t('employees.avatar'),
       dataIndex: "avatar",
       key: "avatar",
-      render: (avatar) => <img src={avatar} alt="avatar" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />,
-      width: 100,
+      render: (avatar) => <AvatarComponent imageUrl={avatar}  />,
+      width: 150,
     },
 
     {
-      title: "Name",
+      title: t('employees.name'),
       dataIndex: "name",
       key: "name",
       ...getColumnSearchProps("name"),
     },
 
     {
-      title: "Skill",
+      title: t('employees.skills'),
       ellipsis: true,
       render: (text, record) => (
         <Dropdown
@@ -181,7 +183,7 @@ const ShowTable = () => {
     },
 
     {
-      title: "Position",
+      title: t('employees.position'),
       dataIndex: "position",
       key: "position",
       ellipsis: true,
@@ -189,7 +191,7 @@ const ShowTable = () => {
     },
 
     {
-      title: "Action",
+      title: t('employees.action'),
       key: "action",
       render: (_, record) => (
         <span>

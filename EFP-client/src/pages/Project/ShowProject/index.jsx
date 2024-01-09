@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table, Popconfirm, message } from 'antd';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom'; 
 import './ShowProject.css';
 import api from '../../../services/API_REQ';
 
 const ShowProject = () => {
+  const {t} = useTranslation();
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     api.get('/project').then(res => setProjects(res.data));
@@ -23,54 +25,47 @@ const ShowProject = () => {
 
   const columns = [
     {
-      title: 'Name',
+      title: t('projects.name'),
       dataIndex: 'name',
       key: 'name',
       width: 180,
     },
     {
-      title: 'Manager',
+      title: t('projects.manager_project'),
       dataIndex: 'managerProject',
       key: 'managerProject',
       ellipsis: true,
     },
     {
-      title: 'Description',
+      title:t('projects.description'),
       dataIndex: 'description',
       key: 'description',
     },
-
     {
-      title: 'Framework',
-      dataIndex: 'langFrame',
-      key: 'langFrame',
-      ellipsis: true
-    },
-    {
-      title: 'Technology',
+      title: t('projects.technology'),
       dataIndex: 'technology',
       key: 'technology',
       ellipsis: true,
     },
     {
-      title: 'Status',
+      title: t('projects.status'),
       dataIndex: 'status',
       key: 'status',
       ellipsis: true},
     {
-      title: 'Start Date',
+      title: t('projects.start_date'),
       dataIndex: 'startDate',
       key: 'startDate',
       ellipsis: true,
     },
     {
-      title: 'End Date',
+      title: t('projects.end_date'),
       dataIndex: 'endDate',
       key: 'endDate',
       ellipsis: true,
     },
     {
-      title: 'Action',
+      title: t('projects.action'),
       key: 'action',
       width: 180,
       render: (text, record) => (
