@@ -1,11 +1,13 @@
 import React from 'react'
 import CardComponent from './Cards';
+import { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import { TeamOutlined, ProjectOutlined, UserOutlined, FileDoneOutlined  } from '@ant-design/icons';
 import {  EmChartComponent, ProChartComponent } from './Charts';
 import { useTranslation } from 'react-i18next'; // Import useTranslationimport api from '../../services/API_REQ';
 
 const Dashboard = () => {
+    const {t} = useTranslation();
     const [employee, setEmployee] = useState(null);
     const [activeEmployees, setActiveEmployees] = useState(null);
     const [inActiveEmployees, setInActiveEmployees] = useState(null);
