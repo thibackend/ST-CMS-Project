@@ -14,7 +14,6 @@ import BreadcrumbCom from './Breadcrumb';
 import AppRoutes from '../Routers/Routers';
 import AvatarComponent from '../components/Avatar'
 
-import { useLocation } from 'react-router-dom';
 import '../components/i18n'
 import i18next from 'i18next';
 import { useTranslation, withTranslation } from 'react-i18next';
@@ -58,7 +57,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
         </div>
         <Menu theme="light" mode="inline" selectedKeys={[currentPath]}>
           <Menu.Item key="/" icon={<DashboardOutlined />}>
-            <Link to="/">Dashboard</Link>
+            <Link to="/">{t('dashboard.dashboard')}</Link>
           </Menu.Item>
           <Menu.Item key="/employees" icon={<UserOutlined />}>
             <Link to="/employees">{t('employees.employees')}</Link>
@@ -154,7 +153,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
                     value: 'Vietnamese',
                     label: (
                       <p onClick={() => handleClick('vn')}>
-                        VietNamese
+                        Vietnamese
                       </p>
                     ),
                   },

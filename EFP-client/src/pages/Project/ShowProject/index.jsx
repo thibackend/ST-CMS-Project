@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Table, Popconfirm, message } from 'antd';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from 'react-router-dom'; 
+import { Translation } from 'react-i18next';
 import './ShowProject.css';
 import api from '../../../services/API_REQ';
 
@@ -23,19 +24,19 @@ const ShowProject = () => {
 
   const columns = [
     {
-      title: 'Name',
+      title: <Translation>{(t) => t('employees.name')}</Translation>,
       dataIndex: 'name',
       key: 'name',
       width: 180,
     },
     {
-      title: 'Manager',
+      title: <Translation>{(t) => t('projects.manager_project')}</Translation>,
       dataIndex: 'managerProject',
       key: 'managerProject',
       ellipsis: true,
     },
     {
-      title: 'Description',
+      title: <Translation>{(t) => t('projects.description')}</Translation>,
       dataIndex: 'description',
       key: 'description',
     },
@@ -47,30 +48,30 @@ const ShowProject = () => {
       ellipsis: true
     },
     {
-      title: 'Technology',
+      title: <Translation>{(t) => t('projects.technology')}</Translation>,
       dataIndex: 'technology',
       key: 'technology',
       ellipsis: true,
     },
     {
-      title: 'Status',
+      title: <Translation>{(t) => t('projects.status')}</Translation>,
       dataIndex: 'status',
       key: 'status',
       ellipsis: true},
     {
-      title: 'Start Date',
+      title: <Translation>{(t) => t('projects.start_date')}</Translation>,
       dataIndex: 'startDate',
       key: 'startDate',
       ellipsis: true,
     },
     {
-      title: 'End Date',
+      title: <Translation>{(t) => t('projects.end_date')}</Translation>,
       dataIndex: 'endDate',
       key: 'endDate',
       ellipsis: true,
     },
     {
-      title: 'Action',
+      title: <Translation>{(t) => t('projects.action')}</Translation>,
       key: 'action',
       width: 180,
       render: (text, record) => (

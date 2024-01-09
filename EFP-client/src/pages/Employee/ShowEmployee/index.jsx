@@ -4,17 +4,10 @@ import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Translation } from 'react-i18next';
 import './ShowEmployee.css'
-<<<<<<< HEAD
-const handleEdit = () => {
-}
-=======
 import { useState, useEffect } from 'react';
 import api from '../../../services/API_REQ';
->>>>>>> c043d248a36602c5e0aca95ce853810a37e19e3d
-
 
 const ShowTable = () =>{
-  
 const columns = [
   {
     title: <Translation>{(t) => t('employees.employees')}</Translation>,
@@ -23,7 +16,6 @@ const columns = [
     width: 260,
   },
   {
-<<<<<<< HEAD
     title: <Translation>{(t) => t('employees.age')}</Translation>,
     dataIndex: 'age',
     key: 'age',
@@ -31,9 +23,6 @@ const columns = [
   },
   {
     title: <Translation>{(t) => t('employees.address')}</Translation>,
-=======
-    title: 'Address',
->>>>>>> c043d248a36602c5e0aca95ce853810a37e19e3d
     dataIndex: 'address',
     key: 'address',
     ellipsis: true,
