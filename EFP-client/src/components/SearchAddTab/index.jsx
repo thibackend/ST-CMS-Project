@@ -5,19 +5,20 @@ import { Link } from 'react-router-dom';
 
 const SearchAddTab = ({ onSearch, toAddLink }) => {
   return (
-    <Row align="middle" gutter={[16, 0]} style={{background:'#dae1f3',padding: 12, borderRadius: '7px', margin: '0 0 15px'}}>
-      <Col span={7}>
+    <Row align="middle" gutter={[30, 0]} style={{ boxSizing: 'border-box', background: '#3333', borderRadius: '7px', margin: '0 0 15px' }}>
+      <Col span={8}>
         <Input.Search
-        size='large'
-          placeholder="Search"
+          size='middle'
+          placeholder="Search by name"
           onSearch={onSearch}
           enterButton
+          bordered={false}
         />
       </Col>
-      <Col span={16}></Col>
-      <Col span={1}>
+      <Col span={12}></Col>
+      <Col span={4} style={{ alignSelf: 'left' }}>
         <Link to={toAddLink}>
-          <PlusCircleOutlined style={{ fontSize: '35px' }} />
+          Add project
         </Link>
       </Col>
     </Row>

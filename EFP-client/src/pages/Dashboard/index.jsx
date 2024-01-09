@@ -39,12 +39,10 @@ const Dashboard = () => {
             const activeEmployeesData = employee.filter(employee => employee.status === 'active');
             const inActiveEmployeesData = employee.filter(employee => employee.status === 'inactive');
             if (activeEmployeesData) {
-                console.log("ActiveEmployeesData: ", activeEmployeesData);
                 setActiveEmployees(activeEmployeesData);
             }
             
             if (inActiveEmployeesData) {
-                console.log("inActiveEmployeesData: ", inActiveEmployeesData);
                 setInActiveEmployees(inActiveEmployeesData);
             }
         }
@@ -72,7 +70,6 @@ const Dashboard = () => {
                     <CardComponent title="All done projects" count={project ? project : 0} icon={<FileDoneOutlined />} className="done-project-card" />
                 </Col>
             </Row>
-            {console.log("render: ", activeEmployees && activeEmployees.length)}
             <Row gutter={[10, 10]}>
                 <Col xs={24} sm={24} md={13} style={{ background: '#ecf0f4', padding: '10px' }}>
                     <EmChartComponent activeEmployees={activeEmployees && activeEmployees.length} inActiveEmployees={inActiveEmployees && inActiveEmployees.length} />

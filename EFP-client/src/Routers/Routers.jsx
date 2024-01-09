@@ -19,8 +19,6 @@ const Routers = [
     { path: "*", element: <NotFound />, isPrivate: true },
 ]
 
-
-
 const AppRoutes = () => {
     return (
         <Routes>
@@ -36,5 +34,4 @@ const AppRoutes = () => {
         </Routes>
     )
 }
-
 export default AppRoutes;
