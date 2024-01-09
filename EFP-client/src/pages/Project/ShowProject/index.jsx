@@ -227,9 +227,6 @@ const ShowProject = () => {
   useEffect(() => {
     fetchDataProject();
   }, [])
-
-
-
   return (
     <>
       <ShowProjectHeader handleSearchManager={handleSearchManager} handleSearch={handleSearch} toAddLink={'/projects/add'} />
