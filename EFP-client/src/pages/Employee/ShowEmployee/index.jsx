@@ -146,6 +146,7 @@ const ShowTable = () => {
       title: "Avatar",
       dataIndex: "avatar",
       key: "avatar",
+      render: (avatar) => <img src={avatar} alt="avatar" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />,
       width: 100,
     },
 
@@ -213,8 +214,7 @@ const ShowTable = () => {
     },
   ];
 
-
-
+  
   return (
     <>
       <Table

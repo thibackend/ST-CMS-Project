@@ -24,6 +24,7 @@ export class ProjectService {
   ) { }
 
   async create(createProjectDto: CreateProjectDto) {
+    console.log("data create Project:",createProjectDto)
     const { employee_project, ...projectData } = createProjectDto;
 
     const project = new Project(projectData);
