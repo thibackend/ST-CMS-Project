@@ -48,6 +48,10 @@
         "start_date": "Ngày bắt đầu",
         "end_date": "Ngày kết thúc",
         "project":"Dự án",
-        "action": "Hành động"
+        "action": "Hành động",
+        "members": "Thành viên",
+        "roles": "Vị trí",
+        "assign": "Nhân viên",
+        "tools": "Công cụ hỗ trợ"
     }
 }

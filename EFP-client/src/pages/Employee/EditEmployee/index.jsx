@@ -1,34 +1,93 @@
-import React, { useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
-import { Form, Input, DatePicker, Select, Radio, Button, Row, Col, message } from "antd";
-import { EditOutlined, SaveOutlined } from "@ant-design/icons";
+import React, { useState, useEffect } from "react";
+import { json, useParams } from "react-router-dom";
+import { Form, Input, DatePicker, Select, Upload, Spin, Radio, Button, Row, Col, message, Space, Tooltip } from "antd";
+import { EditOutlined, SaveOutlined, PlusOutlined } from "@ant-design/icons";
 import api from "../../../services/API_REQ";
 import moment from 'moment';
 import { technologyOptions } from '../../data';
 import './EditEmployee.css';
-
+import { Image as CloudImage, CloudinaryContext } from "cloudinary-react";
+import { Cloudinary } from "@cloudinary/url-gen";
 const { TextArea } = Input;
 const { Option } = Select;
+import { useNavigate } from "react-router-dom";
+import { join } from "lodash";
 
 const EditEmployee = () => {
+  const [newAvatar, setNewAvatar] = useState("");
   const [form] = Form.useForm();
+  const [imageUrl, setImageUrl] = useState("");
   const [employeeData, setEmployeeData] = useState();
   const [isEditing, setIsEditing] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+  const cld = new Cloudinary({ cloud: { cloudName: "djveiec3v" } });
+  const navigate = useNavigate();
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const defaultImageUrl =
+    "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp";
   const { employeeId } = useParams();
-
+  const handleChange = (info) => {
+    if (info.file.status === "uploading") {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === "done") {
+      setImageUrl(info.file.response.secure_url);
+      setNewAvatar(info.file.response.secure_url);
+      message.success(`uploaded successfully`);
+      setLoading(false);
+    } else {
+      setImageUrl(defaultImageUrl);
+      setNewAvatar(null);
+      setLoading(false);
+    }
+  };
   const managerOptions = [
     { label: 'True', value: true },
     { label: 'False', value: false },
   ];
-
+  const props = {
+    name: "file",
+    action: "https://api.cloudinary.com/v1_1/djveiec3v/image/upload",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      Authorization: "Bearer 974191498252429",
+    },
+    data(file) {
+      return {
+        file,
+        upload_preset: "oojgpflj",
+      };
+    },
+    beforeUpload: (file) => {
+      const isJpgOrPng =
+        file.type === "image/jpeg" || file.type === "image/png";
+      if (!isJpgOrPng) {
+        message.error("You can only upload JPG/PNG file!");
+      }
+      return isJpgOrPng && file.size <= 60;
+    },
+    onChange(info) {
+      if (info.file.status !== "uploading") {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === "done") {
+        console.log("info", info.file.response);
+        message.success(`${info.file.name} file uploaded successfully`);
+        setImageUrl(info.file.response.secure_url);
+      } else if (info.file.status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
   useEffect(() => {
     const fetchEmployeeData = async () => {
       try {
         const response = await api.get(`/employee/${employeeId}`);
         const birthDay = moment(new Date(response.employee.dateOfBirth));
         const joinDate = moment(new Date(response.employee.joinDate));
-
+        setImageUrl(response.employee.avatar || defaultImageUrl);
         setEmployeeData({ ...response.employee, dateOfBirth: birthDay, joinDate: joinDate });
         form.setFieldsValue({ ...response.employee, dateOfBirth: birthDay, joinDate: joinDate });
       } catch (error) {
@@ -36,8 +95,6 @@ const EditEmployee = () => {
       }
     };
 
-    
-  
     fetchEmployeeData();
   }, [employeeId]);
 
@@ -53,10 +110,12 @@ const EditEmployee = () => {
   const handleSave = async () => {
     try {
       const values = await form.validateFields();
-      await api.patch(`/employee/${employeeId}`, values);
+      const updatedValues = { ...values, avatar: imageUrl };
+      await api.patch(`/employee/${employeeId}`, updatedValues);
       message.success("Employee updated successfully");
       setIsEditing(false);
       setEmployeeData(values);
+      navigate("/employees");
     } catch (error) {
       message.error("An error occurred while updating the employee");
     }
@@ -72,32 +131,55 @@ const EditEmployee = () => {
     >
       <Row gutter={[16, 16]}>
         <Col xs={24} md={5}>
-          <Form.Item label="Avatar" name="avatar" valuePropName="fileList" labelCol={{ span: 24 }}>
-            {/* <Upload
-            name="avatar"
-            listType="picture-card"
-            className="avatar-uploader"
-            showUploadList={false}  
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
-          >
-            {employeeData && employeeData.avatar ? (
-              <Image src={employeeData.avatar} alt="Avatar" style={{ width: "100%" }} />
-            ) : (
-              uploadButton
-            )}
-          </Upload> */}
-          </Form.Item>
+          <Form.Item label="" name="avatar" valuePropName="fileList" labelCol={{ span: 24 }}>
+            <CloudinaryContext cloudName="dvm8fnczy" cld={cld}>
+              <div style={{ marginTop: "3rem", marginBottom: "1rem", marginLeft: '3rem' }}>
+                <Upload
+                  listType="picture-circle"
+                  maxCount={1}
+                  action={`https://api.cloudinary.com/v1_1/djveiec3v/image/upload`}
+                  data={{ upload_preset: "oojgpflj" }}
+                  showUploadList={false}
+                  onChange={handleChange}
+                >
+                  <Spin spinning={loading} tip="Uploading...">
+                    {imageUrl ? (
+                      <div className="rounded-image-container">
+                        <CloudImage className="cloudary"
+                          publicId={imageUrl}
+                          style={{
 
-          <Form.Item label="Is Manager?" name="isManager" rules={[{ required: true, message: "Please select a status" }]} labelCol={{ span: 24 }}>
-            <Radio.Group buttonStyle="solid">
-              {managerOptions.map((status) => (
-                <Radio key={status.value} value={status.value}>
-                  {status.label}
-                </Radio>
-              ))}
-            </Radio.Group>
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <div>
+                        <PlusOutlined />
+                      </div>
+                    )}
+                  </Spin>
+                </Upload>
+              </div>
+            </CloudinaryContext>
+            <Form.Item
+              label=""
+              valuePropName="avatar"
+              style={{ marginTop: '18px' }}
+              value={newAvatar}
+              onChange={(e) => setNewAvatar(e.target.value)}
+            ></Form.Item>
           </Form.Item>
+          {form.getFieldValue('name') && (
+            <div style={{ marginBottom: "0.5rem", marginLeft: '2.5rem', fontWeight: 'bold' }}>
+              {employeeData.name}
+            </div>
+          )}
+          {form.getFieldValue('isManager') && (
+            <div style={{ marginBottom: "1rem", marginLeft: '3.5rem', fontWeight: 'bold' }}>
+              Role: Managers
+            </div>
+          )}
+
         </Col>
         <Col xs={24} md={19}>
           <Row>
@@ -112,9 +194,16 @@ const EditEmployee = () => {
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item label="Date of Birth" name="dateOfBirth" labelCol={{ span: 24 }}>
-                <DatePicker disabled={!isEditing} />
-              </Form.Item>
+            <Form.Item label="Date of Birth" name="dateOfBirth" labelCol={{ span: 24 }}>
+              <DatePicker
+                format="DD/MM/YYYY" 
+                disabled={!isEditing}
+                picker="date" 
+                disabledDate={(current) =>
+                  current && current > moment().endOf('day') || current < moment('1900-01-01')
+                }
+              />
+            </Form.Item>
             </Col>
 
           </Row>
@@ -155,7 +244,7 @@ const EditEmployee = () => {
             </Col>
             <Col span={8}>
               <Form.Item label="Join Date" name="joinDate" labelCol={{ span: 24 }}>
-                <DatePicker disabled={!isEditing} />
+                <DatePicker disabled={!isEditing}/>
               </Form.Item>
             </Col>
           </Row>
@@ -176,9 +265,30 @@ const EditEmployee = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Project">
+              <Form.Item label="Project" name="employee_project" labelCol={{span: 24}}>
+                {form.getFieldValue('employee_project')?.map((project) => (
+                  <Tooltip
+                    disabled={!isEditing}
+                    key={project.id}
+                    title={
+                      <>
+                        <p>Name: {project.project.name}</p>
+                        <p>Tools: {project.project.technology.join(', ')}</p>
+                        <p>Technology: {project.project.langFrame.join(', ')}</p>
+
+                      </>
+                    }
+                  >
+                    <div style={{ border: '1px solid #e8e8e8', padding: '10px', marginBottom: '8px' }}>
+                    {project.project.name}                    
+                    </div>
+
+                  </Tooltip>
+                )) || <p>No project assigned</p>}
               </Form.Item>
             </Col>
+
+
           </Row>
 
           <Row >
@@ -189,6 +299,17 @@ const EditEmployee = () => {
             </Col>
 
           </Row>
+          <Row>
+            <Form.Item label="Is Manager?" name="isManager" rules={[{ required: true, message: "Please select a status" }]} labelCol={{ span: 24 }}>
+              <Radio.Group buttonStyle="solid" disabled={!isEditing}>
+                {managerOptions.map((status) => (
+                  <Radio key={status.value} value={status.value}>
+                    {status.label}
+                  </Radio>
+                ))}
+              </Radio.Group>
+            </Form.Item>
+          </Row>
         </Col>
 
       </Row>
@@ -197,14 +318,14 @@ const EditEmployee = () => {
         <Col span={5}>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             {!isEditing ? (
-              <>           
-              <Button type="primary" icon={<EditOutlined />} onClick={handleEdit} danger>
-                Edit
-              </Button>
-               <Button onClick={handleCancel} danger style={{ color: '#ff4d4f', backgroundColor: '#fff', borderColor: '#ff4d4f', marginLeft: '10px' }}>
-               Cancel
-             </Button>
-             </>
+              <>
+                <Button type="primary" icon={<EditOutlined />} onClick={handleEdit} danger>
+                  Edit
+                </Button>
+                <Button onClick={handleCancel} danger style={{ color: '#ff4d4f', backgroundColor: '#fff', borderColor: '#ff4d4f', marginLeft: '10px' }}>
+                  Cancel
+                </Button>
+              </>
             ) : (
               <>
                 <Button type="primary" htmlType="submit" icon={<SaveOutlined />} onClick={handleSave} danger>

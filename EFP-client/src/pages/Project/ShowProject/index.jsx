@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import debounce from 'lodash/debounce';
 import api from '../../../services/API_REQ';
 import ShowProjectHeader from "./ShowProjectHeader";
+import AvatarComponent from "../../../components/Avatar";
 
 const ShowProject = () => {
   const {t} = useTranslation();
@@ -120,7 +121,7 @@ const ShowProject = () => {
                     objectPosition: 'center',
                     marginRight: 10
                   }}
-                  // src={em.employee.avatar}
+                  src={em.employee?.avatar}
                   alt="user Avatar"
                 />)
               }
