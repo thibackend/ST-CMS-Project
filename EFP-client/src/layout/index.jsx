@@ -22,7 +22,7 @@ import { useTranslation, withTranslation } from 'react-i18next';
 
 const { Header, Sider, Content } = Layout;
 
-const MainLayout = () => {
+const MainLayout = ({ handleCookieDataAdmin }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -128,7 +128,7 @@ const MainLayout = () => {
             <Col>
               <Select
                 defaultValue="English"
-                style={{ width: 140, marginRight: 16}}
+                style={{ width: 140, marginRight: 16 }}
                 options={[
                   {
                     value: 'English', label: <Row onClick={() => handleClick('en')} >
@@ -152,7 +152,12 @@ const MainLayout = () => {
                   },
                 ]}
               />
-              <Button >
+              <Button onClick={() => {
+                console.log("Logout")
+                handleCookieDataAdmin('', 'remove');
+
+              }}
+              >
                 <LogoutOutlined />
               </Button>
             </Col>
