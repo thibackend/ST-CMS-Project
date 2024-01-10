@@ -3,7 +3,7 @@ import { Row, Col, Input } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
-const SearchAddTab = ({ onSearch, toAddLink }) => {
+const SearchAddTab = ({ onSearch, toAddLinkj, searid ='searchproject'}) => {
   return (
     <Row align="middle" gutter={[30, 0]} style={{ boxSizing: 'border-box', background: '#3333', borderRadius: '7px', margin: '0 0 15px' }}>
       <Col span={8}>
