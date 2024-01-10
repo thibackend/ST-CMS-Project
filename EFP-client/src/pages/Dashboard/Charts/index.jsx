@@ -13,7 +13,7 @@ export const EmChartComponent = ({ activeEmployees, inActiveEmployees }) => {
     },
     xAxis: {
       type: 'category',
-      data: ['Active', 'Inactive'],
+      data: [t('dashboard.active'), t('dashboard.inactive')],
     },
     yAxis: {
       type: 'value',
@@ -93,7 +93,7 @@ export const ProChartComponent = ({ handleSetProjectRunning, handleSetProjectDon
   const option = {
     title: {
       text: t('projects.project'),
-      subtext: '%',
+      subtext: t('dashboard.unit'),
       left: 'left',
     },
     tooltip: {
@@ -102,15 +102,15 @@ export const ProChartComponent = ({ handleSetProjectRunning, handleSetProjectDon
     },
     series: [
       {
-        name: 'Ratio',
+        name: t('dashboard.ratio'),
         type: 'pie',
         radius: '50%',
         center: ['50%', '50%'],
         data: [
-          { value: CountOnprogressProject, name: t('projects.running') },
-          { value: CountPendingProject, name: t('projects.pending') },
-          { value: CountDoneProject, name: t('projects.done') },
-          { value: CountClosedProject, name: t('projects.failed') },
+          { value: CountOnprogressProject, name: t('dashboard.running') },
+          { value: CountPendingProject, name: t('dashboard.pending') },
+          { value: CountDoneProject, name: t('dashboard.done') },
+          { value: CountClosedProject, name: t('dashboard.new') },
         ],
         emphasis: {
           itemStyle: {

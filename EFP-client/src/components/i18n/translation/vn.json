@@ -16,26 +16,39 @@
 
         "all_done_projects": "Tất cả dự án đã hoàn thành",
         "employees_chart": "Biểu đồ nhân viên",
-        "project": "Dự án"
+        "project": "Dự án",
+        "running": "Đang chạy",
+        "pending": "Tạm dừng",
+        "done": "Hoàn thành",
+        "new": "Mới",
+        "ratio": "Tỉ lệ",
+        "unit": "Đơn vị: %",
+        "active": "Đang hoạt động",
+        "inactive": "Đã nghỉ việc"
     },
     "employees": {
-        "employees":"Nhân Viên",
-        "name": "Tên",
-        "age": "Tuổi",
-        "address": "Địa chỉ",
-        "gender": "Giới tính",
-        "position": "Chức vụ",
-        "action": "Hoạt động"
+      "employees": "Nhân Viên",
+      "name": "Tên",
+      "age": "Tuổi",
+      "address": "Địa chỉ",
+      "gender": "Giới tính",
+      "position": "Chức vụ",
+      "action": "Hoạt động",
+      "skill": "Kỹ năng",
+      "avatar": "hình ảnh"
     },
     "projects": {
-        "manager_project": "Người quản lý dự án",
-        "description": "Miêu tả",
+        "name": "Tên dự án",
+        "manager_project": "Quản lí",
+        "description": "Mô tả",
         "specification": "Chỉ rõ",
         "lang_frame": "Ngôn ngữ",
         "technology": "Công nghệ",
         "status": "Trạng thái",
         "start_date": "Ngày bắt đầu",
         "end_date": "Ngày kết thúc",
-        "project":"Dự án"
+        "project":"Dự án",
+        "action": "Hành động",
+        "members":"Thành viên"
     }
 }

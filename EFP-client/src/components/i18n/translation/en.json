@@ -15,7 +15,15 @@
     "all_running_projects": "All Running Projects",
     "all_done_projects": "All Done Project",
     "employees_chart": "Employees Chart",
-    "project": "Project"
+    "project": "Project",
+    "running": "Running",
+    "pending": "Pending",
+    "done": "Done",
+    "new": "New",
+    "ratio": "Ratio",
+    "unit": "Unit: %",
+    "active": "Active",
+    "inactive": "Inactive"
   },
   "employees": {
     "employees": "Employees",
@@ -24,10 +32,14 @@
     "address": "Address",
     "gender": "Gender",
     "position": "Positon",
-    "action": "Action"
+    "action": "Action",
+    "skill": "Skill",
+    "avatar": "Avatar",
+    "skills": "Technology"
   },
   "projects": {
-    "manager_project": "Project Manager",
+    "name": "Project name",
+    "manager_project": "Manager",
     "description": "Description",
     "specification": "Specification",
     "lang_frame": "Language",
@@ -35,6 +47,8 @@
     "status": "Status",
     "start_date": "Status Date",
     "end_date": "End Date",
-    "project": "Projects"
+    "action": "Action",
+    "project": "Projects",
+    "members": "Members"
   }
 }

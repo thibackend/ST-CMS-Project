@@ -71,7 +71,6 @@ const AddEmployee = () => {
         ...formData,
       });
     } catch (error) {
-      message.error("VALIDATE.ERROREMPLOYEE");
     }
   };
 

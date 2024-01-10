@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import './ShowProject.css';
 import { Avatar, Button, Dropdown, Space, Table, Tooltip } from 'antd';
 import { Tag } from "antd";
@@ -10,6 +11,8 @@ import ShowProjectHeader from "./ShowProjectHeader";
 import { AntDesignOutlined, DeleteOutlined, DownOutlined, EditOutlined, UserOutlined } from "@ant-design/icons";
 
 const ShowProject = () => {
+  const { t } = useTranslation();
+
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -35,7 +38,7 @@ const ShowProject = () => {
   const handlesetShowAllTech = debounce((value) => setShowAllTech(value), 500);
   const TechnologyColumns =
   {
-    title: 'Technologies',
+    title: t('projects.technology'),
     dataIndex: 'technology',
     key: 'id',
     ellipsis: true,
@@ -61,13 +64,13 @@ const ShowProject = () => {
   const columns =
     [
       {
-        title: 'Project Name',
+        title: t('projects.name'),
         dataIndex: 'name',
         key: 'name',
         // ellipsis: true,
       },
       {
-        title: 'Manager',
+        title: t('projects.manager_project'),
         dataIndex: 'managerProject',
         key: 'manager',
         ellipsis: true,
@@ -77,7 +80,7 @@ const ShowProject = () => {
       },
       TechnologyColumns,
       {
-        title: 'Menbers',
+        title: t('projects.members'),
         dataIndex: 'employee_project',
         key: 'description',
         render: (employee_project, record) => {
@@ -106,7 +109,7 @@ const ShowProject = () => {
         }
       },
       {
-        title: 'Status',
+        title: t('projects.status'),
         dataIndex: 'status',
         key: 'status',
         ellipsis: true,
@@ -120,7 +123,7 @@ const ShowProject = () => {
         }
       },
       {
-        title: 'Start Date',
+        title: t('projects.start_date'),
         dataIndex: 'startDate',
         key: 'startDate',
         ellipsis: true,
@@ -128,7 +131,7 @@ const ShowProject = () => {
         render: startDate => <p>{moment(startDate).format('DD-MM-YYYY')}</p>
       },
       {
-        title: 'End Date',
+        title: t('projects.end_date'),
         dataIndex: 'endDate',
         key: 'endDate',
         ellipsis: true,
