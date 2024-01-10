@@ -10,10 +10,10 @@ export class Admin extends AbstractEntity {
   username: string;
 
   @Column()
-  password: string
+  password: string;
 
   @Column()
-  email: string
+  email: string;
 
   @BeforeInsert()
   async hashPassword() {
@@ -22,6 +22,6 @@ export class Admin extends AbstractEntity {
 
   constructor(admin: Partial<Admin>) {
     super();
-    Object.assign(this, admin)
+    Object.assign(this, admin);
   }
 }

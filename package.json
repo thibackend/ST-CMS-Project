@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "cloudinary-react": "^1.8.1"
+    "cloudinary-react": "^1.8.1",
+    "moment": "^2.30.1"
   }
 }

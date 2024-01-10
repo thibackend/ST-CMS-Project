@@ -148,8 +148,8 @@ const ShowTable = () => {
       title: t('employees.avatar'),
       dataIndex: "avatar",
       key: "avatar",
-      render: (avatar) => <AvatarComponent imageUrl={avatar}  />,
-      width: 150,
+      render: (avatar) => <AvatarComponent imageUrl={avatar} />,
+      width: 100,
     },
 
     {
@@ -157,10 +157,14 @@ const ShowTable = () => {
       dataIndex: "name",
       key: "name",
       ...getColumnSearchProps("name"),
+      render: (text) => <span style={{color: 'blue'}}>{text}</span>,
+      width: 220,
     },
 
     {
       title: t('employees.skills'),
+      dataIndex: "skill",
+      key: "skill",
       ellipsis: true,
       render: (text, record) => (
         <Dropdown
@@ -180,6 +184,7 @@ const ShowTable = () => {
       dataIndex: "email",
       key: "email",
       ellipsis: true,
+      width: 280,
     },
 
     {
@@ -188,6 +193,7 @@ const ShowTable = () => {
       key: "position",
       ellipsis: true,
       ...getColumnSearchProps("position"),
+      width: 120,
     },
 
     {
@@ -207,12 +213,13 @@ const ShowTable = () => {
             okText="Yes"
             cancelText="No"
           >
-            <Button type="danger">
+            <Button type="danger" className="danger">
               <DeleteOutlined />
             </Button>
           </Popconfirm>
         </span>
       ),
+      width: 150,
     },
   ];
 
@@ -223,8 +230,7 @@ const ShowTable = () => {
         className="custom-table"
         columns={columns}
         dataSource={employee}
-        bordered={true}
-        pagination={{ position: ["bottomRight"] }}
+        pagination={{ position: ["bottomRight"], pageSize: 5}}
       />
     </>
   );
