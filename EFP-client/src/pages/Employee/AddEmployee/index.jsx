@@ -16,12 +16,12 @@ import {
 import { useForm } from "antd/es/form/Form";
 import { PlusOutlined } from "@ant-design/icons";
 import api from "../../../services/API_REQ";
-// import moment from 'moment';
 import "./AddEmployee.css";
-import { technologyOptions } from "../../data";
+import { softSkillOption, technologyOptions } from "../../data";
 import { useNavigate } from "react-router-dom";
 import { Image as CloudImage, CloudinaryContext } from "cloudinary-react";
 import { Cloudinary } from "@cloudinary/url-gen";
+import moment from "moment";
 
 const { Option } = Select;
 
@@ -71,6 +71,7 @@ const AddEmployee = () => {
         ...formData,
       });
     } catch (error) {
+      // message.error("VALIDATE.ERROREMPLOYEE");
     }
   };
 
@@ -109,13 +110,31 @@ const AddEmployee = () => {
     },
   };
 
+  const disable = (current) => {
+    return current && current > moment().endOf("day");
+  }
+
+  const [isDateWarningVisible, setDateWarningVisible] = useState(false);
+
+  const handleDateChange = (value) => {
+    if (value && value > moment().endOf("day")) {
+      setDateWarningVisible(true);
+    } else {
+      setDateWarningVisible(false);
+    }
+  };
+  const generateCode = () => {
+    const randomCode = Math.floor(10000 + Math.random() * 90000);
+    return `CMS-${randomCode}`;
+  };
+
   const defaultValue = {
     gender: "male",
     position: "be",
     isManager: false,
-    identityCard: 0,
-    status: 'active',
+    code: generateCode(),
   };
+
 
   const onFinish = async (values) => {
     try {
@@ -131,10 +150,11 @@ const AddEmployee = () => {
     }
   };
 
+
   return (
     <>
       <h2 className="add-employee">ADD EMPLOYEE</h2>
-      <Row style={{marginLeft: '4rem'}}>
+      <Row style={{ marginLeft: '4rem' }}>
         <Col>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <CloudinaryContext cloudName="dvm8fnczy" cld={cld}>
@@ -153,7 +173,7 @@ const AddEmployee = () => {
                         <CloudImage className="cloudary"
                           publicId={imageUrl}
                           style={{
-                            
+
                           }}
                         />
                       </div>
@@ -167,13 +187,14 @@ const AddEmployee = () => {
               </div>
             </CloudinaryContext>
           </div>
-          <Form.Item
+          <h4 style={{ marginTop: '2rem' }}>EMPLOYEE AVATAR</h4>
+          {/* <Form.Item
             label="EMPLOYEE AVATAR"
             valuePropName="avatar"
             style={{marginTop: '18px'}}
             value={newAvatar}
             onChange={(e) => setNewAvatar(e.target.value)}
-          ></Form.Item>
+          ></Form.Item> */}
         </Col>
         <Col>
           <Form
@@ -190,20 +211,6 @@ const AddEmployee = () => {
                 }}
               >
                 <Col>
-                <Form.Item
-                name="identityCard"
-                label="Identity Card"
-                style={{ display: "none" }}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                name="status"
-                label="Status"
-                style={{ display: "none" }}
-              >
-                <Input />
-              </Form.Item>
                   <Form.Item
                     name="name"
                     label="Name"
@@ -253,10 +260,10 @@ const AddEmployee = () => {
                     label="Is Manager?"
                     name="isManager"
                     rules={[
-                      { required: true, message: "Please select a status" },
+                      // { required: true, message: "Please select a status" },
                     ]}
-                    labelCol={{ span: 24 }}
-                    style={{ marginLeft: "4rem", width: "20rem" }}
+                    labelCol={{ span: 12 }}
+                    style={{ width: "20rem" }}
                   >
                     <Radio.Group buttonStyle="solid">
                       {managerOptions.map((status) => (
@@ -278,8 +285,22 @@ const AddEmployee = () => {
                     ]}
                     style={{ width: "20rem", marginLeft: "3rem" }}
                   >
-                    <DatePicker />
+                    <DatePicker disabledDate={disable} onChange={handleDateChange} />
                   </Form.Item>
+
+                  <Form.Item
+                    name="code"
+                    label="Code"
+                    
+                    labelCol={{ span: 24 }}
+                    style={{ width: "20rem", marginLeft: "3rem", display:"none"}}
+                    rules={[
+                      { required: true, message: "please enter your code!" },
+                    ]}
+                  >
+                    <Input placeholder="Enter code" disabled />
+                  </Form.Item>
+
                   <Form.Item
                     name="position"
                     label="Position"
@@ -291,6 +312,10 @@ const AddEmployee = () => {
                       <Option value="fe">Frontend</Option>
                       <Option value="devops">DevOps</Option>
                       <Option value="ba">BA</Option>
+                      <Option value="qa">QA</Option>
+                      <Option value="fullstack">Fullstack</Option>
+
+                      
                     </Select>
                   </Form.Item>
 
@@ -316,31 +341,31 @@ const AddEmployee = () => {
                       )}
                     />
                   </Form.Item>
+
                   <Form.Item
-                label="Join Date"
-                name="joinDate"
-                labelCol={{ span: 24 }}
-                rules={[
-                  { required: true, message: "Please select join date" },
-                ]}
-                style={{ width: "20rem", marginLeft: "3rem" }}
-              >
-                <DatePicker />
-              </Form.Item>
-                  <Form.Item
-                    name="code"
-                    label="Code"
+                    label="Soft Skills"
+                    name="skill"
                     labelCol={{ span: 24 }}
                     style={{ width: "20rem", marginLeft: "3rem" }}
-                    rules={[
-                      { required: true, message: "please enter your code!" },
-                    ]}
                   >
-                    <Input placeholder="Enter code" />
+                    <Select
+                      mode="multiple"
+                      placeholder="Select soft skills"
+                      optionLabelProp="label"
+                      options={softSkillOption}
+                      style={{ height: "3rem" }}
+                      optionRender={(option) => (
+                        <Space>
+                          <span role="img" aria-label={option.data.label}>
+                            {option.data.emoji}
+                          </span>
+                          {option.data.label}
+                        </Space>
+                      )}
+                    />
                   </Form.Item>
-
                   <div style={{ display: "flex" }}>
-                    <Col style={{ margin: "20px 38px" }}>
+                    <Col style={{ margin: "5px 38px" }}>
                       <Form.Item>
                         <Button
                           type="primary"
@@ -354,12 +379,15 @@ const AddEmployee = () => {
                         </Button>
                       </Form.Item>
                     </Col>
-                    <Col style={{ margin: "20px 0px", padding: "0px" }}>
+                    <Col style={{ margin: "5px 0px", padding: "0px" }}>
                       <Form.Item>
                         <Button
                           block
-                          onClick={() => form.resetFields()}
+                          onClick={() => {
+                            form.resetFields(),
+                          navigate('../../employees')}}
                           style={{ width: "120px", height: "40px" }}
+                          danger
                         >
                           Cancel
                         </Button>

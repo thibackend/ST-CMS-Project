@@ -13,7 +13,6 @@
         "all_employees": "Tất cả nhân viên",
         "all_managers": "Tất cả người quản lý",
         "all_running_projects":"Tất cả dự án đang chạy",
-
         "all_done_projects": "Tất cả dự án đã hoàn thành",
         "employees_chart": "Biểu đồ nhân viên",
         "project": "Dự án",
@@ -49,6 +48,9 @@
         "end_date": "Ngày kết thúc",
         "project":"Dự án",
         "action": "Hành động",
-        "members":"Thành viên"
+        "members":"Thành viên",
+        "roles": "Vai trò",
+        "assign": "Nhân viên dự án",
+        "tools": "Công cụ hỗ trợ"
     }
 }

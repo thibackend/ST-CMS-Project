@@ -30,6 +30,8 @@ const ShowTable = () => {
     fetchDataEmployee();
   }, []);
 
+ 
+
   const fetchDataEmployee = async () => {
     setLoading(true);
     await api.get("/employee").then((res) => {
@@ -122,14 +124,7 @@ const ShowTable = () => {
                 <Tag
                   key={`${record.id}_${index}`}
                   color={tech.length > 5 ? "#1677ff" : "#1677ff"}
-                  style={{
-                    cursor: "auto",
-                    backgroundColor: "#1677ff",
-                    color: "white",
-                    marginRight: "5px",
-                    fontSize: "16px",
-                    padding: "8px",
-                  }}
+                  style={{ borderRadius: 50, padding:'2px 8px', transform: 'scale(1.06)', backgroundColor: 'green', color: 'white', fontSize: '12px'}}
                 >
                   {tech}
                 </Tag>
@@ -139,7 +134,6 @@ const ShowTable = () => {
     };
   });
 
-  //Position
   const getPositionLabel = (postsion) => {
     switch (postsion) {
       case "fe":
@@ -194,14 +188,8 @@ const ShowTable = () => {
           }}
         >
           <div
-            style={{
-              backgroundColor: "#1677ff",
-              borderRadius: "10px",
-              cursor: "auto",
-              color: "white",
-              fontSize: "16px",
-              padding: "8px",
-            }}
+          style={{ borderRadius: 50, padding:'2px 8px', transform: 'scale(1.06)', backgroundColor: 'green', color: 'white', fontSize: '12px'}}
+
           >
             {record.tech && record.tech[Object.keys(record.tech)[0]]}
           </div>
@@ -216,10 +204,10 @@ const ShowTable = () => {
             >
               <div
                 style={{
-                  padding: "8px 9px",
-                  backgroundColor: "aliceblue",
+                  backgroundColor: "none",
                   borderRadius: "50%",
-                  border: "1px solid #1677ff",
+                  padding: '2px 4px',
+                  border: "1px solid black",
                 }}
               >
                 +

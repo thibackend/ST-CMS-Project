@@ -50,6 +50,9 @@
     "end_date": "End Date",
     "action": "Action",
     "project": "Projects",
-    "members": "Members"
+    "members": "Members",
+    "tools": "Tools",
+    "roles": "Roles",
+    "assign": "Employee asigned"
   }
 }

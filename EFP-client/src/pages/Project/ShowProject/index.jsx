@@ -4,8 +4,9 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useTranslation } from 'react-i18next';
 import './ShowProject.css';
 import { Table } from 'antd';
-import { Tag } from "antd";
+import { Tag, Popover } from "antd";
 import moment from "moment";
+import { Translation } from "react-i18next";
 import { Link } from "react-router-dom";
 import debounce from 'lodash/debounce';
 import api from '../../../services/API_REQ';
@@ -33,56 +34,60 @@ const ShowProject = () => {
   const TechnologyColumns =
   {
     title: 'Technologies',
-    dataIndex: 'technology',
+    dataIndex: 'langFrame',
     key: 'id',
     ellipsis: true,
     width: showAllTech ? 400 : 300,
     render: (technology) => {
-      return <Link>
-        {
-          showAllTech ?
-            <>
-              {
-                technology?.map((tech, index) => {
-                  return (<Tag
-                    style={{ borderRadius: 50, transform: 'scale(1.06)', backgroundColor: 'green', color: 'white' }}
-                    key={`index_${index}`}>{tech}</Tag>)
-                })
-              }
-              <Tag onClick={() => setShowAllTech(showAllTech ? false : true)} style={{ borderRadius: 50 }}>-</Tag>
-            </> :
-            technology.length > 2 ?
-              technology?.map((tech, index, array) => {
-                var sodu = 0;
-                if (index <= 1) {
-                  return <Tag
+      const content = (
+        <div>
+          {technology?.map((tech, index) => (
+            <Tag
+              style={{ borderRadius: 50, transform: 'scale(1.06)', backgroundColor: 'green', color: 'white' }}
+              key={`index_${index}`}
+            >
+              {tech}
+            </Tag>
+          ))}
+        </div>
+      );
+  
+      return (
+        <Popover content={content} trigger="hover" placement="bottom">
+          <>
+            {showAllTech ? (
+              <>
+                {technology?.map((tech, index) => (
+                  <Tag
                     style={{ borderRadius: 50, transform: 'scale(1.06)', backgroundColor: 'green', color: 'white' }}
                     key={`index_${index}`}
-                  >{tech}</Tag>
-                } else if (index > 1) {
-                  sodu += 1;
-                }
-                if (index == array.length - 1) {
-                  return <a
-                    onClick={() => {
-                      setShowAllTech(showAllTech ? false : true)
-                    }}
+                  >
+                    {tech}
+                  </Tag>
+                ))}
+                <Tag onClick={() => setShowAllTech(!showAllTech)} style={{ borderRadius: 50 }}>-</Tag>
+              </>
+            ) : (
+              <>
+                {technology?.slice(0, 2).map((tech, index) => (
+                  <Tag
+                    style={{ borderRadius: 50, transform: 'scale(1.06)', backgroundColor: 'green', color: 'white' }}
                     key={`index_${index}`}
-                    style={
-                      { borderRadius: 50, textAlign: 'center', fontWeight: 'bold' }
-                    }
-                  >...</a>
-                }
-              })
-              :
-              technology.length <= 2 ?
-                technology?.map((tech, index) => {
-                  return (<Tag key={`index_${index}`} style={{ color: 'white', borderRadius: 50 }}>{tech}</Tag>)
-                })
-                : null
-        }
-      </Link >
-    }
+                  >
+                    {tech}
+                  </Tag>
+                ))}
+                {technology?.length > 2 && (
+                  <Tag onClick={() => setShowAllTech(!showAllTech)} style={{ borderRadius: '50%', cursor: 'pointer', border:'1px solid black' }}>
+                    +
+                  </Tag>
+                )}
+              </>
+            )}
+          </>
+        </Popover>
+      );
+    },
   };
   const columns =
     [
@@ -120,7 +125,7 @@ const ShowProject = () => {
                     objectPosition: 'center',
                     marginRight: 10
                   }}
-                  // src={em.employee.avatar}
+                  src={em?.employee?.avatar}
                   alt="user Avatar"
                 />)
               }
@@ -157,7 +162,31 @@ const ShowProject = () => {
         ellipsis: true,
         width: 100,
         render: endDate => <p>{moment(endDate).format('DD-MM-YYYY')}</p>
-      }
+      },
+      {
+        title: <Translation>{(t) => t("employees.action")}</Translation>,
+        key: "action",
+        render: (_, record) => (
+          <span>
+            <Link to={`/employees/edit/${record.id}`}>
+              <Button type="primary" style={{ marginRight: 8 }}>
+                <EditOutlined />
+              </Button>
+            </Link>
+  
+            <Popconfirm
+              title="Are you sure delete this project?"
+              onConfirm={() => handleDelete(record.id)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button type="danger">
+                <DeleteOutlined />
+              </Button>
+            </Popconfirm>
+          </span>
+        ),
+      },
     ];
 
 

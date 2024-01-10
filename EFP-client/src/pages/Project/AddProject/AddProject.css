@@ -1,10 +1,14 @@
 
 .form-add-project .ant-input {
-  height: 8vh;
+  height: 3rem;
 }
 
 .form-add-project .ant-picker {
-  height: 8vh;
+  height: 3rem;
+  width: 100%;
+}
+.form-add-project .ant-select-selector{
+  height: 3rem;
   width: 100%;
 }
 
@@ -19,4 +23,8 @@
 }
 .form-add-project.ant-form {
   padding-top: 20px;
+}
+
+.form-add-project {
+  padding: 0 5% 0 10%;
 }

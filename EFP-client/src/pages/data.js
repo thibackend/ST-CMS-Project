@@ -33,3 +33,24 @@ export const statusOptions = [
     { label: "On Progress", value: "on_progress" },
     { label: "Closed", value: "closed" },
   ];
+
+
+ export const dynamicRoles = [
+    { value: 'be', label: 'Backend' },
+    { value: 'devops', label: 'DevOps' },
+    { value: 'fe', label: 'Frontend' },
+    { value: 'qa', label: 'QA' },
+    { value: 'ux_ui', label: 'UX/UI' },
+    { value: 'ba', label: 'Bussiness Analyst' },
+    { value: 'fullstack', label: 'Fullstack' },
+  ];
+  
+
+export const softSkillOption = [
+  { label: 'Communication', value: 'communication', emoji: '🗣️', desc: 'Effective communication skills' },
+  { label: 'Teamwork', value: 'teamwork', emoji: '🤝', desc: 'Ability to work well in a team' },
+  { label: 'Problem Solving', value: 'problem_solving', emoji: '🤔', desc: 'Analytical and problem-solving skills' },
+  { label: 'Adaptability', value: 'adaptability', emoji: '🔄', desc: 'Ability to adapt to new situations' },
+  { label: 'Leadership', value: 'leadership', emoji: '👥', desc: 'Leadership and management skills' },
+  
+];
