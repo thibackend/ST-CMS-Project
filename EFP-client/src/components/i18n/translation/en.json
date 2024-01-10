@@ -1,0 +1,53 @@
+{
+  "login": {
+    "login": "Login",
+    "user_name": "Username",
+    "password": "Password"
+  },
+  "titel": {
+    "all_employees": "All Employees",
+    "all_project": "All Project"
+  },
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "all_employees": "All Employees",
+    "all_managers": "All Managers",
+    "all_running_projects": "All Running Projects",
+    "all_done_projects": "All Done Project",
+    "employees_chart": "Employees Chart",
+    "project": "Project",
+    "running": "Running",
+    "pending": "Pending",
+    "done": "Done",
+    "new": "New",
+    "ratio": "Ratio",
+    "unit": "Unit: %",
+    "active": "Active",
+    "inactive": "Inactive"
+
+  },
+  "employees": {
+    "employees": "Employees",
+    "name": "Name",
+    "age": "Age",
+    "address": "Address",
+    "gender": "Gender",
+    "position": "Positon",
+    "action": "Action",
+    "avatar": "Avatar",
+    "skills": "Technology"
+  },
+  "projects": {
+    "name": "Project name",
+    "manager_project": "Manager",
+    "description": "Description",
+    "specification": "Specification",
+    "lang_frame": "Language",
+    "technology": "Technology",
+    "status": "Status",
+    "start_date": "Status Date",
+    "end_date": "End Date",
+    "action": "Action",
+    "project": "Projects"
+  }
+}

@@ -16,6 +16,7 @@ import {
 import { useForm } from "antd/es/form/Form";
 import { PlusOutlined } from "@ant-design/icons";
 import api from "../../../services/API_REQ";
+// import moment from 'moment';
 import "./AddEmployee.css";
 import { technologyOptions } from "../../data";
 import { useNavigate } from "react-router-dom";
@@ -70,7 +71,6 @@ const AddEmployee = () => {
         ...formData,
       });
     } catch (error) {
-      message.error("VALIDATE.ERROREMPLOYEE");
     }
   };
 
@@ -113,6 +113,8 @@ const AddEmployee = () => {
     gender: "male",
     position: "be",
     isManager: false,
+    identityCard: 0,
+    status: 'active',
   };
 
   const onFinish = async (values) => {
@@ -189,6 +191,20 @@ const AddEmployee = () => {
                 }}
               >
                 <Col>
+                <Form.Item
+                name="identityCard"
+                label="Identity Card"
+                style={{ display: "none" }}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="status"
+                label="Status"
+                style={{ display: "none" }}
+              >
+                <Input />
+              </Form.Item>
                   <Form.Item
                     name="name"
                     label="Name"
@@ -301,7 +317,17 @@ const AddEmployee = () => {
                       )}
                     />
                   </Form.Item>
-
+                  <Form.Item
+                label="Join Date"
+                name="joinDate"
+                labelCol={{ span: 24 }}
+                rules={[
+                  { required: true, message: "Please select join date" },
+                ]}
+                style={{ width: "20rem", marginLeft: "3rem" }}
+              >
+                <DatePicker />
+              </Form.Item>
                   <Form.Item
                     name="code"
                     label="Code"
