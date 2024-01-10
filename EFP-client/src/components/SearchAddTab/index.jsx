@@ -150,7 +150,7 @@ export default function Search({
                   icon={<PlusOutlined />}
                   size={"large"}
                 >
-                  New project
+                  New employee
                 </Button>
               </Link>
             </div>
