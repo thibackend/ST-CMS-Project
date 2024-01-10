@@ -16,7 +16,7 @@ import { GetProjectParams } from './dto/getList-project.dto';
 
 @Controller('project')
 export class ProjectController {
-  constructor(private readonly projectService: ProjectService) {}
+  constructor(private readonly projectService: ProjectService) { }
 
   // @UseGuards(AuthGuard)
   @Post()

@@ -21,9 +21,10 @@ export class ProjectService {
     @InjectRepository(EmployeeProject)
     private assignRespository: Repository<EmployeeProject>,
     private readonly entityManager: EntityManager,
-  ) {}
+  ) { }
 
   async create(createProjectDto: CreateProjectDto) {
+    console.log("data create Project:",createProjectDto)
     const { employee_project, ...projectData } = createProjectDto;
 
     const project = new Project(projectData);
@@ -192,6 +193,7 @@ export class ProjectService {
   }
 
   async getProjects(params: GetProjectParams) {
+
     const projects = this.projectRespository
       .createQueryBuilder('project')
       .select([
@@ -217,11 +219,11 @@ export class ProjectService {
         status: params.status
           ? [params.status]
           : [
-              StatusProjectEnum.DONE,
-              StatusProjectEnum.ON_PROGRESS,
-              StatusProjectEnum.PENDING,
-              StatusProjectEnum.CLOSED,
-            ],
+            StatusProjectEnum.DONE,
+            StatusProjectEnum.ON_PROGRESS,
+            StatusProjectEnum.PENDING,
+            StatusProjectEnum.CLOSED,
+          ],
       })
       .skip(params.skip)
       .take(params.take)
@@ -232,6 +234,7 @@ export class ProjectService {
         name: `%${params.search}%`,
       });
     }
+
     const [result, total] = await projects.getManyAndCount();
     const pageMetaDto = new PageMetaDto({
       itemCount: total,
@@ -266,11 +269,11 @@ export class ProjectService {
         status: params.status
           ? [params.status]
           : [
-              StatusProjectEnum.DONE,
-              StatusProjectEnum.ON_PROGRESS,
-              StatusProjectEnum.PENDING,
-              StatusProjectEnum.CLOSED,
-            ],
+            StatusProjectEnum.DONE,
+            StatusProjectEnum.ON_PROGRESS,
+            StatusProjectEnum.PENDING,
+            StatusProjectEnum.CLOSED,
+          ],
       })
       .where('project.deletedAt IS NOT NULL')
       .skip(params.skip)

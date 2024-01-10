@@ -158,7 +158,7 @@ const ShowTable = () => {
         return "Full Stack Developer";
     }
 
-    console.log("postion not found",postsion);
+    console.log("postion not found", postsion);
   };
 
   const columns = [
@@ -167,6 +167,13 @@ const ShowTable = () => {
       dataIndex: "avatar",
       key: "avatar",
       width: 100,
+      render: (avatar) => (
+        <img
+          src={avatar}
+          alt="avatar"
+          style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+        />
+      ),
     },
 
     {

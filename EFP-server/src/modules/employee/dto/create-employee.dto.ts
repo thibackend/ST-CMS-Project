@@ -19,13 +19,10 @@ export class CreateEmployeeDto {
   @IsNotEmpty()
   phone: string;
 
-  @IsNotEmpty()
   dateOfBirth: Date;
 
-  @IsNotEmpty()
   identityCard: string;
 
-  @IsNotEmpty()
   position: PositionEnum;
 
   @IsNotEmpty()
@@ -39,12 +36,10 @@ export class CreateEmployeeDto {
 
   skills: { name: string; exp: number }[];
 
-  @IsNotEmpty()
   status: StatusEnum;
 
   avatar: string;
 
-  @IsNotEmpty()
   joinDate: Date;
 
   fireDate: Date | null;

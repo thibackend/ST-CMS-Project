@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import { TeamOutlined, ProjectOutlined, UserOutlined, FileDoneOutlined  } from '@ant-design/icons';
 import {  EmChartComponent, ProChartComponent } from './Charts';
-import { useTranslation } from 'react-i18next'; // Import useTranslationimport api from '../../services/API_REQ';
+import { useTranslation } from 'react-i18next';
+import api from '../../services/API_REQ';
 
 const Dashboard = () => {
     const {t} = useTranslation();
@@ -47,12 +48,10 @@ const Dashboard = () => {
             const activeEmployeesData = employee.filter(employee => employee.status === 'active');
             const inActiveEmployeesData = employee.filter(employee => employee.status === 'inactive');
             if (activeEmployeesData) {
-                console.log("ActiveEmployeesData: ", activeEmployeesData);
                 setActiveEmployees(activeEmployeesData);
             }
 
             if (inActiveEmployeesData) {
-                console.log("inActiveEmployeesData: ", inActiveEmployeesData);
                 setInActiveEmployees(inActiveEmployeesData);
             }
         }
@@ -68,7 +67,7 @@ const Dashboard = () => {
         <>
             <Row gutter={[10, 10]} style={{ minHeight: '35vh' }}>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title={t('dashboard.dashboard')} count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
+                    <CardComponent title={t('dashboard.all_employees')} count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
                     <CardComponent title={t('dashboard.all_managers')} count={managers ? managers.length : 0} icon={<UserOutlined />} className="manager-card" />
@@ -80,7 +79,6 @@ const Dashboard = () => {
                     <CardComponent title={t('dashboard.all_done_projects')} count={projectDone ? projectDone : 0} icon={<FileDoneOutlined />} className="done-project-card" />
                 </Col>
             </Row>
-            {console.log("render: ", activeEmployees && activeEmployees.length)}
             <Row gutter={[10, 10]}>
                 <Col xs={24} sm={24} md={13} style={{ background: '#ecf0f4', padding: '10px' }}>
                     <EmChartComponent activeEmployees={activeEmployees && activeEmployees.length} inActiveEmployees={inActiveEmployees && inActiveEmployees.length} />
