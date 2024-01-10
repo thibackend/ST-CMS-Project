@@ -1,17 +1,17 @@
 
 .form-edit-employee .ant-input {
-    height: 6vh;
+    min-height: 6vh;
   }
   .form-edit-employee .ant-form-item {
     margin: 5px;
   }
   .form-edit-employee textarea {
-    height: 10vh !important;
+    min-height: 10vh !important;
     margin-bottom: 10px;
   }
   
   .form-edit-employee .ant-picker {
-    height: 6vh;
+    min-height: 6vh;
     width: 100%;
   }
   
@@ -25,4 +25,6 @@
     font-weight: 500; 
   }
  
-  
+  .form-edit-employee {
+    padding: 0 5% 0 5%;
+  }

@@ -344,7 +344,7 @@ const AddEmployee = () => {
 
                   <Form.Item
                     label="Soft Skills"
-                    name="skill"
+                    name="skills"
                     labelCol={{ span: 24 }}
                     style={{ width: "20rem", marginLeft: "3rem" }}
                   >

@@ -1,0 +1,87 @@
+.team-members-table {
+    margin: 0 10%;
+  }
+  
+  .team-members-table .ant-table {
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 5%;
+  }
+  
+  .team-members-table .ant-table-thead > tr > th {
+    background-color: #f0f2f5;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .team-members-table .ant-table-tbody > tr > td {
+    text-align: center;
+  }
+  
+  .team-members-table .ant-table-tbody > tr:hover > td {
+    background-color: #e6f7ff;
+  }
+  
+  .team-members-table .assign-avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+  
+  .team-members-table .assign-name {
+    font-weight: bold;
+  }
+  
+  .team-members-table .assign-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .team-members-table .assign-roles {
+    color: #777;
+    font-size: 12px;
+  }
+
+  .project-details {
+    width: 90%;
+    margin: auto;
+  }
+  .project-details .header button {
+    margin-bottom: 10px;
+  }
+  
+  .project-details .ant-descriptions-item-label {
+    font-weight: bold;
+  }
+  
+  .project-details .ant-descriptions-item-content {
+    word-wrap: break-word;
+  }
+  
+  .project-details .ant-avatar {
+    margin-right: 8px;
+  }
+  
+  .project-details .ant-descriptions-view {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .project-details .ant-descriptions-item {
+    flex: 1 0 45%;
+  }
+  
+  .project-details .ant-divider-horizontal {
+    border-top-color: #e8e8e8;
+  }
+  
+  .project-details .ant-divider-inner-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  

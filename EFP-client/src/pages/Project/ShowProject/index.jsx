@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Popconfirm, message } from 'antd';
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, EyeFilled} from "@ant-design/icons";
 import { useTranslation } from 'react-i18next';
 import './ShowProject.css';
 import { Table } from 'antd';
@@ -168,9 +168,9 @@ const ShowProject = () => {
         key: "action",
         render: (_, record) => (
           <span>
-            <Link to={`/employees/edit/${record.id}`}>
+            <Link to={`/projects/${record.id}`}>
               <Button type="primary" style={{ marginRight: 8 }}>
-                <EditOutlined />
+                <EyeFilled />
               </Button>
             </Link>
   
