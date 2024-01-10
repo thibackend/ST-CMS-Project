@@ -330,29 +330,6 @@ const AddEmployee = () => {
                     />
                   </Form.Item>
 
-                  <Form.Item
-                    label="Soft Skills"
-                    name="skill"
-                    labelCol={{ span: 24 }}
-                    style={{ width: "20rem", marginLeft: "3rem" }}
-                  >
-                    <Select
-                      mode="multiple"
-                      placeholder="Select soft skills"
-                      optionLabelProp="label"
-                      options={softSkillOption}
-                      style={{ height: "3rem" }}
-                      optionRender={(option) => (
-                        <Space>
-                          <span role="img" aria-label={option.data.label}>
-                            {option.data.emoji}
-                          </span>
-                          {option.data.desc}
-                        </Space>
-                      )}
-                    />
-                  </Form.Item>
-
                   <div style={{ display: "flex" }}>
                     <Col style={{ margin: "5px 38px" }}>
                       <Form.Item>

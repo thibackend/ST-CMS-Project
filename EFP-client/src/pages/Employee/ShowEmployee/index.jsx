@@ -3,7 +3,6 @@ import SearchAddTab from "../../../components/SearchAddTab";
 import { Button, Table, Popconfirm, message, Dropdown, Tag } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
 import "./ShowEmployee.css";
 import { Translation } from "react-i18next";
 import debounce from "lodash/debounce";
@@ -159,7 +158,7 @@ const ShowTable = () => {
         return "Full Stack Developer";
     }
 
-    console.log("postion not found",postsion);
+    console.log("postion not found", postsion);
   };
 
   const columns = [
@@ -167,8 +166,14 @@ const ShowTable = () => {
       title: <Translation>{(t) => t("employees.avatar")}</Translation>,
       dataIndex: "avatar",
       key: "avatar",
-      render: (avatar) => <img src={avatar} alt="avatar" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />,
       width: 100,
+      render: (avatar) => (
+        <img
+          src={avatar}
+          alt="avatar"
+          style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+        />
+      ),
     },
 
     {

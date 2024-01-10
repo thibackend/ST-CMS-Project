@@ -35,7 +35,8 @@
     "position": "Positon",
     "action": "Action",
     "skill": "Skill",
-    "avatar": "Avatar"
+    "avatar": "Avatar",
+    "skills": "Technology"
   },
   "projects": {
     "name": "Project name",

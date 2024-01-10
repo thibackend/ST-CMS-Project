@@ -8,13 +8,6 @@ export enum StatusEnum {
   INACTIVE = 'inactive',
 }
 
-export enum softSkillOption {
-  Planning = 'planning',
-  Team_Work = 'team Work',
-  Management = 'management',
-  Communicating = 'communicating',
-}
-
 export enum StatusProjectEnum {
   PENDING = 'pending',
   DONE = 'done',
