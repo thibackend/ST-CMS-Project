@@ -280,6 +280,7 @@ const ShowTable = () => {
         handleSearchName={handleSearchName}
         handleSearchEmail={handleSearchEmail}
         toAddLink={"/employees/add"}
+        title={"New employee"}
       />
       <Table
         style={{

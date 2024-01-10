@@ -75,7 +75,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
               <Link to="/employees">{t('employees.employees')}</Link>
             </Menu.Item>
             <Menu.Item key="/projects" icon={<ProjectOutlined />}>
-              <Link to="projects">{t('projects.manager_project')}</Link>
+              <Link to="projects">{t('projects.project')}</Link>
             </Menu.Item>
           </Menu>
         </Drawer>)}
@@ -98,7 +98,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
               <Link to="/employees">{t('employees.employees')}</Link>
             </Menu.Item>
             <Menu.Item key="/projects" icon={<ProjectOutlined />}>
-              <Link to="projects">{t('projects.manager_project')}</Link>
+              <Link to="projects">{t('projects.project')}</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -163,7 +163,6 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
             </Col>
           </Row>
         </Header>
-        <BreadcrumbCom />
         <Content style={{ margin: '24px 16px', padding: 24, minHeight: '100vh', background: '#ecf0f4' }}>
           <AppRoutes />
         </Content>

@@ -49,6 +49,7 @@
     "start_date": "Status Date",
     "end_date": "End Date",
     "action": "Action",
-    "project": "Projects"
+    "project": "Projects",
+    "members": "Members"
   }
 }

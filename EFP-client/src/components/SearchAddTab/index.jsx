@@ -13,6 +13,7 @@ export default function Search({
   toAddLink,
   handleSearchEmail,
   handleSearchName,
+  title
 }) {
   return (
     <>
@@ -150,7 +151,7 @@ export default function Search({
                   icon={<PlusOutlined />}
                   size={"large"}
                 >
-                  New project
+                  {title}
                 </Button>
               </Link>
             </div>
