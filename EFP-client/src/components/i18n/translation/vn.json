@@ -27,15 +27,15 @@
         "inactive": "Đã nghỉ việc"
     },
     "employees": {
-        "employees":"Nhân Viên",
-        "name": "Tên",
-        "age": "Tuổi",
-        "address": "Địa chỉ",
-        "gender": "Giới tính",
-        "position": "Chức vụ",
-        "action": "Hành động",
-        "avatar": "Hình đại diện",
-        "skills": "Công nghệ"
+      "employees": "Nhân Viên",
+      "name": "Tên",
+      "age": "Tuổi",
+      "address": "Địa chỉ",
+      "gender": "Giới tính",
+      "position": "Chức vụ",
+      "action": "Hoạt động",
+      "skill": "Kỹ năng",
+      "avatar": "hình ảnh"
     },
     "projects": {
         "name": "Tên dự án",
