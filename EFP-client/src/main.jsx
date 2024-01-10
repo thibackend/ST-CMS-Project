@@ -10,9 +10,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
     <React.StrictMode>
-      <Suspense fallback={(<div>Loading</div>)}>
+    <Suspense fallback={(<div>Loading</div>)}>
         <App />
-      </Suspense>
-    </React.StrictMode>
+    </Suspense>
+      </React.StrictMode>
   </Router>
 )
