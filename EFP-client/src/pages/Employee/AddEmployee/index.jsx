@@ -165,13 +165,14 @@ const AddEmployee = () => {
               </div>
             </CloudinaryContext>
           </div>
-          <Form.Item
+          <h4 style={{marginTop: '2rem'}}>EMPLOYEE AVATAR</h4>
+          {/* <Form.Item
             label="EMPLOYEE AVATAR"
             valuePropName="avatar"
             style={{marginTop: '18px'}}
             value={newAvatar}
             onChange={(e) => setNewAvatar(e.target.value)}
-          ></Form.Item>
+          ></Form.Item> */}
         </Col>
         <Col>
           <Form
