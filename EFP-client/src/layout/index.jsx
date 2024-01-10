@@ -75,8 +75,8 @@ const MainLayout = (handleCookieDataAdmin) => {
             background: colorBgContainer,
           }}
         >
-          <Row>
-            <Col span={2}>
+          <Row> 
+            <Row span={4}>
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -84,16 +84,14 @@ const MainLayout = (handleCookieDataAdmin) => {
                 style={{
                   fontSize: '16px',
                   width: 64,
-                  height: 64,
+                  height: 64
                 }}
               />
-            </Col>
-            <Col span={18}>
-           
-            </Col>
-       
-             
-            <Col span={4}>
+            </Row>
+            <Row span={16}>
+            </Row>
+         
+            <Row span={4}>
               <Select
                 defaultValue="English"
                 style={{
@@ -104,7 +102,7 @@ const MainLayout = (handleCookieDataAdmin) => {
                     value: 'English',
                     label: (
                       <p onClick={() => handleClick('en')}>
-                      English
+                        English
                       </p>
                     ),
                   },
@@ -112,14 +110,14 @@ const MainLayout = (handleCookieDataAdmin) => {
                     value: 'Vietnamese',
                     label: (
                       <p onClick={() => handleClick('vn')}>
-                     VietNamese
+                        VietNamese
                       </p>
                     ),
                   },
                 ]}
               />
               <AvatarComponent imageUrl={'https://media.licdn.com/dms/image/D560BAQE96KctT7x-iw/company-logo_200_200/0/1666170056423?e=2147483647&v=beta&t=VWwOyGELKPqLpkj7dbxaCDtWbhWKvp3akvhvMdHivy4'} />
-            </Col>
+            </Row>
           </Row>
 
         </Header>

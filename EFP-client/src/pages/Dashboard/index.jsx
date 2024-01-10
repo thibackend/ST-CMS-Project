@@ -1,11 +1,12 @@
-import React from 'react'
+import React ,{useState,useEffect } from 'react'
 import CardComponent from './Cards';
 import { Row, Col } from 'antd';
 import { TeamOutlined, ProjectOutlined, UserOutlined, FileDoneOutlined  } from '@ant-design/icons';
 import {  EmChartComponent, ProChartComponent } from './Charts';
 import { useTranslation } from 'react-i18next'; // Import useTranslationimport api from '../../services/API_REQ';
-
+import i18next from 'i18next';
 const Dashboard = () => {
+    const { t } = useTranslation();
     const [employee, setEmployee] = useState(null);
     const [activeEmployees, setActiveEmployees] = useState(null);
     const [inActiveEmployees, setInActiveEmployees] = useState(null);
@@ -13,7 +14,6 @@ const Dashboard = () => {
     const [projectRuning, setProjectRunning] = useState(null);
     const [projectDone, setProjectDone] = useState(null);
     const [managers, setManagers] = useState(0);
-
     const handleSetProjectRunning = (num) => setProjectRunning(num);
     const handleSetProjectDone = (num) => setProjectDone(num);
 
@@ -64,7 +64,7 @@ const Dashboard = () => {
     }, []);
     return (
         <>
-            <Row gutter={[10, 10]} style={{ minHeight: '35vh' }}>
+            <Row gutter={[10, 10]} style={{marginBottom:50}}>
                 <Col xs={24} sm={12} md={6}>
                     <CardComponent title={t('dashboard.dashboard')} count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
                 </Col>
