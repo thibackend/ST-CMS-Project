@@ -34,6 +34,7 @@
     "reactstrap": "^9.2.1"
   },
   "devDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
