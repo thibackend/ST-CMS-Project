@@ -6,3 +6,18 @@
 .danger:hover {
  background-color: red;
 }
+.td.ant-table-cell {
+    font-size: 16px;
+}
+
+span.anticon.anticon-plus {
+    border-radius: 18px;
+    padding: 8px;
+    background: aliceblue;
+}
+
+
+span.ant-tag.css-dev-only-do-not-override-i46qwz {
+    background-color: unset;
+    border: none;
+}
