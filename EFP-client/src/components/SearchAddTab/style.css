@@ -1,0 +1,32 @@
+.ant-layout-content {
+    padding: 0 !important;
+    background-color: #f5f5f5 !important;
+}
+
+.ant-input:focus-within,
+.ant-input:focus-within {
+    border-color: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.show-project_btn-search {
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.show-project_btn-search:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #c5c5c9;
+}
+
+.show-project_btn-search:active {
+    transform: scale(0.95);
+}
+
+span.anticon.anticon-plus {
+    border-radius: 0 !important;
+    padding: 0 !important;
+    opacity: none;
+    background: none !important;
+}
+

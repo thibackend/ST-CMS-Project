@@ -24,7 +24,9 @@
     "address": "Address",
     "gender": "Gender",
     "position": "Positon",
-    "action": "Action"
+    "action": "Action",
+    "skill": "Skill",
+    "avatar": "Avatar"
   },
   "projects": {
     "manager_project": "Project Manager",

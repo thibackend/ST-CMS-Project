@@ -19,13 +19,15 @@
         "project": "Dự án"
     },
     "employees": {
-        "employees":"Nhân Viên",
-        "name": "Tên",
-        "age": "Tuổi",
-        "address": "Địa chỉ",
-        "gender": "Giới tính",
-        "position": "Chức vụ",
-        "action": "Hoạt động"
+      "employees": "Nhân Viên",
+      "name": "Tên",
+      "age": "Tuổi",
+      "address": "Địa chỉ",
+      "gender": "Giới tính",
+      "position": "Chức vụ",
+      "action": "Hoạt động",
+      "skill": "Kỹ năng",
+      "avatar": "hình ảnh"
     },
     "projects": {
         "manager_project": "Người quản lý dự án",
