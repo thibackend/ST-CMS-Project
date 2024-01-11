@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import './ShowProject.css';
-import { Avatar, Button, Dropdown, Space, Table, Tooltip } from 'antd';
+import { Avatar, Button, Dropdown, Popconfirm, Space, Table, Tooltip, message } from 'antd';
 import { Tag } from "antd";
 import moment from "moment";
 import debounce from 'lodash/debounce';
 import api from '../../../services/API_REQ';
 import ShowProjectHeader from "./ShowProjectHeader";
-import { AntDesignOutlined, DeleteOutlined, DownOutlined, EditOutlined, UserOutlined } from "@ant-design/icons";
+
+import { AntDesignOutlined, DeleteOutlined, DownOutlined, EditOutlined, EyeOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const ShowProject = () => {
@@ -32,7 +33,10 @@ const ShowProject = () => {
   const handleDelete = async (id) => {
     setLoading(true);
     await api.delete(`project/${id}`)
-      .then(() => { setLoading(false) });
+      .then(() => {
+        setLoading(false),
+          message.success(t('projects.delete_success'))
+      });
     fetchDataProject();
   }
   const handlesetShowAllTech = debounce((value) => setShowAllTech(value), 500);
@@ -53,7 +57,7 @@ const ShowProject = () => {
           technology?.map((tech, index, array) => {
             return (
               <Tooltip key={`id_${index}`} title={tech} placement="top">
-                <Avatar size="large" style={{ backgroundColor: 'green', fontSize: "0.5em", width: 60, borderRadius: 10 }} key={`index_${index}`}>{tech}</Avatar>
+                <Avatar size="large" style={{ backgroundColor: '#1677ff', fontSize: "0.5em", width: 60, borderRadius: 10 }} key={`index_${index}`}>{tech}</Avatar>
               </Tooltip>
             )
           })
@@ -75,7 +79,7 @@ const ShowProject = () => {
         key: 'manager',
         ellipsis: true,
         render: (manager, record) => (
-          <Link to={`/employees/edit/${record.id}`}>{manager?.name}</Link>
+          <Link>{manager?.name}</Link>
         )
       },
       TechnologyColumns,
@@ -116,9 +120,9 @@ const ShowProject = () => {
         width: 100,
         render: (text, status) => {
           return (
-            <Tag color={status.status === 'done' ? 'green' : 'yellow'}>
-              {status.status}
-            </Tag>
+            <Tag color={status.status === 'closed' ? 'green' : 'yellow'}>
+            {status.status === 'closed' ? 'done' : status.status}
+          </Tag>
           );
         }
       },
@@ -139,22 +143,30 @@ const ShowProject = () => {
         render: endDate => <p>{moment(endDate).format('DD-MM-YYYY')}</p>
       }
       , {
-        title: 'Action',
+        title: t('projects.action'),
         dataIndex: 'action',
         key: 'action',
         ellipsis: true,
         width: 130,
         render: (text, record) => {
           return (
-            <div style={{ display: 'flex', flexDirection: 'column', rowGap: 10 }}>
-              <Link to={`/projects/edit/${record.id}`}>
-                <Button type="primary" shape="round" icon={<EditOutlined />} size={'large'}>
+            <div style={{ display: 'flex', flexDirection: 'row', rowGap: 10 }}>
+              <Link to={`/projects/${record.id}`}>
+                <Button type="primary" shape="round" icon={<EyeOutlined />} size={'small'}>
                 </Button>
               </Link>
-              <Link onClick={() => handleDelete(record.id)}>
-                <Button type="danger" shape="round" icon={<DeleteOutlined />} size={'large'}>
+
+              <Popconfirm
+                title={t('employees.confirm')}
+                onConfirm={() => handleDelete(record.id)}
+                okText="Yes"
+                cancelText="No"
+              >
+
+
+                <Button type="danger" shape="round" icon={<DeleteOutlined />} size={'small'}>
                 </Button>
-              </Link>
+              </Popconfirm>
             </div>
           )
         }

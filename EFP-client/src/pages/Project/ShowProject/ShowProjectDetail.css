@@ -1,0 +1,27 @@
+.ant-layout-content {
+    padding: 0 !important;
+    background-color: #ffffff !important;
+}
+
+.ant-input:focus-within,
+.ant-input:focus-within {
+    border-color: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.show-project_btn-search {
+    /* Các thuộc tính khác của button */
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.show-project_btn-search:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #c5c5c9;
+    background-color: #c5c5c9 !important;
+}
+
+.show-project_btn-search:active {
+    transform: scale(0.95);
+    /* Thu nhỏ lại một chút khi click */
+}

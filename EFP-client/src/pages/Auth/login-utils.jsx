@@ -52,9 +52,10 @@ export const styles = {
     },
     loginTitle: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+
     },
     formInput: {
         color: 'red',
@@ -69,7 +70,7 @@ export const styles = {
         margin: '0 auto',
         borderRadius: 10,
         height: 50,
-        marginTop: 40
+        marginTop: 40,
     }
 }
 

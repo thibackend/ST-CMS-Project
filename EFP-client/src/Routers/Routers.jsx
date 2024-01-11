@@ -7,6 +7,7 @@ import EditProject from "../pages/Project/EditProject"
 import AddEmployee from "../pages/Employee/AddEmployee"
 import AddProject from "../pages/Project/AddProject"
 import NotFound from "../pages/NOTFOUND"
+import ShowDetailProject from "../pages/Project/ShowProject/showDetail"
 import EditEmployee from "../pages/Employee/EditEmployee"
 
 const Routers = [
@@ -17,6 +18,8 @@ const Routers = [
     { path: "/employees/add", element: <AddEmployee />, isPrivate: true },
     { path: "/projects/add", element: <AddProject />, isPrivate: true },
     { path: "/projects/edit/:projectId", element: <EditProject />, isPrivate: true },
+    { path: "/projects/:projectId", element: <ShowDetailProject />, isPrivate: true },
+
     // { path: "*", element: <NotFound />, isPrivate: true },
 ]
 

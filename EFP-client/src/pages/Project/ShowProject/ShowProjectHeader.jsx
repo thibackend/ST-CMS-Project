@@ -4,6 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { DownloadOutlined, PlusCircleFilled, PlusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { t } from "i18next";
 export default function ShowProjectHeader({ toAddLink, handleSearch }) {
     useEffect(() => {
     }, [handleSearch])
@@ -24,7 +25,7 @@ export default function ShowProjectHeader({ toAddLink, handleSearch }) {
                         <FaList color="#000000" style={{ width: 20, height: 20 }} />
                     </div>
                     <div>
-                        <p style={{ flex: '0 0 70%', color: 'black', fontSize: 18 }}>All Projects</p>
+                        <p style={{ flex: '0 0 70%', color: 'black', fontSize: 18 }}>{t('projects.project')}</p>
                     </div>
                 </div>
             </Row>
@@ -40,7 +41,7 @@ export default function ShowProjectHeader({ toAddLink, handleSearch }) {
                                     color: 'black'
                                 }}
                                 size="large"
-                                placeholder="Search project name "
+                                placeholder={t('projects.search-by-name')}
                                 onChange={(e) => handleSearch(e.target.value)}
                             />
                             <div className="show-project_btn-search" style={{ width: 80, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#F3F4F9', borderRadius: 50 }}>
@@ -73,7 +74,7 @@ export default function ShowProjectHeader({ toAddLink, handleSearch }) {
                         <div style={{ display: "flex", justifyContent: 'flex-end', height: '100%' }}>
                             <Link to={toAddLink}>
                                 <Button type="primary" shape="round" icon={<PlusOutlined />} size={'large'}>
-                                    New project
+                                    {t('projects.create-project')}
                                 </Button>
                             </Link>
                         </div>
