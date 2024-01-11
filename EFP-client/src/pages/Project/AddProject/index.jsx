@@ -11,7 +11,6 @@ const { Option } = Select;
 const AddProject = () => {
   const [managers, setManagers] = useState([]);
   const [employee, setEmployee] = useState([]);
-
   const [form] = Form.useForm();
   const [formSmall] = Form.useForm();
 
@@ -60,7 +59,7 @@ const AddProject = () => {
             </Form.Item>
             
             <Form.Item label="Manager" name="managerId" rules={[{ required: true, message: "Please select a manager!" }]}   labelCol={{ span: 24 }}>
-              <Select placeholder="Select a manager" style={{ height: '8vh' }}>
+              <Select placeholder="Select a manager" style={{ height: 'o' }}>
                 {managers.map((manager) => (
                   <Option key={manager.id} value={manager.id}>
                     {manager.name}
@@ -90,13 +89,10 @@ const AddProject = () => {
                 </Select>
               </Form.Item>
             </Form>
-           
-
             <Form.Item label="Start Date" name="startDate"   labelCol={{ span: 24 }} rules={[{ required: true, message: "Please select start date" }]}>
               <DatePicker />
             </Form.Item>
           </Col>
-
           <Col xs={24} sm={24} md={12} lg={12} xl={12}>
             <Form.Item label="Frameworks" name="langFrame"   labelCol={{ span: 24 }}>
               <Select mode="multiple" placeholder="Select frameworks" optionLabelProp="label" options={frameOptions} style={{ height: '8vh' }}

@@ -131,11 +131,11 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
             <Col>
               <Select
                 defaultValue="English"
-                style={{ width: 140, marginRight: 16}}
+                style={{ width: 140,height:40, marginRight: 16}}
                 options={[
                   {
                     value: 'English', label: <Row onClick={() => handleClick('en')} >
-                      <Col span={6}>
+                      <Col span={6} >
                         <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" alt="" style={{ width: 25, textAlign: 'center' }} />
                       </Col>
                       <Col span={18}>
@@ -162,7 +162,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
           </Row>
         </Header>
         <BreadcrumbCom />
-        <Content style={{ margin: '24px 16px', padding: 24, minHeight: '100vh', background: '#ecf0f4' }}>
+        <Content style={{ margin: '24px 16px', background: '#ecf0f4' }}>
           <AppRoutes />
         </Content>
       </Layout>
