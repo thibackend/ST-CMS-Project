@@ -168,35 +168,38 @@ const EditEmployee = () => {
               value={newAvatar}
               onChange={(e) => setNewAvatar(e.target.value)}></Form.Item>
           </Form.Item>
-          {form.getFieldValue('name') && (
-            <Row>
-              <Col span={24}>
-              {employeeData.name}
-              </Col>
-            </Row>
-          )}
-          {form.getFieldValue('isManager') ? (
-            <Row>
-             <Col span={24}>
-              Role: manager
-             </Col>
-           </Row>
-          ) : (
-            <Row>
-              <Col span={24}>
-                Role: employee
-              </Col>
-            </Row>
-          )}
-          {form.getFieldValue('description') && (
-             <Row>
-             <Col span={24}>
-             {employeeData.name}
-             </Col>
-           </Row>
-          )}
+          <div style={{ padding: 10, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            {form.getFieldValue('name') && (
+              <Row>
+                <Col span={24}>
+                  {employeeData.name}
+                </Col>
+              </Row>
+            )}
+            {form.getFieldValue('isManager') ? (
+              <Row>
+                <Col span={24}>
+                  <strong>Role: </strong> manager
+                </Col>
+              </Row>
+            ) : (
+              <Row>
+                <Col span={24}>
+                  <strong>Role: </strong> employee
+                </Col>
+              </Row>
+            )}
+            {form.getFieldValue('description') && (
+              <Row>
+                <Col span={24}>
+                  {employeeData.name}
+                </Col>
+              </Row>
+            )}
 
-          <Col span={12}>
+          </div>
+
+          <Col span={24}>
             <Form.Item label="Projects" name="employee_project" labelCol={{ span: 24 }}>
               {Object.entries(
                 form.getFieldValue('employee_project')?.reduce((groupedProjects, project) => {
@@ -233,8 +236,6 @@ const EditEmployee = () => {
                 )) || <p>No project assigned</p>}
             </Form.Item>
           </Col>
-
-
 
 
         </Col>

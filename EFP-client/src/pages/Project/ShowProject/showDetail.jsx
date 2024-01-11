@@ -20,7 +20,7 @@ const ShowDetailProject = () => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
     const [complete, setComplete] = useState(0)
-  
+
     useEffect(() => {
         const fetchDataProject = async () => {
             try {
@@ -36,7 +36,7 @@ const ShowDetailProject = () => {
             const currentDate = new Date();
             const totalMilliseconds = project.endDate - project.startDate;
             const elapsedMilliseconds = currentDate - project.startDate;
-            setComplete( (elapsedMilliseconds / totalMilliseconds) * 100);
+            setComplete((elapsedMilliseconds / totalMilliseconds) * 100);
             console.log(complete);
         }
         fetchDataProject();
