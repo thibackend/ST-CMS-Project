@@ -9,10 +9,10 @@ const AuthRoute = ({ handleCookieDataAdmin }) => {
                 element={<Login handleCookieDataAdmin={handleCookieDataAdmin} />}
             />
            
-            <Route
+            {/* <Route
                 path={'*'}
                 element={<NotFound />}
-            />
+            /> */}
         </Routes>
     )
 }

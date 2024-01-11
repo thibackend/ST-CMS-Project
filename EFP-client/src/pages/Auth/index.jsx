@@ -5,6 +5,7 @@ import { inputPasswordRules, inputEmailRules, styles } from './login-utils';
 import API from "../../services/API_REQ";
 import CookieService from '../../services/cookieStore';
 import { useNavigate } from "react-router-dom";
+import api from '../../services/API_REQ';
 
 function Login({ handleCookieDataAdmin }) {
     const [open, setOpen] = useState(false);
@@ -39,12 +40,14 @@ function Login({ handleCookieDataAdmin }) {
 
     const handleOk = async () => {
         try {
+            await api.get('forgot-password')
+                .then(res => console.log(res));
             notification.open({
                 message: 'Thông báo',
                 description: 'Password của bạn đã gửi qua email thành công.',
                 duration: 0,
-              });        
-              setOpen(false);
+            });
+            setOpen(false);
         } catch (error) {
             console.error('Error handling OK:', error);
         }
@@ -94,7 +97,6 @@ function Login({ handleCookieDataAdmin }) {
                         placeholder="Enter user your email!"
                     />
                 </Form.Item>
-
                 <Form.Item
                     hasFeedback
                     name="password"

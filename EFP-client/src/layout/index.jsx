@@ -131,7 +131,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
             <Col>
               <Select
                 defaultValue="English"
-                style={{ width: 140,height:40, marginRight: 16}}
+                style={{ width: 140, marginRight: 16 }}
                 options={[
                   {
                     value: 'English', label: <Row onClick={() => handleClick('en')} >
@@ -155,7 +155,12 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
                   },
                 ]}
               />
-              <Button >
+              <Button onClick={() => {
+                console.log("Logout")
+                handleCookieDataAdmin('', 'remove');
+                navigate('/');
+              }}
+              >
                 <LogoutOutlined />
               </Button>
             </Col>

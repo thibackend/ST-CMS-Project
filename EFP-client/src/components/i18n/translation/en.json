@@ -24,7 +24,6 @@
     "unit": "Unit: %",
     "active": "Active",
     "inactive": "Inactive"
-
   },
   "employees": {
     "employees": "Employees",
@@ -34,6 +33,7 @@
     "gender": "Gender",
     "position": "Positon",
     "action": "Action",
+    "skill": "Skill",
     "avatar": "Avatar",
     "skills": "Technology"
   },
@@ -48,6 +48,7 @@
     "start_date": "Status Date",
     "end_date": "End Date",
     "action": "Action",
-    "project": "Projects"
+    "project": "Projects",
+    "members": "Members"
   }
 }
