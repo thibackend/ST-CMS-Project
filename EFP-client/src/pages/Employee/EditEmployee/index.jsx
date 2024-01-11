@@ -169,23 +169,31 @@ const EditEmployee = () => {
               onChange={(e) => setNewAvatar(e.target.value)}></Form.Item>
           </Form.Item>
           {form.getFieldValue('name') && (
-            <div style={{ marginBottom: "0.5rem", marginLeft: '2.5rem', fontWeight: 'bold' }}>
+            <Row>
+              <Col span={24}>
               {employeeData.name}
-            </div>
+              </Col>
+            </Row>
           )}
           {form.getFieldValue('isManager') ? (
-            <div style={{ marginBottom: "1rem", marginLeft: '3.5rem', fontWeight: 'bold' }}>
-              Role: Manager
-            </div>
+            <Row>
+             <Col span={24}>
+              Role: manager
+             </Col>
+           </Row>
           ) : (
-            <div style={{ marginBottom: "1rem", marginLeft: '3.5rem', fontWeight: 'bold' }}>
-              Role: Employee
-            </div>
+            <Row>
+              <Col span={24}>
+                Role: employee
+              </Col>
+            </Row>
           )}
           {form.getFieldValue('description') && (
-            <div style={{ marginBottom: "0.5rem", fontWeight: 'bold',width:'90%' }}>
-              {employeeData.description}
-            </div>
+             <Row>
+             <Col span={24}>
+             {employeeData.name}
+             </Col>
+           </Row>
           )}
 
           <Col span={12}>
