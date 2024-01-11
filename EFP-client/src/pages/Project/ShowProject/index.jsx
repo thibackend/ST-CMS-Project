@@ -43,7 +43,7 @@ const ShowProject = () => {
   const TechnologyColumns =
   {
     title: t('projects.technology'),
-    dataIndex: 'skills',
+    dataIndex: 'langFrame',
     key: 'id',
     ellipsis: true,
     width: 200,
