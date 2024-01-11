@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import CardComponent from './Cards';
-import { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
-import { TeamOutlined, ProjectOutlined, UserOutlined, FileDoneOutlined  } from '@ant-design/icons';
-import {  EmChartComponent, ProChartComponent } from './Charts';
-import { useTranslation } from 'react-i18next';
+import { TeamOutlined, ProjectOutlined, UserOutlined, FileDoneOutlined } from '@ant-design/icons';
+import { EmChartComponent, ProChartComponent } from './Charts';
 import api from '../../services/API_REQ';
 
 const Dashboard = () => {
-    const {t} = useTranslation();
     const [employee, setEmployee] = useState(null);
     const [activeEmployees, setActiveEmployees] = useState(null);
     const [inActiveEmployees, setInActiveEmployees] = useState(null);
@@ -48,10 +45,12 @@ const Dashboard = () => {
             const activeEmployeesData = employee.filter(employee => employee.status === 'active');
             const inActiveEmployeesData = employee.filter(employee => employee.status === 'inactive');
             if (activeEmployeesData) {
+                console.log("ActiveEmployeesData: ", activeEmployeesData);
                 setActiveEmployees(activeEmployeesData);
             }
 
             if (inActiveEmployeesData) {
+                console.log("inActiveEmployeesData: ", inActiveEmployeesData);
                 setInActiveEmployees(inActiveEmployeesData);
             }
         }
@@ -67,18 +66,19 @@ const Dashboard = () => {
         <>
             <Row gutter={[10, 10]} style={{ minHeight: '35vh' }}>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title={t('dashboard.all_employees')} count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
+                    <CardComponent title="All employees" count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title={t('dashboard.all_managers')} count={managers ? managers.length : 0} icon={<UserOutlined />} className="manager-card" />
+                    <CardComponent title="All managers" count={managers ? managers.length : 0} icon={<UserOutlined />} className="manager-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title={t('dashboard.all_running_projects')} count={projectRuning ? projectRuning : 0} icon={<ProjectOutlined />} className="running-project-card" />
+                    <CardComponent title="All running projects" count={projectRuning ? projectRuning : 0} icon={<ProjectOutlined />} className="running-project-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title={t('dashboard.all_done_projects')} count={projectDone ? projectDone : 0} icon={<FileDoneOutlined />} className="done-project-card" />
+                    <CardComponent title="All done projects" count={projectDone ? projectDone : 0} icon={<FileDoneOutlined />} className="done-project-card" />
                 </Col>
             </Row>
+            {console.log("render: ", activeEmployees && activeEmployees.length)}
             <Row gutter={[10, 10]}>
                 <Col xs={24} sm={24} md={13} style={{ background: '#ecf0f4', padding: '10px' }}>
                     <EmChartComponent activeEmployees={activeEmployees && activeEmployees.length} inActiveEmployees={inActiveEmployees && inActiveEmployees.length} />

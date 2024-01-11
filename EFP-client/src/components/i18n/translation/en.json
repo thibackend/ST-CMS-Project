@@ -4,9 +4,9 @@
     "user_name": "Username",
     "password": "Password"
   },
-  "titel": {
+  "title": {
     "all_employees": "All Employees",
-    "all_project": "All Project"
+    "all_project": "All Project "
   },
   "dashboard": {
     "dashboard": "Dashboard",
@@ -15,7 +15,7 @@
     "all_running_projects": "All Running Projects",
     "all_done_projects": "All Done Project",
     "employees_chart": "Employees Chart",
-    "project": "Project",
+    "project": "Projects",
     "running": "Running",
     "pending": "Pending",
     "done": "Done",
@@ -24,7 +24,6 @@
     "unit": "Unit: %",
     "active": "Active",
     "inactive": "Inactive"
-
   },
   "employees": {
     "employees": "Employees",
@@ -36,19 +35,48 @@
     "action": "Action",
     "skill": "Skill",
     "avatar": "Avatar",
-    "skills": "Technology"
+    "skills": "Technology",
+    "confirm": "Are you sure delete this project?",
+    "title": "EMPLOYEES",
+    "delete": "Delete successfully!",
+    "search-by-name": "Search employee's name ...",
+    "search-by-mail": "Search employee's mail ...",
+    "plus-employee": "Employee"
   },
   "projects": {
+    "search-by-name": "Search by name...",
     "name": "Project name",
+    "create-project": "Project",
     "manager_project": "Manager",
     "description": "Description",
     "specification": "Specification",
     "lang_frame": "Language",
     "technology": "Technology",
     "status": "Status",
-    "start_date": "Status Date",
+    "start_date": "Start Date",
     "end_date": "End Date",
     "action": "Action",
-    "project": "Projects"
+    "project": "Projects",
+    "members": "Members",
+    "edit_project": "Edit",
+    " manager_project": "Manager",
+    "tools": "Technology Tools",
+    "project_team": "Member team",
+    "no": "No",
+    "avatar": "Avatar",
+    "employee_name": "Name",
+    "employee_email": "Email",
+    "employee_position": "Position",
+    "employee_code": "Code",
+    "roles": "Roles",
+    "status_on_progress": "On Progress",
+    "status_pendding": "pendding",
+    "status_done": "Done",
+    "status_new": "New",
+    "assign_member": "Assigned",
+    "delete_success": "Delete successfully!",
+    "cancel_add_project": "Cancel",
+    "add_project": "Save",
+    "add_project_title": "ADD PROJECT"
   }
 }

@@ -43,6 +43,7 @@ export class AssignController {
 
   @Delete()
   remove(@Body() data: any) {
+    // console.log(data)
     return this.assignService.remove(data);
   }
 }

@@ -11,16 +11,18 @@ import CMSLogo from '../assets/images/CMSLogo.png';
 import CMSLogoSmall from '../assets/images/CMSLogoSmall.png';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Button, theme, Col, Row, Select, Drawer } from 'antd';
-import BreadcrumbCom from './Breadcrumb';
 import AppRoutes from '../Routers/Routers';
 import AvatarComponent from '../components/Avatar';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../components/i18n';
 import i18next from 'i18next';
 import { useTranslation, withTranslation } from 'react-i18next';
+import "./Breadcrumb/style.css"
 
 
 const { Header, Sider, Content } = Layout;
+
+
 
 const MainLayout = ({ handleCookieDataAdmin }) => {
   const { t } = useTranslation();
@@ -75,10 +77,11 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
               <Link to="/employees">{t('employees.employees')}</Link>
             </Menu.Item>
             <Menu.Item key="/projects" icon={<ProjectOutlined />}>
-              <Link to="projects">{t('projects.manager_project')}</Link>
+              <Link to="projects">{t('projects.project')}</Link>
             </Menu.Item>
           </Menu>
-        </Drawer>)}
+        </Drawer>
+      )}
 
       {isLaptopScreen && (
         <Sider trigger={null} collapsible collapsed={collapsed} theme="light" width={'18%'}>
@@ -98,7 +101,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
               <Link to="/employees">{t('employees.employees')}</Link>
             </Menu.Item>
             <Menu.Item key="/projects" icon={<ProjectOutlined />}>
-              <Link to="projects">{t('projects.manager_project')}</Link>
+              <Link to="projects">{t('projects.project')}</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -125,15 +128,19 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
                 />
               )}
             </Col>
+
             <Col>
-              <Select
+            <div className='translate'>
+
+            <div className='select'>
+            <Select
                 defaultValue="English"
-                style={{ width: 140, marginRight: 16 }}
+                style={{ width: 140, marginRight: 16, height:40}}
                 options={[
                   {
                     value: 'English', label: <Row onClick={() => handleClick('en')} >
-                      <Col span={6}>
-                        <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" alt="" style={{ width: 25, textAlign: 'center' }} />
+                      <Col span={6} >
+                        <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" alt="" style={{ width: 25, textAlign: 'center',marginTop:"4" }} />
                       </Col>
                       <Col span={18}>
                         English
@@ -152,19 +159,28 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
                   },
                 ]}
               />
-              <Button onClick={() => {
+            </div>
+
+
+              <div>
+              <Button   style={{paddingTop:5, height:40}}
+              onClick={() => {
                 console.log("Logout")
                 handleCookieDataAdmin('', 'remove');
-
+                navigate('/');
               }}
               >
                 <LogoutOutlined />
               </Button>
+              </div>
+
+
+            </div>
             </Col>
+
           </Row>
         </Header>
-        <BreadcrumbCom />
-        <Content style={{ margin: '24px 16px', padding: 24, minHeight: '100vh', background: '#ecf0f4' }}>
+        <Content style={{ margin: '24px 16px', background: '#ecf0f4' }}>
           <AppRoutes />
         </Content>
       </Layout>

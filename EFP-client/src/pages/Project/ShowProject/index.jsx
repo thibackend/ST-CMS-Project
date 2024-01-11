@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Button, Popconfirm, message } from 'antd';
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useTranslation } from 'react-i18next';
 import './ShowProject.css';
-import { Table } from 'antd';
+import { Avatar, Button, Dropdown, Popconfirm, Space, Table, Tooltip, message } from 'antd';
 import { Tag } from "antd";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import debounce from 'lodash/debounce';
 import api from '../../../services/API_REQ';
 import ShowProjectHeader from "./ShowProjectHeader";
 
+import { AntDesignOutlined, DeleteOutlined, DownOutlined, EditOutlined, EyeOutlined, UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+
 const ShowProject = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -26,62 +26,43 @@ const ShowProject = () => {
   const [showAllTech, setShowAllTech] = useState(false);
   const [search, setSearch] = useState('');
   const [searchManager, setSearchManager] = useState('');
+  const [hoverRowId, setHoverRowId] = useState('');
 
   const handleSearch = debounce((text) => setSearch(text), 500);
   const handleSearchManager = (text) => setSearchManager(text);
-
+  const handleDelete = async (id) => {
+    setLoading(true);
+    await api.delete(`project/${id}`)
+      .then(() => {
+        setLoading(false),
+          message.success(t('projects.delete_success'))
+      });
+    fetchDataProject();
+  }
+  const handlesetShowAllTech = debounce((value) => setShowAllTech(value), 500);
   const TechnologyColumns =
   {
-    title: 'Technologies',
+    title: t('projects.technology'),
     dataIndex: 'technology',
     key: 'id',
     ellipsis: true,
-    width: showAllTech ? 400 : 300,
-    render: (technology) => {
-      return <Link>
+    width: 200,
+    render: (technology, record) => {
+      console.log("technology", technology);
+      return <Avatar.Group
+        maxCount={2}
+        style={{ padding: 5, gap: 10 }}
+      >
         {
-          showAllTech ?
-            <>
-              {
-                technology?.map((tech, index) => {
-                  return (<Tag
-                    style={{ borderRadius: 50, transform: 'scale(1.06)', backgroundColor: 'green', color: 'white' }}
-                    key={`index_${index}`}>{tech}</Tag>)
-                })
-              }
-              <Tag onClick={() => setShowAllTech(showAllTech ? false : true)} style={{ borderRadius: 50 }}>-</Tag>
-            </> :
-            technology.length > 2 ?
-              technology?.map((tech, index, array) => {
-                var sodu = 0;
-                if (index <= 1) {
-                  return <Tag
-                    style={{ borderRadius: 50, transform: 'scale(1.06)', backgroundColor: 'green', color: 'white' }}
-                    key={`index_${index}`}
-                  >{tech}</Tag>
-                } else if (index > 1) {
-                  sodu += 1;
-                }
-                if (index == array.length - 1) {
-                  return <a
-                    onClick={() => {
-                      setShowAllTech(showAllTech ? false : true)
-                    }}
-                    key={`index_${index}`}
-                    style={
-                      { borderRadius: 50, textAlign: 'center', fontWeight: 'bold' }
-                    }
-                  >...</a>
-                }
-              })
-              :
-              technology.length <= 2 ?
-                technology?.map((tech, index) => {
-                  return (<Tag key={`index_${index}`} style={{ color: 'white', borderRadius: 50 }}>{tech}</Tag>)
-                })
-                : null
+          technology?.map((tech, index, array) => {
+            return (
+              <Tooltip key={`id_${index}`} title={tech} placement="top">
+                <Avatar size="large" style={{ backgroundColor: '#1677ff', fontSize: "0.5em", width: 60, borderRadius: 10 }} key={`index_${index}`}>{tech}</Avatar>
+              </Tooltip>
+            )
+          })
         }
-      </Link >
+      </Avatar.Group>
     }
   };
   const columns =
@@ -97,8 +78,8 @@ const ShowProject = () => {
         dataIndex: 'managerProject',
         key: 'manager',
         ellipsis: true,
-        render: (manager) => (
-          <Link to={'/employee/'}>{manager?.name}</Link>
+        render: (manager, record) => (
+          <Link>{manager?.name}</Link>
         )
       },
       TechnologyColumns,
@@ -106,39 +87,42 @@ const ShowProject = () => {
         title: t('projects.members'),
         dataIndex: 'employee_project',
         key: 'description',
-        render: (employee_project) => {
+        render: (employee_project, record) => {
           return (
-            <Link>
+            <Avatar.Group
+              maxCount={3}
+              maxStyle={{
+                color: 'black',
+                backgroundColor: '#fde3cf',
+              }}
+            >
               {
-                employee_project?.map((em, index) => <img
-                  key={`id_${index}`}
-                  style={{
-                    width: 30,
-                    height: 30,
-                    borderRadius: 50,
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                    marginRight: 10
-                  }}
-                  // src={em.employee.avatar}
-                  alt="user Avatar"
-                />)
+                employee_project?.map((em, index) =>
+                  <Link to={`/employees/edit/${em.employeeId}`}>
+                    <Tooltip key={`id_${index}`} title={em.employee.name} placement="top">
+                      <Avatar
+                        src={em.employee.avatar}
+                        alt="User avatar"
+                      />
+                    </Tooltip>
+                  </Link>
+                )
               }
-            </Link>
+            </Avatar.Group>
           )
         }
       },
       {
-        title:t('projects.status'),
+        title: t('projects.status'),
         dataIndex: 'status',
         key: 'status',
         ellipsis: true,
         width: 100,
         render: (text, status) => {
           return (
-            <Tag color={status.status === 'on_progress' ? 'green' : 'red'}>
-              {status.status}
-            </Tag>
+            <Tag color={status.status === 'closed' ? 'green' : 'yellow'}>
+            {status.status === 'closed' ? 'done' : status.status}
+          </Tag>
           );
         }
       },
@@ -151,12 +135,41 @@ const ShowProject = () => {
         render: startDate => <p>{moment(startDate).format('DD-MM-YYYY')}</p>
       },
       {
-        title:t('projects.end_date'),
+        title: t('projects.end_date'),
         dataIndex: 'endDate',
         key: 'endDate',
         ellipsis: true,
         width: 100,
         render: endDate => <p>{moment(endDate).format('DD-MM-YYYY')}</p>
+      }
+      , {
+        title: t('projects.action'),
+        dataIndex: 'action',
+        key: 'action',
+        ellipsis: true,
+        width: 130,
+        render: (text, record) => {
+          return (
+            <div style={{ display: 'flex', flexDirection: 'row', rowGap: 10 }}>
+              <Link to={`/projects/${record.id}`}>
+                <Button type="primary" shape="round" icon={<EyeOutlined />} size={'small'}>
+                </Button>
+              </Link>
+
+              <Popconfirm
+                title={t('employees.confirm')}
+                onConfirm={() => handleDelete(record.id)}
+                okText="Yes"
+                cancelText="No"
+              >
+
+
+                <Button type="danger" shape="round" icon={<DeleteOutlined />} size={'small'}>
+                </Button>
+              </Popconfirm>
+            </div>
+          )
+        }
       }
     ];
 
@@ -180,7 +193,7 @@ const ShowProject = () => {
   }
   const handleSearchData = async (textSearch) => {
     setLoading(true);
-    await api.get('project', { search: textSearch})
+    await api.get('project', { search: textSearch })
       .then(res => {
         setDataSource(res?.data);
         setLoading(false);
@@ -234,7 +247,7 @@ const ShowProject = () => {
   }, [])
   return (
     <>
-      <ShowProjectHeader handleSearchManager={handleSearchManager} handleSearch={handleSearch} toAddLink={'/projects/add'} />
+      <ShowProjectHeader handleSearch={handleSearch} toAddLink={'/projects/add'} />
       <Table loading={loading} onChange={handleTableChange} size="small" columns={columns} dataSource={dataSource} pagination={tableParams.pagination} />
     </>
   );

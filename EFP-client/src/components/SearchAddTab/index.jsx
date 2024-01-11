@@ -6,6 +6,8 @@ import {
   PlusCircleFilled,
   PlusOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from 'react-i18next';
+
 import "./style.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -14,6 +16,7 @@ export default function Search({
   handleSearchEmail,
   handleSearchName,
 }) {
+  const { t } = useTranslation();
   return (
     <>
       <Row style={{ minHeight: 40 }}>
@@ -34,7 +37,7 @@ export default function Search({
           </div>
           <div>
             <p style={{ flex: "0 0 70%", color: "black", fontSize: 18 }}>
-              All Projects
+              {t('employees.title')}
             </p>
           </div>
         </div>
@@ -74,7 +77,7 @@ export default function Search({
                   color: "black",
                 }}
                 size="large"
-                placeholder="Search name..."
+                placeholder={t("employees.search-by-name")}
                 onChange={(e) => handleSearchName(e.target.value)}
               />
               <div
@@ -114,7 +117,7 @@ export default function Search({
                   color: "black",
                 }}
                 size="large"
-                placeholder="Search email..."
+                placeholder={t('employees.search-by-mail')}
                 onChange={(e) => handleSearchEmail(e.target.value)}
               />
               <div
@@ -150,7 +153,7 @@ export default function Search({
                   icon={<PlusOutlined />}
                   size={"large"}
                 >
-                  New project
+                {t('employees.plus-employee')}
                 </Button>
               </Link>
             </div>

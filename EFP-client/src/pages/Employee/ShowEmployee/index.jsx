@@ -1,15 +1,17 @@
 import React from "react";
 import SearchAddTab from "../../../components/SearchAddTab";
-import { Button, Table, Popconfirm, message, Dropdown, Tag } from "antd";
+import { Button, Table, Popconfirm, Tooltip, message, Avatar } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "./ShowEmployee.css";
+import { useTranslation } from 'react-i18next';
 import { Translation } from "react-i18next";
 import debounce from "lodash/debounce";
 import { useState, useEffect } from "react";
 import api from "../../../services/API_REQ";
 
 const ShowTable = () => {
+  const { t } = useTranslation();
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -25,10 +27,6 @@ const ShowTable = () => {
   const handleSearchEmail = debounce((text) => setSearchEmail(text), 500);
 
   const [employee, setEmployee] = useState([]);
-
-  useEffect(() => {
-    fetchDataEmployee();
-  }, []);
 
   const fetchDataEmployee = async () => {
     setLoading(true);
@@ -98,46 +96,24 @@ const ShowTable = () => {
   }, [searchName, searchEmail]);
 
   useEffect(() => {
+    fetchDataEmployee();
+  }, []);
+
+  useEffect(() => {
     api.get("/employee").then((res) => setEmployee(res.data));
   }, []);
 
   const handleDelete = async (employeeId) => {
+    setLoading(true);
     try {
       await api.delete(`/employee/${employeeId}`);
-      message.success("Deleted successfully");
+      message.success(t("employees.delete"));
+      setLoading(false);
+      fetchDataEmployee();
     } catch (error) {
       console.error("Error deleting project:", error);
     }
   };
-
-  const items = employee.map((record) => {
-    return {
-      key: record.id,
-      label: (
-        <>
-          {record.tech &&
-            Object.values(record.tech)
-              .slice(1)
-              .map((tech, index) => (
-                <Tag
-                  key={`${record.id}_${index}`}
-                  color={tech.length > 5 ? "#1677ff" : "#1677ff"}
-                  style={{
-                    cursor: "auto",
-                    backgroundColor: "#1677ff",
-                    color: "white",
-                    marginRight: "5px",
-                    fontSize: "16px",
-                    padding: "8px",
-                  }}
-                >
-                  {tech}
-                </Tag>
-              ))}
-        </>
-      ),
-    };
-  });
 
   //Position
   const getPositionLabel = (postsion) => {
@@ -184,53 +160,35 @@ const ShowTable = () => {
 
     {
       title: <Translation>{(t) => t("employees.skill")}</Translation>,
+      dataIndex: "tech",
+      key: "id",
       ellipsis: true,
-      render: (text, record) => (
-        <div
-          className="skill"
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: "#1677ff",
-              borderRadius: "10px",
-              cursor: "auto",
-              color: "white",
-              fontSize: "16px",
-              padding: "8px",
-            }}
-          >
-            {record.tech && record.tech[Object.keys(record.tech)[0]]}
-          </div>
-
-          <Tag>
-            <Dropdown
-              menu={{
-                items: items.filter((item) => item.key === record.id),
-              }}
-              placement="topLeft"
-              arrow
-            >
-              <div
-                style={{
-                  padding: "8px 9px",
-                  backgroundColor: "aliceblue",
-                  borderRadius: "50%",
-                  border: "1px solid #1677ff",
-                }}
-              >
-                +
-                {record.tech && Object.keys(record.tech).length - 1 > 0
-                  ? Object.keys(record.tech).length - 1
-                  : ""}
-              </div>
-            </Dropdown>
-          </Tag>
-        </div>
-      ),
+      width: 200,
+      render: (technology, record) => {
+        console.log("technology", technology);
+        return (
+          <Avatar.Group maxCount={2} style={{ padding: 5, gap: 10 }}>
+            {technology?.map((tech, index, array) => {
+              return (
+                <Tooltip key={`id_${index}`} title={tech} placement="top">
+                  <Avatar
+                    size="large"
+                    style={{
+                      backgroundColor: "#1677ff",
+                      fontSize: "0.5em",
+                      width: 60,
+                      borderRadius: 10,
+                    }}
+                    key={`index_${index}`}
+                  >
+                    {tech}
+                  </Avatar>
+                </Tooltip>
+              );
+            })}
+          </Avatar.Group>
+        );
+      },
     },
 
     {
@@ -238,6 +196,7 @@ const ShowTable = () => {
       dataIndex: "email",
       key: "email",
       ellipsis: true,
+      width: 280,
     },
 
     {
@@ -260,17 +219,18 @@ const ShowTable = () => {
           </Link>
 
           <Popconfirm
-            title="Are you sure delete this project?"
+            title={t('employees.confirm')}
             onConfirm={() => handleDelete(record.id)}
             okText="Yes"
             cancelText="No"
           >
-            <Button type="danger">
+            <Button type="danger" className="danger">
               <DeleteOutlined />
             </Button>
           </Popconfirm>
         </span>
       ),
+      width: 150,
     },
   ];
 

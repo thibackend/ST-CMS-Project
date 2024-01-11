@@ -79,7 +79,6 @@ export class AssignService {
     project.joinDate = updateProjectDto.joinDate;
     await this.entityManager.save(project);
   }
-
   async remove(data: any) {
     const { employeeIds, projectId } = data;
     const deleteResult = await this.assignRespository
