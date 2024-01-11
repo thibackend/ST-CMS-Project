@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Playfair+Display:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Playfair+Display&display=swap');
 
+  
+  /* Adjust the gap between form items */
+
+/* 
+  .form{
+    box-shadow:0px 5px 7px rgb(27,27,27);
+  }
+   */
+.form{
+  font-weight: bold;;
+}
+
 .form-add-employee .ant-input {
   height: 3rem;
 }

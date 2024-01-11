@@ -4,9 +4,9 @@
     "user_name": "Username",
     "password": "Password"
   },
-  "titel": {
+  "title": {
     "all_employees": "All Employees",
-    "all_project": "All Project"
+    "all_project": "All Project "
   },
   "dashboard": {
     "dashboard": "Dashboard",
