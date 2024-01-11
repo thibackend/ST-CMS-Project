@@ -175,15 +175,15 @@ const EditEmployee = () => {
           )}
           {form.getFieldValue('isManager') ? (
             <div style={{ marginBottom: "1rem", marginLeft: '3.5rem', fontWeight: 'bold' }}>
-              Role: Managers
+              Role: Manager
             </div>
           ) : (
             <div style={{ marginBottom: "1rem", marginLeft: '3.5rem', fontWeight: 'bold' }}>
-              Role: Managers
+              Role: Employee
             </div>
           )}
           {form.getFieldValue('description') && (
-            <div style={{ marginBottom: "0.5rem", marginLeft: '1.5rem', marginRight: '1.5rem', fontWeight: 'bold' }}>
+            <div style={{ marginBottom: "0.5rem", fontWeight: 'bold',width:'90%' }}>
               {employeeData.description}
             </div>
           )}
