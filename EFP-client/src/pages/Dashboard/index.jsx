@@ -62,7 +62,7 @@ const Dashboard = () => {
         <>
             <Row gutter={[10, 10]} style={{ marginBottom:40 }}>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title={t('dashboard.all_employees')} count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
+                    <CardComponent title="All employees" count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
                     <CardComponent title={t('dashboard.all_managers')} count={managers ? managers.length : 0} icon={<UserOutlined />} className="manager-card" />
@@ -74,6 +74,7 @@ const Dashboard = () => {
                     <CardComponent  nent title={t('dashboard.all_done_projects')} count={projectDone ? projectDone : 0} icon={<FileDoneOutlined />} className="done-project-card" />
                 </Col>
             </Row>
+            {console.log("render: ", activeEmployees && activeEmployees.length)}
             <Row gutter={[10, 10]}>
                 <Col span={13} style={{ background: '#ecf0f4', padding: '10px' }}>
                     <EmChartComponent />
