@@ -11,10 +11,10 @@ export const inputPasswordRules = [
         max: 20,
         message: 'Password cannot exceed 20 characters!',
     },
-    {
-        pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]*$/,
-        message: 'Include letter, number, and optional specials',
-    },
+    // {
+    //     pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]*$/,
+    //     message: 'Include letter, number, and optional specials',
+    // },
 ]
 
 export const inputEmailRules = [

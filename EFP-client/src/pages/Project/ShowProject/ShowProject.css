@@ -25,3 +25,11 @@
     transform: scale(0.95);
     /* Thu nhỏ lại một chút khi click */
 }
+
+.ant-btn-round.ant-btn-danger.ant-btn-lg:hover {
+    background-color: red;
+}
+
+.ant-btn-round.ant-btn-danger.ant-btn-lg {
+    border-bottom: red solid 1px;
+}
