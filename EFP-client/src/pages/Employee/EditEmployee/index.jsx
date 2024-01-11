@@ -168,12 +168,13 @@ const EditEmployee = () => {
               value={newAvatar}
               onChange={(e) => setNewAvatar(e.target.value)}></Form.Item>
           </Form.Item>
-          <div style={{ padding: 10, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             {form.getFieldValue('name') && (
               <Row>
-                <Col span={24}>
+                <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 16 }}>
                   {employeeData.name}
-                </Col>
+                </div>
+
               </Row>
             )}
             {form.getFieldValue('isManager') ? (
@@ -189,18 +190,19 @@ const EditEmployee = () => {
                 </Col>
               </Row>
             )}
-            {form.getFieldValue('description') && (
+            {/* {form.getFieldValue('description') && (
               <Row>
                 <Col span={24}>
                   {employeeData.name}
                 </Col>
               </Row>
-            )}
+            )} */}
 
           </div>
 
           <Col span={24}>
             <Form.Item label="Projects" name="employee_project" labelCol={{ span: 24 }}>
+
               {Object.entries(
                 form.getFieldValue('employee_project')?.reduce((groupedProjects, project) => {
                   const year = moment(project.createdAt).format('YYYY');
