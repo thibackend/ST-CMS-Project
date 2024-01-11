@@ -43,7 +43,7 @@ function Login({ handleCookieDataAdmin }) {
 
     const handleOk = async () => {
         try {
-            await api.get('forgot-password')
+            await api.patch('forgot-password')
                 .then(res => console.log(res));
             notification.open({
                 message: 'Notice',
