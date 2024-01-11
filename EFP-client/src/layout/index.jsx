@@ -22,6 +22,8 @@ import { useTranslation, withTranslation } from 'react-i18next';
 
 const { Header, Sider, Content } = Layout;
 
+
+
 const MainLayout = ({ handleCookieDataAdmin }) => {
   const { t } = useTranslation();
   const location = useLocation();
@@ -78,7 +80,8 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
               <Link to="projects">{t('projects.manager_project')}</Link>
             </Menu.Item>
           </Menu>
-        </Drawer>)}
+        </Drawer>
+        )}
 
       {isLaptopScreen && (
         <Sider trigger={null} collapsible collapsed={collapsed} theme="light" width={'18%'}>
@@ -132,7 +135,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
                 options={[
                   {
                     value: 'English', label: <Row onClick={() => handleClick('en')} >
-                      <Col span={6}>
+                      <Col span={6} >
                         <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" alt="" style={{ width: 25, textAlign: 'center' }} />
                       </Col>
                       <Col span={18}>
@@ -164,7 +167,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
           </Row>
         </Header>
         <BreadcrumbCom />
-        <Content style={{ margin: '24px 16px', padding: 24, minHeight: '100vh', background: '#ecf0f4' }}>
+        <Content style={{ margin: '24px 16px', background: '#ecf0f4' }}>
           <AppRoutes />
         </Content>
       </Layout>

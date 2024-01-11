@@ -4,7 +4,7 @@
         "user_name": "Tên người dùng",
         "password": "Mật Khẩu"
     },
-    "titel":{
+    "title":{
         "all_employees":"Tất Cả Nhân Viên",
         "all_project": "Tất Cả Dự Án"
     },

@@ -16,10 +16,8 @@ const Dashboard = () => {
     const [projectRuning, setProjectRunning] = useState(null);
     const [projectDone, setProjectDone] = useState(null);
     const [managers, setManagers] = useState(0);
-
     const handleSetProjectRunning = (num) => setProjectRunning(num);
     const handleSetProjectDone = (num) => setProjectDone(num);
-
     const fetchEmployee = async () => {
         await api.get('employee').then(res => {
             if (res.data.length > 0) {
@@ -27,7 +25,6 @@ const Dashboard = () => {
             }
         })
     }
-
     const fetchProject = async () => {
         await api.get('project').then(res => {
             if (res.data.length) {
@@ -39,7 +36,6 @@ const Dashboard = () => {
         await api.get('employee/managers').then(res => {
             if (res) {
                 setManagers(res);
-
             }
         })
     }
@@ -65,7 +61,7 @@ const Dashboard = () => {
     }, []);
     return (
         <>
-            <Row gutter={[10, 10]} style={{ minHeight: '35vh' }}>
+            <Row gutter={[10, 10]} style={{ marginBottom:40 }}>
                 <Col xs={24} sm={12} md={6}>
                     <CardComponent title={t('dashboard.all_employees')} count={employee ? employee.length : 0} icon={<TeamOutlined />} className="employee-card" />
                 </Col>
@@ -76,12 +72,12 @@ const Dashboard = () => {
                     <CardComponent title={t('dashboard.all_running_projects')} count={projectRuning ? projectRuning : 0} icon={<ProjectOutlined />} className="running-project-card" />
                 </Col>
                 <Col xs={24} sm={12} md={6}>
-                    <CardComponent title={t('dashboard.all_done_projects')} count={projectDone ? projectDone : 0} icon={<FileDoneOutlined />} className="done-project-card" />
+                    <CardComponent  nent title={t('dashboard.all_done_projects')} count={projectDone ? projectDone : 0} icon={<FileDoneOutlined />} className="done-project-card" />
                 </Col>
             </Row>
             <Row gutter={[10, 10]}>
-                <Col xs={24} sm={24} md={13} style={{ background: '#ecf0f4', padding: '10px' }}>
-                    <EmChartComponent activeEmployees={activeEmployees && activeEmployees.length} inActiveEmployees={inActiveEmployees && inActiveEmployees.length} />
+                <Col span={13} style={{ background: '#ecf0f4', padding: '10px' }}>
+                    <EmChartComponent />
                 </Col>
                 <Col xs={0} sm={0} md={1}></Col>
                 <Col xs={24} sm={24} md={10} style={{ background: '#ecf0f4', padding: '10px' }}>
