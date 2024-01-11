@@ -45,7 +45,6 @@ export class EmployeeController {
     return { result, message: 'Successfully create new employee' };
   }
 
-
   @Post('cv')
   async generateCv(@Body('id') id: string, @Res() res: Response) {
     try {
@@ -100,6 +99,6 @@ export class EmployeeController {
       return { message: result.message };
     } else {
       return { data: result.data, message: 'Success' };
-    }9
+    }
   }
 }

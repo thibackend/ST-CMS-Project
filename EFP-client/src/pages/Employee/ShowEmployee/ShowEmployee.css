@@ -3,6 +3,9 @@
     border-radius: 7px;
 }
 
+.danger:hover {
+ background-color: red;
+}
 .td.ant-table-cell {
     font-size: 16px;
 }

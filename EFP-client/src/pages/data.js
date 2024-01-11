@@ -19,6 +19,13 @@ export const technologyOptions = [
     { label: "Spring Boot", value: "Spring Boot", desc: "Spring Boot" },
   ]; 
 
+export const softSkillOption = [
+  { label: "Planning", value: "Planning", desc: "Planning" },
+  { label: "Team Work", value: "Team Work", desc: "Team Work" },
+  { label: "Management", value: "Management", desc: "Management" },
+  { label: "Communicating", value: "Communicating", desc: "Communicating" },
+];
+
 export const frameOptions = [
     { label: "ReactJS", value: "ReactJS", desc: "ReactJS" },
     { label: "NextJS", value: "NextJS", desc: "NextJS" },

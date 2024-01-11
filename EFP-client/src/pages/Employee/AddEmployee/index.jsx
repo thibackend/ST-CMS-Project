@@ -16,12 +16,12 @@ import {
 import { useForm } from "antd/es/form/Form";
 import { PlusOutlined } from "@ant-design/icons";
 import api from "../../../services/API_REQ";
-// import moment from 'moment';
 import "./AddEmployee.css";
-import { technologyOptions } from "../../data";
+import { softSkillOption, technologyOptions } from "../../data";
 import { useNavigate } from "react-router-dom";
 import { Image as CloudImage, CloudinaryContext } from "cloudinary-react";
 import { Cloudinary } from "@cloudinary/url-gen";
+import moment from "moment";
 
 const { Option } = Select;
 
@@ -71,6 +71,7 @@ const AddEmployee = () => {
         ...formData,
       });
     } catch (error) {
+      // message.error("VALIDATE.ERROREMPLOYEE");
     }
   };
 
@@ -109,32 +110,65 @@ const AddEmployee = () => {
     },
   };
 
+  const disable = (current) => {
+    return current && current > moment().endOf("day");
+  };
+
+  const [isDateWarningVisible, setDateWarningVisible] = useState(false);
+
+  const handleDateChange = (value) => {
+    if (value && value > moment().endOf("day")) {
+      setDateWarningVisible(true);
+    } else {
+      setDateWarningVisible(false);
+    }
+  };
+
+  const validateEmail = (rule, value, callback) => {
+    // Sử dụng biểu thức chính quy để kiểm tra định dạng email
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (value && !emailRegex.test(value)) {
+      callback("Please enter valid email!");
+    } else {
+      callback();
+    }
+  };
+
+  const validatePhoneNumber = (rule, value, callback) => {
+    // Sử dụng biểu thức chính quy để kiểm tra xem có phải là số điện thoại không
+    const phoneRegex = /^[0-9]+$/;
+    if (value && !phoneRegex.test(value)) {
+      callback("Please enter valid phone number!");
+    } else {
+      callback();
+    }
+  };
+
   const defaultValue = {
     gender: "male",
     position: "be",
     isManager: false,
-    identityCard: 0,
-    status: 'active',
   };
 
   const onFinish = async (values) => {
-    try {
-      const updatedValues = { ...values, avatar: imageUrl };
-      await api.post("/employee", updatedValues);
-      message.success("Employee added successfully");
-      form.resetFields();
-      navigation("/employees");
-    } catch (error) {
-      message.error("An error occurred while adding the employee");
-    } finally {
-      // setIsUploading(false); // Reset uploading status to false regardless of success or failure
-    }
+    // try {
+    const updatedValues = { ...values, avatar: imageUrl };
+    await api
+      .post("/employee", updatedValues)
+      .then((res) => {
+        message.success("Employee added successfully");
+        form.resetFields();
+        navigation("/employees");
+      })
+      .catch((error) => {
+        message.error(error.response.data.message);
+      });
   };
 
   return (
     <>
       <h2 className="add-employee">ADD EMPLOYEE</h2>
-      <Row style={{marginLeft: '4rem'}}>
+      <Row style={{ marginLeft: "4rem" }}>
         <Col>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <CloudinaryContext cloudName="dvm8fnczy" cld={cld}>
@@ -150,11 +184,10 @@ const AddEmployee = () => {
                   <Spin spinning={loading} tip="Uploading...">
                     {imageUrl ? (
                       <div className="rounded-image-container">
-                        <CloudImage className="cloudary"
+                        <CloudImage
+                          className="cloudary"
                           publicId={imageUrl}
-                          style={{
-                            
-                          }}
+                          style={{}}
                         />
                       </div>
                     ) : (
@@ -167,13 +200,14 @@ const AddEmployee = () => {
               </div>
             </CloudinaryContext>
           </div>
-          <Form.Item
+          <h4 style={{ marginTop: "2rem" }}>EMPLOYEE AVATAR</h4>
+          {/* <Form.Item
             label="EMPLOYEE AVATAR"
             valuePropName="avatar"
             style={{marginTop: '18px'}}
             value={newAvatar}
             onChange={(e) => setNewAvatar(e.target.value)}
-          ></Form.Item>
+          ></Form.Item> */}
         </Col>
         <Col>
           <Form
@@ -190,20 +224,6 @@ const AddEmployee = () => {
                 }}
               >
                 <Col>
-                <Form.Item
-                name="identityCard"
-                label="Identity Card"
-                style={{ display: "none" }}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                name="status"
-                label="Status"
-                style={{ display: "none" }}
-              >
-                <Input />
-              </Form.Item>
                   <Form.Item
                     name="name"
                     label="Name"
@@ -223,6 +243,7 @@ const AddEmployee = () => {
                     style={{ marginLeft: "4rem", width: "20rem" }}
                     rules={[
                       { required: true, message: "Please enter your email!" },
+                      { validator: validateEmail },
                     ]}
                   >
                     <Input placeholder="Enter email" />
@@ -233,6 +254,10 @@ const AddEmployee = () => {
                     label="Phone number"
                     labelCol={{ span: 24 }}
                     style={{ marginLeft: "4rem", width: "20rem" }}
+                    rules={[
+                      { validator: validatePhoneNumber },
+                      { min: 10, message: "Phone number must be 10 digits!" },
+                    ]}
                   >
                     <Input placeholder="Enter phone number" />
                   </Form.Item>
@@ -252,11 +277,13 @@ const AddEmployee = () => {
                   <Form.Item
                     label="Is Manager?"
                     name="isManager"
-                    rules={[
-                      { required: true, message: "Please select a status" },
-                    ]}
-                    labelCol={{ span: 24 }}
-                    style={{ marginLeft: "4rem", width: "20rem" }}
+                    rules={
+                      [
+                        // { required: true, message: "Please select a status" },
+                      ]
+                    }
+                    labelCol={{ span: 12 }}
+                    style={{ width: "20rem" }}
                   >
                     <Radio.Group buttonStyle="solid">
                       {managerOptions.map((status) => (
@@ -278,8 +305,24 @@ const AddEmployee = () => {
                     ]}
                     style={{ width: "20rem", marginLeft: "3rem" }}
                   >
-                    <DatePicker />
+                    <DatePicker
+                      disabledDate={disable}
+                      onChange={handleDateChange}
+                    />
                   </Form.Item>
+
+                  <Form.Item
+                    name="code"
+                    label="Code"
+                    labelCol={{ span: 24 }}
+                    style={{ width: "20rem", marginLeft: "3rem" }}
+                    rules={[
+                      { required: true, message: "please enter your code!" },
+                    ]}
+                  >
+                    <Input placeholder="Enter code" />
+                  </Form.Item>
+
                   <Form.Item
                     name="position"
                     label="Position"
@@ -316,31 +359,9 @@ const AddEmployee = () => {
                       )}
                     />
                   </Form.Item>
-                  <Form.Item
-                label="Join Date"
-                name="joinDate"
-                labelCol={{ span: 24 }}
-                rules={[
-                  { required: true, message: "Please select join date" },
-                ]}
-                style={{ width: "20rem", marginLeft: "3rem" }}
-              >
-                <DatePicker />
-              </Form.Item>
-                  <Form.Item
-                    name="code"
-                    label="Code"
-                    labelCol={{ span: 24 }}
-                    style={{ width: "20rem", marginLeft: "3rem" }}
-                    rules={[
-                      { required: true, message: "please enter your code!" },
-                    ]}
-                  >
-                    <Input placeholder="Enter code" />
-                  </Form.Item>
 
                   <div style={{ display: "flex" }}>
-                    <Col style={{ margin: "20px 38px" }}>
+                    <Col style={{ margin: "5px 38px" }}>
                       <Form.Item>
                         <Button
                           type="primary"
@@ -354,7 +375,7 @@ const AddEmployee = () => {
                         </Button>
                       </Form.Item>
                     </Col>
-                    <Col style={{ margin: "20px 0px", padding: "0px" }}>
+                    <Col style={{ margin: "5px 0px", padding: "0px" }}>
                       <Form.Item>
                         <Button
                           block

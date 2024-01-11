@@ -238,6 +238,7 @@ const ShowTable = () => {
       dataIndex: "email",
       key: "email",
       ellipsis: true,
+      width: 280,
     },
 
     {
@@ -265,12 +266,13 @@ const ShowTable = () => {
             okText="Yes"
             cancelText="No"
           >
-            <Button type="danger">
+            <Button type="danger" className="danger">
               <DeleteOutlined />
             </Button>
           </Popconfirm>
         </span>
       ),
+      width: 150,
     },
   ];
 
