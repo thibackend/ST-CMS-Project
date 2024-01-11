@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState } from 'react';
 import './Login.css';
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Modal, notification } from "antd";
 import { inputPasswordRules, inputEmailRules, styles } from './login-utils';
-import api from "../../services/API_REQ";
+import API from "../../services/API_REQ";
 import CookieService from '../../services/cookieStore';
 import { useNavigate } from "react-router-dom";
+import api from '../../services/API_REQ';
+
 function Login({ handleCookieDataAdmin }) {
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+
+    //notification success
+
+
     const navigate = useNavigate();
     const onFinish = async (values) => {
-        await api.post('signin', values).then(
+        await API.post('signin', values).then(
             res => {
                 console.log(res);
                 if (res && res.data && res.isPass) {
@@ -20,9 +29,35 @@ function Login({ handleCookieDataAdmin }) {
                 }
             });
     };
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+
+    const showModal = () => {
+        setOpen(true);
+    };
+
+    const handleOk = async () => {
+        try {
+            await api.get('forgot-password')
+                .then(res => console.log(res));
+            notification.open({
+                message: 'Thông báo',
+                description: 'Password của bạn đã gửi qua email thành công.',
+                duration: 0,
+            });
+            setOpen(false);
+        } catch (error) {
+            console.error('Error handling OK:', error);
+        }
+    };
+
+    const handleCancel = () => {
+        console.log('Clicked cancel button');
+        setOpen(false);
+    };
+
     return (
         <div className="login-form-container flex jc-center">
             <Form
@@ -51,7 +86,7 @@ function Login({ handleCookieDataAdmin }) {
 
                 <Form.Item
                     hasFeedback
-                    label="USER NAME"
+                    label="EMAIL"
                     name="email"
                     rules={inputEmailRules}
                 >
@@ -62,7 +97,6 @@ function Login({ handleCookieDataAdmin }) {
                         placeholder="Enter user your email!"
                     />
                 </Form.Item>
-
                 <Form.Item
                     hasFeedback
                     name="password"
@@ -78,16 +112,30 @@ function Login({ handleCookieDataAdmin }) {
 
                 <Form.Item>
                     <Button
+                        className='btn-login'
                         style={styles.btnSubmit}
                         htmlType="submit"
                     >
                         LOGIN
                     </Button>
                 </Form.Item>
-                <Form.Item>
-                    <a href="#" className="resetPassText">Reset password <span className="red">?</span></a>
-                </Form.Item>
 
+                <Form.Item>
+                    <div
+                        type="primary" onClick={showModal}>
+                        <a href="#" className="resetPassText">Forgot password? <span className="red">?</span></a>
+                    </div>
+                    <Modal
+                        title="Title"
+                        open={open}
+                        onOk={handleOk}
+                        confirmLoading={confirmLoading}
+                        onCancel={handleCancel}
+                    >
+                        <p>{modalText}</p>
+                    </Modal>
+
+                </Form.Item>
             </Form>
         </div >
     );

@@ -49,8 +49,6 @@ body {
 .resetPassText {
     font-size: 15px;
     font-weight: 700;
-    color:#908c8c;
-    opacity: .9;
 }
 
 .ant-form-item-explain-error {
@@ -58,7 +56,7 @@ body {
     font-size: 16px !important;
 }
 
-.ant-btn-default.ant-btn-lg {
+.btn-login{
     font-size: 25px !important;
     font-weight: 900;
     letter-spacing: 5px;
@@ -67,6 +65,7 @@ body {
     background-color: rgba(255, 255, 255, 0) !important;
     color:black !important;
 }
+
 .ant-btn-default.ant-btn-lg:hover {
     box-shadow: 10px 20px 50px rgb(229, 79, 104);
     border-bottom:3px solid rgb(229, 79, 104) !important;
@@ -77,4 +76,8 @@ body {
     background-color: green !important;
     color:green !important;
     border-bottom:1px solid green !important;
+}
+
+.Btn{
+    color:white !important;
 }
