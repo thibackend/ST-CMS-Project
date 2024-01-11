@@ -112,7 +112,7 @@ const AddEmployee = () => {
 
   const disable = (current) => {
     return current && current > moment().endOf("day");
-  }
+  };
 
   const [isDateWarningVisible, setDateWarningVisible] = useState(false);
 
@@ -125,13 +125,21 @@ const AddEmployee = () => {
   };
 
   const validateEmail = (rule, value, callback) => {
-
-    const [form] = useForm();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (value && emailRegex.text(value)) {
-      callback("Please enter an valid email address!");
+    // Sử dụng biểu thức chính quy để kiểm tra định dạng email
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (value && !emailRegex.test(value)) {
+      callback("Please enter valid email!");
+    } else {
+      callback();
     }
-    else {
+  };
+
+  const validatePhoneNumber = (rule, value, callback) => {
+    // Sử dụng biểu thức chính quy để kiểm tra xem có phải là số điện thoại không
+    const phoneRegex = /^[0-9]+$/;
+    if (value && !phoneRegex.test(value)) {
+      callback("Please enter valid phone number!");
+    } else {
       callback();
     }
   };
@@ -143,23 +151,24 @@ const AddEmployee = () => {
   };
 
   const onFinish = async (values) => {
-    try {
-      const updatedValues = { ...values, avatar: imageUrl };
-      await api.post("/employee", updatedValues);
-      message.success("Employee added successfully");
-      form.resetFields();
-      navigation("/employees");
-    } catch (error) {
-      message.error("An error occurred while adding the employee");
-    } finally {
-      // setIsUploading(false); // Reset uploading status to false regardless of success or failure
-    }
+    // try {
+    const updatedValues = { ...values, avatar: imageUrl };
+    await api
+      .post("/employee", updatedValues)
+      .then((res) => {
+        message.success("Employee added successfully");
+        form.resetFields();
+        navigation("/employees");
+      })
+      .catch((error) => {
+        message.error(error.response.data.message);
+      });
   };
 
   return (
     <>
       <h2 className="add-employee">ADD EMPLOYEE</h2>
-      <Row style={{marginLeft: '4rem'}}>
+      <Row style={{ marginLeft: "4rem" }}>
         <Col>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <CloudinaryContext cloudName="dvm8fnczy" cld={cld}>
@@ -175,11 +184,10 @@ const AddEmployee = () => {
                   <Spin spinning={loading} tip="Uploading...">
                     {imageUrl ? (
                       <div className="rounded-image-container">
-                        <CloudImage className="cloudary"
+                        <CloudImage
+                          className="cloudary"
                           publicId={imageUrl}
-                          style={{
-                            
-                          }}
+                          style={{}}
                         />
                       </div>
                     ) : (
@@ -192,7 +200,7 @@ const AddEmployee = () => {
               </div>
             </CloudinaryContext>
           </div>
-          <h4 style={{marginTop: '2rem'}}>EMPLOYEE AVATAR</h4>
+          <h4 style={{ marginTop: "2rem" }}>EMPLOYEE AVATAR</h4>
           {/* <Form.Item
             label="EMPLOYEE AVATAR"
             valuePropName="avatar"
@@ -235,6 +243,7 @@ const AddEmployee = () => {
                     style={{ marginLeft: "4rem", width: "20rem" }}
                     rules={[
                       { required: true, message: "Please enter your email!" },
+                      { validator: validateEmail },
                     ]}
                   >
                     <Input placeholder="Enter email" />
@@ -245,6 +254,10 @@ const AddEmployee = () => {
                     label="Phone number"
                     labelCol={{ span: 24 }}
                     style={{ marginLeft: "4rem", width: "20rem" }}
+                    rules={[
+                      { validator: validatePhoneNumber },
+                      { min: 10, message: "Phone number must be 10 digits!" },
+                    ]}
                   >
                     <Input placeholder="Enter phone number" />
                   </Form.Item>
@@ -264,9 +277,11 @@ const AddEmployee = () => {
                   <Form.Item
                     label="Is Manager?"
                     name="isManager"
-                    rules={[
-                      // { required: true, message: "Please select a status" },
-                    ]}
+                    rules={
+                      [
+                        // { required: true, message: "Please select a status" },
+                      ]
+                    }
                     labelCol={{ span: 12 }}
                     style={{ width: "20rem" }}
                   >
@@ -290,7 +305,10 @@ const AddEmployee = () => {
                     ]}
                     style={{ width: "20rem", marginLeft: "3rem" }}
                   >
-                    <DatePicker disabledDate={disable} onChange={handleDateChange}/>
+                    <DatePicker
+                      disabledDate={disable}
+                      onChange={handleDateChange}
+                    />
                   </Form.Item>
 
                   <Form.Item
