@@ -155,7 +155,7 @@ const MainLayout = ({ handleCookieDataAdmin }) => {
               <Button onClick={() => {
                 console.log("Logout")
                 handleCookieDataAdmin('', 'remove');
-
+                navigate('/');
               }}
               >
                 <LogoutOutlined />

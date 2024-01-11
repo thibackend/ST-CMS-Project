@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { DownloadOutlined, PlusCircleFilled, PlusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-export default function ShowProjectHeader({ toAddLink, handleSearch, handleSearchManager }) {
+export default function ShowProjectHeader({ toAddLink, handleSearch }) {
     useEffect(() => {
     }, [handleSearch])
     return (
