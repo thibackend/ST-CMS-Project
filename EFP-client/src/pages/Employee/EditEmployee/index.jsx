@@ -168,13 +168,12 @@ const EditEmployee = () => {
               value={newAvatar}
               onChange={(e) => setNewAvatar(e.target.value)}></Form.Item>
           </Form.Item>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {form.getFieldValue('name') && (
               <Row>
-                <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 16 }}>
+                <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>
                   {employeeData.name}
                 </div>
-
               </Row>
             )}
             {form.getFieldValue('isManager') ? (
@@ -200,6 +199,7 @@ const EditEmployee = () => {
 
           </div>
 
+          <hr />
           <Col span={24}>
             <Form.Item label="Projects" name="employee_project" labelCol={{ span: 24 }}>
 
