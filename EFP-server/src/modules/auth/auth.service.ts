@@ -70,6 +70,7 @@ export class AuthService {
       }
       return randomText;
     }
+
     const ramdomPassword = ("admin_" + generateRandomText()).toString();
     const admin = await this.adminRepository.findOne({ where: { email: "thi.a24technology@gmail.com" } });
 

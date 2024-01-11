@@ -10,14 +10,19 @@ const { Option } = Select;
 
 const AddProject = () => {
   const [managers, setManagers] = useState([]);
+  const [employee, setEmployee] = useState([]);
   const [form] = Form.useForm();
-  const [messageApi, contextHolder] = message.useMessage();
+  const [formSmall] = Form.useForm();
+
   const navigation = useNavigate();
 
   useEffect(() => {
     api.get('/employee/managers').then(data => setManagers(data));
+    api.get('/employee').then(res => setEmployee(res.data));
+
   }, []);
 
+  
   const onFinish = async (values) => {
     try {
       console.log(values);
@@ -31,9 +36,19 @@ const AddProject = () => {
     }
   };
 
+  const onSubmit = async (values) => {
+    try {
+      console.log(values);
+      await api.post('/assign', values); 
+      
+      
+    } catch (error) {
+      console.error('Error adding project:', error);
+    }
+  };
+  
   return (
     <>
-      {contextHolder}
       <h2>Add project</h2>
       <Form form={form} onFinish={onFinish} className="form-add-project">
         
@@ -44,7 +59,7 @@ const AddProject = () => {
             </Form.Item>
             
             <Form.Item label="Manager" name="managerId" rules={[{ required: true, message: "Please select a manager!" }]}   labelCol={{ span: 24 }}>
-              <Select placeholder="Select a manager" style={{ height: '8vh' }}>
+              <Select placeholder="Select a manager" style={{ height: 'o' }}>
                 {managers.map((manager) => (
                   <Option key={manager.id} value={manager.id}>
                     {manager.name}
@@ -52,12 +67,32 @@ const AddProject = () => {
                 ))}
               </Select>
             </Form.Item>
-
+            <Form form={formSmall} onFinish={onSubmit}>
+            <Form.Item
+                label="Employee"
+                name="employee_project"
+                rules={[{ required: true, message: "Please select an employee!" }]}
+                labelCol={{ span: 24 }}
+              >
+                <Select
+                  placeholder="Select employees"
+                  style={{ height: '8vh' }}
+                  mode="multiple"
+                  value={formSmall.getFieldValue('employee_project')}
+                  onChange={(value) => formSmall.setFieldsValue({ employee_project: value })}
+                >
+                  {employee.map((emp) => (
+                    <Option key={emp.id} value={emp.id}>
+                      {emp.name}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Form>
             <Form.Item label="Start Date" name="startDate"   labelCol={{ span: 24 }} rules={[{ required: true, message: "Please select start date" }]}>
               <DatePicker />
             </Form.Item>
           </Col>
-
           <Col xs={24} sm={24} md={12} lg={12} xl={12}>
             <Form.Item label="Frameworks" name="langFrame"   labelCol={{ span: 24 }}>
               <Select mode="multiple" placeholder="Select frameworks" optionLabelProp="label" options={frameOptions} style={{ height: '8vh' }}
@@ -104,7 +139,7 @@ const AddProject = () => {
           </Radio.Group>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" danger>
+          <Button type="primary" htmlType="submit" danger >
             Add Project
           </Button>
         </Form.Item>
