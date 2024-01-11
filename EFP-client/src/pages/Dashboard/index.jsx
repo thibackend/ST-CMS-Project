@@ -1,6 +1,5 @@
 import React ,{useState,useEffect } from 'react'
 import CardComponent from './Cards';
-import { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import { TeamOutlined, ProjectOutlined, UserOutlined, FileDoneOutlined  } from '@ant-design/icons';
 import {  EmChartComponent, ProChartComponent } from './Charts';
