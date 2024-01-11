@@ -33,3 +33,15 @@
 .ant-btn-round.ant-btn-danger.ant-btn-lg {
     border-bottom: red solid 1px;
 }
+
+th.ant-table-cell {
+    font-size: 16px;
+}
+
+span.ant-avatar-string {
+    font-size: 14px;
+}
+
+span.ant-tag.css-dev-only-do-not-override-i46qwz {
+    font-size: 14px;
+}
