@@ -124,6 +124,18 @@ const AddEmployee = () => {
     }
   };
 
+  const validateEmail = (rule, value, callback) => {
+
+    const [form] = useForm();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (value && emailRegex.text(value)) {
+      callback("Please enter an valid email address!");
+    }
+    else {
+      callback();
+    }
+  };
+
   const defaultValue = {
     gender: "male",
     position: "be",
